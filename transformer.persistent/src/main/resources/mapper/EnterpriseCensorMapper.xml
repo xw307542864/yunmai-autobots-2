@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.logibeat.cloud.persistent.dao.EnterpriseCensorDao" >
+    <resultMap id="BaseResultMap" type="com.logibeat.cloud.persistent.entity.EnterpriseCensorEntity" >
+        <id column="guid" property="guid" jdbcType="VARCHAR" />
+        <result column="ent_id" property="entId" jdbcType="VARCHAR" />
+        <result column="censor_states" property="censorStates" jdbcType="INTEGER" />
+        <result column="censor_person_guid" property="censorPersonGuid" jdbcType="VARCHAR" />
+        <result column="censor_person_name" property="censorPersonName" jdbcType="VARCHAR" />
+        <result column="censor_time" property="censorTime" jdbcType="TIMESTAMP" />
+        <result column="censor_type" property="censorType" jdbcType="INTEGER" />
+        <result column="censor_remarks" property="censorRemarks" jdbcType="VARCHAR" />
+        <result column="account_version" property="accountVersion" jdbcType="INTEGER" />
+        <result column="account_validity_date" property="accountValidityDate" jdbcType="TIMESTAMP" />
+        <result column="account_state" property="accountState" jdbcType="INTEGER" />
+    </resultMap>
+    <insert id="insert" parameterType="com.logibeat.cloud.persistent.entity.EnterpriseCensorEntity" >
+        insert into ent_censor
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="guid != null">guid, </if>
+            <if test="entId != null">ent_id,</if>
+            <if test="censorStates != null">censor_states, </if>
+            <if test="censorPersonGuid != null">censor_person_guid, </if>
+            <if test="censorPersonName != null">censor_person_name, </if>
+            <if test="censorTime != null">censor_time, </if>
+            <if test="censorType != null">censor_type, </if>
+            <if test="censorRemarks != null">censor_remarks,</if>
+            <if test="accountVersion != null">account_version, </if>
+            <if test="accountValidityDate != null">account_validity_date, </if>
+            <if test="accountState != null">account_state,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="guid != null">#{guid}, </if>
+            <if test="entId != null">#{entId},</if>
+            <if test="censorStates != null">#{censorStates}, </if>
+            <if test="censorPersonGuid != null">#{censorPersonGuid}, </if>
+            <if test="censorPersonName != null">#{censorPersonName}, </if>
+            <if test="censorTime != null">#{censorTime}, </if>
+            <if test="censorType != null">#{censorType}, </if>
+            <if test="censorRemarks != null">#{censorRemarks},</if>
+            <if test="accountVersion != null">#{accountVersion}, </if>
+            <if test="accountValidityDate != null">#{accountValidityDate}, </if>
+            <if test="accountState != null">#{accountState},</if>
+        </trim>
+    </insert>
+    <select id="getCensorEntityByEntId" resultMap="BaseResultMap">
+        select * from ent_censor where ent_id = #{entId};
+    </select>
+
+
+</mapper>

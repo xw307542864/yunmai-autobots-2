@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.logibeat.cloud.persistent.dao.ImFriendRelationDao">
+  <resultMap id="BaseResultMap" type="com.logibeat.cloud.persistent.entity.ImFriendRelationEntity">
+    <id column="guid" jdbcType="VARCHAR" property="guid" />
+    <result column="im_id" jdbcType="VARCHAR" property="imId" />
+    <result column="im_person_id" jdbcType="VARCHAR" property="imPersonId" />
+    <result column="friend_id" jdbcType="VARCHAR" property="friendId" />
+    <result column="friend_person_id" jdbcType="VARCHAR" property="friendPersonId" />
+    <result column="friend_nick_name" jdbcType="VARCHAR" property="friendNickName" />
+    <result column="message" jdbcType="VARCHAR" property="message" />
+    <result column="Status" jdbcType="INTEGER" property="status" />
+    <result column="is_delete" jdbcType="INTEGER" property="isDelete" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="edit_time" jdbcType="TIMESTAMP" property="editTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    guid, im_id, im_person_id, friend_id, friend_person_id, friend_nick_name, message, 
+    Status, is_delete, add_time, edit_time
+  </sql>
+  <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from im_friend_relation
+    where guid = #{guid,jdbcType=VARCHAR}
+  </select>
+  <delete id="delete" parameterType="java.lang.String">
+    delete from im_friend_relation
+    where guid = #{guid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.logibeat.cloud.persistent.entity.ImFriendRelationEntity">
+    insert into im_friend_relation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        guid,
+      </if>
+      <if test="imId != null">
+        im_id,
+      </if>
+      <if test="imPersonId != null">
+        im_person_id,
+      </if>
+      <if test="friendId != null">
+        friend_id,
+      </if>
+      <if test="friendPersonId != null">
+        friend_person_id,
+      </if>
+      <if test="friendNickName != null">
+        friend_nick_name,
+      </if>
+      <if test="message != null">
+        message,
+      </if>
+      <if test="status != null">
+        Status,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="editTime != null">
+        edit_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        #{guid,jdbcType=VARCHAR},
+      </if>
+      <if test="imId != null">
+        #{imId,jdbcType=VARCHAR},
+      </if>
+      <if test="imPersonId != null">
+        #{imPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="friendId != null">
+        #{friendId,jdbcType=VARCHAR},
+      </if>
+      <if test="friendPersonId != null">
+        #{friendPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="friendNickName != null">
+        #{friendNickName,jdbcType=VARCHAR},
+      </if>
+      <if test="message != null">
+        #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null">
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.logibeat.cloud.persistent.entity.ImFriendRelationEntity">
+    update im_friend_relation
+    <trim prefix="SET" suffixOverrides=",">
+      <if test="imId != null">
+        im_id = #{imId,jdbcType=VARCHAR},
+      </if>
+      <if test="imPersonId != null">
+          im_person_id = #{imPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="friendId != null">
+          friend_id = #{friendId,jdbcType=VARCHAR},
+      </if>
+      <if test="friendPersonId != null">
+          friend_person_id = #{friendPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="friendNickName != null">
+          friend_nick_name = #{friendNickName,jdbcType=VARCHAR},
+      </if>
+      <if test="message != null">
+          message = #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+          Status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null">
+          is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+          add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null">
+          edit_time = #{editTime,jdbcType=TIMESTAMP}
+      </if>
+    </trim>
+    where guid = #{guid,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getFriendByPersonId" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM im_friend_relation
+    WHERE im_person_id = #{personId} and friend_person_id = #{friendPersonId} and is_delete = 0
+  </select>
+</mapper>

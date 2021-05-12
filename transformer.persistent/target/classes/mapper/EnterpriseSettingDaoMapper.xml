@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.logibeat.cloud.persistent.dao.EnterpriseSettingDao">
+    <select id="find" resultType="com.logibeat.cloud.persistent.entity.EnterpriseSettingEntity">
+          select * from ent_setting WHERE guid = #{guid};
+    </select>
+
+    <select id="queryByEntId" resultType="com.logibeat.cloud.persistent.entity.EnterpriseSettingEntity">
+          select * from ent_setting et where entId = #{entId};
+    </select>
+
+    <insert id="merge" parameterType="com.logibeat.cloud.persistent.entity.EnterpriseSettingEntity">
+        insert into ent_setting (
+        guid,
+        entId,
+        isCheckCoopEnt,
+        isCheckCoopDriver,
+        isCheckSelfDriver,
+        isSearch,
+        isAutoSendCar,
+        isAutoArrival,
+        autoNumber,
+        letterOff,
+        letter,
+        dateOff,
+        dateFormat,
+        serialNumberOff,
+        serialNumber,
+        loopOff,
+        loopRule,
+        isShip,
+        isConsign,
+        isInputNumber,
+        isRepeat,
+        isUpLogink,
+        queueShowType,
+        crteateTime,
+        updateTime,
+        isSign,
+        getAdressType
+) values (
+        #{guid},
+        #{entId},
+        #{isCheckCoopEnt},
+        #{isCheckCoopDriver},
+        #{isCheckSelfDriver},
+        #{isSearch},
+        #{isAutoSendCar},
+        #{isAutoArrival},
+        #{autoNumber},
+        #{letterOff},
+        #{letter},
+        #{dateOff},
+        #{dateFormat},
+        #{serialNumberOff},
+        #{serialNumber},
+        #{loopOff},
+        #{loopRule},
+        #{isShip},
+        #{isConsign},
+        #{isInputNumber},
+        #{isRepeat},
+        #{isUpLogink},
+        #{queueShowType},
+        #{crteateTime},
+        #{updateTime},
+        #{isSign},
+        #{getAdressType}
+);
+    </insert>
+
+    <update id="update" parameterType="com.logibeat.cloud.persistent.entity.EnterpriseSettingEntity">
+        update ent_setting
+        <set>
+            entId = #{entId},
+            isCheckCoopEnt = #{isCheckCoopEnt},
+            isCheckCoopDriver = #{isCheckCoopDriver},
+            isCheckSelfDriver = #{isCheckSelfDriver},
+            isSearch = #{isSearch},
+            isAutoSendCar = #{isAutoSendCar},
+            isAutoArrival = #{isAutoArrival},
+            autoNumber = #{autoNumber},
+            letterOff = #{letterOff},
+            letter = #{letter},
+            dateOff = #{dateOff},
+            dateFormat = #{dateFormat},
+            serialNumberOff = #{serialNumberOff},
+            serialNumber = #{serialNumber},
+            loopOff = #{loopOff},
+            loopRule = #{loopRule},
+            isShip = #{isShip},
+            isConsign = #{isConsign},
+            isInputNumber = #{isInputNumber},
+            isRepeat = #{isRepeat},
+            isUpLogink = #{isUpLogink},
+            queueShowType = #{queueShowType},
+            crteateTime = #{crteateTime},
+            updateTime = #{updateTime},
+            isSign = #{isSign},
+            getAdressType = #{getAdressType}
+        </set>
+        WHERE guid = #{guid}
+    </update>
+
+</mapper>

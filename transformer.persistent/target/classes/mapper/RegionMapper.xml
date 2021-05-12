@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.logibeat.cloud.persistent.dao.RegionDao">
+  <resultMap id="BaseResultMap" type="com.logibeat.cloud.persistent.entity.RegionEntity">
+    <id column="region_id" jdbcType="INTEGER" property="regionId" />
+    <result column="region_code" jdbcType="VARCHAR" property="regionCode" />
+    <result column="region_name" jdbcType="VARCHAR" property="regionName" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="region_level" jdbcType="VARCHAR" property="regionLevel" />
+    <result column="region_order" jdbcType="VARCHAR" property="regionOrder" />
+    <result column="region_name_en" jdbcType="VARCHAR" property="regionNameEn" />
+    <result column="region_shortname_en" jdbcType="VARCHAR" property="regionShortnameEn" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    region_id, region_code, region_name, parent_id, region_level, region_order, region_name_en, 
+    region_shortname_en
+  </sql>
+  <select id="select" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bs_region
+    where region_id = #{regionId,jdbcType=INTEGER}
+  </select>
+  <delete id="delete" parameterType="java.lang.Integer">
+    delete from bs_region
+    where region_id = #{regionId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.logibeat.cloud.persistent.entity.RegionEntity">
+    insert into bs_region
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="regionId != null">
+        region_id,
+      </if>
+      <if test="regionCode != null">
+        region_code,
+      </if>
+      <if test="regionName != null">
+        region_name,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="regionLevel != null">
+        region_level,
+      </if>
+      <if test="regionOrder != null">
+        region_order,
+      </if>
+      <if test="regionNameEn != null">
+        region_name_en,
+      </if>
+      <if test="regionShortnameEn != null">
+        region_shortname_en,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="regionId != null">
+        #{regionId,jdbcType=INTEGER},
+      </if>
+      <if test="regionCode != null">
+        #{regionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="regionName != null">
+        #{regionName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="regionLevel != null">
+        #{regionLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="regionOrder != null">
+        #{regionOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="regionNameEn != null">
+        #{regionNameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="regionShortnameEn != null">
+        #{regionShortnameEn,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.logibeat.cloud.persistent.entity.RegionEntity">
+    update bs_region
+    <trim prefix="SET" suffixOverrides=",">
+      <if test="regionCode != null">
+        region_code = #{regionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="regionName != null">
+          region_name = #{regionName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+          parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="regionLevel != null">
+          region_level = #{regionLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="regionOrder != null">
+          region_order = #{regionOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="regionNameEn != null">
+          region_name_en = #{regionNameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="regionShortnameEn != null">
+          region_shortname_en = #{regionShortnameEn,jdbcType=VARCHAR}
+      </if>
+    </trim>
+    where region_id = #{regionId,jdbcType=INTEGER}
+  </update>
+
+  <select id="getRegionByCode" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from bs_region where region_code = #{code,jdbcType=VARCHAR}
+  </select>
+</mapper>

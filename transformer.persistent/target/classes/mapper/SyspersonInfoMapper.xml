@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.logibeat.cloud.persistent.dao.SyspersonInfoDao">
+    <resultMap id="SyspersonInfoMap" type="com.logibeat.cloud.persistent.entity.SyspersonInfoEntity">
+        <result column="guid" property="guid"/>
+        <result column="person_id" property="personId"/>
+        <result column="name" property="name"/>
+        <result column="id_card" property="idCard"/>
+        <result column="sex" property="sex"/>
+        <result column="birth_day" property="birthDay"/>
+        <result column="nation" property="nation"/>
+        <result column="issuing_authority" property="issuingAuthority"/>
+        <result column="idcard_expire_date" property="idcardExpireDate"/>
+        <result column="idcard_front_pic" property="idcardFrontPic"/>
+        <result column="idcard_back_pic" property="idcardBackPic"/>
+        <result column="idcard_hand_pic" property="idcardHandPic"/>
+        <result column="driving_license_type" property="drivingLicenseType"/>
+        <result column="driving_license_number" property="drivingLicenseNumber"/>
+        <result column="driving_license_pic" property="drivingLicensePic"/>
+        <result column="driving_license_back_pic" property="drivingLicenseBackPic"/>
+        <result column="driving_license_start_date" property="drivingLicenseStartDate"/>
+        <result column="driving_license_end_date" property="drivingLicenseEndDate"/>
+        <result column="first_take_time" property="firstTakeTime"/>
+        <result column="create_time" property="createTime"/>
+        
+    </resultMap>
+
+    <sql id="table">
+        sysperson_info
+    </sql>
+
+    <sql id="columns">
+        guid, person_id, name, id_card, sex, birth_day, nation, issuing_authority, idcard_expire_date, idcard_front_pic, idcard_back_pic, idcard_hand_pic, driving_license_type, driving_license_number, driving_license_pic, driving_license_back_pic, driving_license_start_date, driving_license_end_date, first_take_time, create_time
+    </sql>
+
+    <sql id="values">
+        #{guid}, #{personId}, #{name}, #{idCard}, #{sex}, #{birthDay}, #{nation}, #{issuingAuthority}, #{idcardExpireDate}, #{idcardFrontPic}, #{idcardBackPic}, #{idcardHandPic}, #{drivingLicenseType}, #{drivingLicenseNumber}, #{drivingLicensePic}, #{drivingLicenseBackPic}, #{drivingLicenseStartDate}, #{drivingLicenseEndDate}, #{firstTakeTime}, #{createTime}
+    </sql>
+
+    <insert id="insert" parameterType="com.logibeat.cloud.persistent.entity.SyspersonInfoEntity">
+        INSERT INTO
+        <include refid="table"/>
+        (<include refid="columns"/>)
+        VALUES
+        (<include refid="values"/>)
+    </insert>
+
+    <select id="findByPersonId" parameterType="string" resultMap="SyspersonInfoMap" >
+        SELECT <include refid="columns" />
+        FROM <include refid="table" />
+        WHERE person_id = #{personId}
+    </select>
+
+    <update id="update" parameterType="com.logibeat.cloud.persistent.entity.SyspersonInfoEntity">
+        UPDATE
+        <include refid="table"/>
+        <set>
+            <if test="guid != null">guid = #{guid},</if>
+            <if test="personId != null">person_id = #{personId},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="idCard != null">id_card = #{idCard},</if>
+            <if test="sex != null">sex = #{sex},</if>
+            <if test="birthDay != null">birth_day = #{birthDay},</if>
+            <if test="nation != null">nation = #{nation},</if>
+            <if test="issuingAuthority != null">issuing_authority = #{issuingAuthority},</if>
+            <if test="idcardExpireDate != null">idcard_expire_date = #{idcardExpireDate},</if>
+            <if test="idcardFrontPic != null">idcard_front_pic = #{idcardFrontPic},</if>
+            <if test="idcardBackPic != null">idcard_back_pic = #{idcardBackPic},</if>
+            <if test="idcardHandPic != null">idcard_hand_pic = #{idcardHandPic},</if>
+            <if test="drivingLicenseType != null">driving_license_type = #{drivingLicenseType},</if>
+            <if test="drivingLicenseNumber != null">driving_license_number = #{drivingLicenseNumber},</if>
+            <if test="drivingLicensePic != null">driving_license_pic = #{drivingLicensePic},</if>
+            <if test="drivingLicenseBackPic != null">driving_license_back_pic = #{drivingLicenseBackPic},</if>
+            <if test="drivingLicenseStartDate != null">driving_license_start_date = #{drivingLicenseStartDate},</if>
+            <if test="drivingLicenseEndDate != null">driving_license_end_date = #{drivingLicenseEndDate},</if>
+            <if test="firstTakeTime != null">first_take_time = #{firstTakeTime},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            
+        </set>
+        WHERE guid = #{guid}
+    </update>
+
+    <delete id="delete" parameterType="string">
+        DELETE FROM <include refid="table"/>
+        WHERE guid = #{guid}
+    </delete>
+
+    <select id="count" parameterType="com.logibeat.cloud.persistent.entity.SyspersonInfoEntity" resultType="long">
+        SELECT COUNT(guid)
+        FROM
+        <include refid="table"/>
+        <where>
+            <include refid="criteria"/>
+        </where>
+    </select>
+
+    <select id="paging" parameterType="com.logibeat.cloud.persistent.entity.SyspersonInfoEntity" resultMap="SyspersonInfoMap">
+        SELECT
+        <include refid="columns"/>
+        FROM
+        <include refid="table"/>
+        <where>
+            <include refid="criteria"/>
+        </where>
+        LIMIT #{offset}, #{limit}
+    </select>
+
+    <sql id="criteria">
+        <if test="guid != null"> and guid = #{guid}</if>
+        <if test="personId != null"> and person_id = #{personId}</if>
+        <if test="name != null"> and name = #{name}</if>
+        <if test="idCard != null"> and id_card = #{idCard}</if>
+        <if test="sex != null"> and sex = #{sex}</if>
+        <if test="birthDay != null"> and birth_day = #{birthDay}</if>
+        <if test="nation != null"> and nation = #{nation}</if>
+        <if test="issuingAuthority != null"> and issuing_authority = #{issuingAuthority}</if>
+        <if test="idcardExpireDate != null"> and idcard_expire_date = #{idcardExpireDate}</if>
+        <if test="idcardFrontPic != null"> and idcard_front_pic = #{idcardFrontPic}</if>
+        <if test="idcardBackPic != null"> and idcard_back_pic = #{idcardBackPic}</if>
+        <if test="idcardHandPic != null"> and idcard_hand_pic = #{idcardHandPic}</if>
+        <if test="drivingLicenseType != null"> and driving_license_type = #{drivingLicenseType}</if>
+        <if test="drivingLicenseNumber != null"> and driving_license_number = #{drivingLicenseNumber}</if>
+        <if test="drivingLicensePic != null"> and driving_license_pic = #{drivingLicensePic}</if>
+        <if test="drivingLicenseBackPic != null"> and driving_license_back_pic = #{drivingLicenseBackPic}</if>
+        <if test="drivingLicenseStartDate != null"> and driving_license_start_date = #{drivingLicenseStartDate}</if>
+        <if test="drivingLicenseEndDate != null"> and driving_license_end_date = #{drivingLicenseEndDate}</if>
+        <if test="firstTakeTime != null"> and first_take_time = #{firstTakeTime}</if>
+        <if test="createTime != null"> and create_time = #{createTime}</if>
+        
+    </sql>
+</mapper>

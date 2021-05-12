@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.logibeat.cloud.persistent.dao.CarOperationTimeDao">
+  <resultMap id="BaseResultMap" type="com.logibeat.cloud.persistent.entity.CarOperationTimeEntity">
+    <id column="guid" jdbcType="VARCHAR" property="guid" />
+    <result column="startTime" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="endTime" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="carId" jdbcType="VARCHAR" property="carId" />
+    <result column="plateNumber" jdbcType="VARCHAR" property="plateNumber" />
+    <result column="personId" jdbcType="VARCHAR" property="personId" />
+    <result column="deviceType" jdbcType="INTEGER" property="deviceType" />
+    <result column="equipment" jdbcType="VARCHAR" property="equipment" />
+    <result column="keyWord" jdbcType="VARCHAR" property="keyWord" />
+    <result column="endReason" jdbcType="VARCHAR" property="endReason" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    guid, startTime, endTime, carId, plateNumber, personId, deviceType, equipment, keyWord, 
+    endReason
+  </sql>
+  <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from car_operation_time
+    where guid = #{guid,jdbcType=VARCHAR}
+  </select>
+  <delete id="delete" parameterType="java.lang.String">
+    delete from car_operation_time
+    where guid = #{guid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.logibeat.cloud.persistent.entity.CarOperationTimeEntity">
+    insert into car_operation_time
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        guid,
+      </if>
+      <if test="startTime != null">
+        startTime,
+      </if>
+      <if test="endTime != null">
+        endTime,
+      </if>
+      <if test="carId != null">
+        carId,
+      </if>
+      <if test="plateNumber != null">
+        plateNumber,
+      </if>
+      <if test="personId != null">
+        personId,
+      </if>
+      <if test="deviceType != null">
+        deviceType,
+      </if>
+      <if test="equipment != null">
+        equipment,
+      </if>
+      <if test="keyWord != null">
+        keyWord,
+      </if>
+      <if test="endReason != null">
+        endReason,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        #{guid,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="carId != null">
+        #{carId,jdbcType=VARCHAR},
+      </if>
+      <if test="plateNumber != null">
+        #{plateNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="personId != null">
+        #{personId,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceType != null">
+        #{deviceType,jdbcType=INTEGER},
+      </if>
+      <if test="equipment != null">
+        #{equipment,jdbcType=VARCHAR},
+      </if>
+      <if test="keyWord != null">
+        #{keyWord,jdbcType=VARCHAR},
+      </if>
+      <if test="endReason != null">
+        #{endReason,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.logibeat.cloud.persistent.entity.CarOperationTimeEntity">
+    update car_operation_time
+    <trim prefix="SET" suffixOverrides=",">
+      <if test="startTime != null">
+        startTime = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+          endTime = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="carId != null">
+          carId = #{carId,jdbcType=VARCHAR},
+      </if>
+      <if test="plateNumber != null">
+          plateNumber = #{plateNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="personId != null">
+          personId = #{personId,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceType != null">
+          deviceType = #{deviceType,jdbcType=INTEGER},
+      </if>
+      <if test="equipment != null">
+          equipment = #{equipment,jdbcType=VARCHAR},
+      </if>
+      <if test="keyWord != null">
+          keyWord = #{keyWord,jdbcType=VARCHAR},
+      </if>
+      <if test="endReason != null">
+          endReason = #{endReason,jdbcType=VARCHAR}
+      </if>
+    </trim>
+    where guid = #{guid,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getAllCarOperationTime" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from car_operation_time where endTime = '2099-01-01 00:00:00' and carId = #{carId}
+  </select>
+
+  <select id="getCarOperationTimeNoPerson" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from car_operation_time
+    where endTime = '2099-1-1 00:00:00' and carId = #{carId} and deviceType != 0
+  </select>
+  
+  <select id="getCarOperationTimeList" resultMap="BaseResultMap">
+  	 select 
+	<include refid="Base_Column_List" />
+ 	 from car_operation_time where endTime = '2099-1-1 00:00:00' and carId = #{carId}
+  </select>
+</mapper>

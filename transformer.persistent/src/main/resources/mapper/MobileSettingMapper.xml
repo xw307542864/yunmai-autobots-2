@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.logibeat.cloud.persistent.dao.MobileSettingDao">
+  <resultMap id="BaseResultMap" type="com.logibeat.cloud.persistent.entity.MobileSettingEntity">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="phone_brand" jdbcType="VARCHAR" property="phoneBrand" />
+    <result column="phone_model" jdbcType="VARCHAR" property="phoneModel" />
+    <result column="gps_upload" jdbcType="INTEGER" property="gpsUpload" />
+    <result column="gps_acquisition" jdbcType="INTEGER" property="gpsAcquisition" />
+    <result column="gps_history" jdbcType="INTEGER" property="gpsHistory" />
+    <result column="distance" jdbcType="INTEGER" property="distance" />
+    <result column="seconds" jdbcType="INTEGER" property="seconds" />
+    <result column="isTask" jdbcType="TINYINT" property="isTask" />
+    <result column="addtime" jdbcType="TIMESTAMP" property="addtime" />
+    <result column="isdelete" jdbcType="TINYINT" property="isdelete" />
+    <result column="level" jdbcType="INTEGER" property="level" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, phone_brand, phone_model, gps_upload, gps_acquisition, gps_history, distance, 
+    seconds, isTask, addtime, isdelete, level
+  </sql>
+  <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mobile_setting
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="delete" parameterType="java.lang.String">
+    delete from mobile_setting
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.logibeat.cloud.persistent.entity.MobileSettingEntity">
+    insert into mobile_setting
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="phoneBrand != null">
+        phone_brand,
+      </if>
+      <if test="phoneModel != null">
+        phone_model,
+      </if>
+      <if test="gpsUpload != null">
+        gps_upload,
+      </if>
+      <if test="gpsAcquisition != null">
+        gps_acquisition,
+      </if>
+      <if test="gpsHistory != null">
+        gps_history,
+      </if>
+      <if test="distance != null">
+        distance,
+      </if>
+      <if test="seconds != null">
+        seconds,
+      </if>
+      <if test="isTask != null">
+        isTask,
+      </if>
+      <if test="addtime != null">
+        addtime,
+      </if>
+      <if test="isdelete != null">
+        isdelete,
+      </if>
+      <if test="level != null">
+        level,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneBrand != null">
+        #{phoneBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneModel != null">
+        #{phoneModel,jdbcType=VARCHAR},
+      </if>
+      <if test="gpsUpload != null">
+        #{gpsUpload,jdbcType=INTEGER},
+      </if>
+      <if test="gpsAcquisition != null">
+        #{gpsAcquisition,jdbcType=INTEGER},
+      </if>
+      <if test="gpsHistory != null">
+        #{gpsHistory,jdbcType=INTEGER},
+      </if>
+      <if test="distance != null">
+        #{distance,jdbcType=INTEGER},
+      </if>
+      <if test="seconds != null">
+        #{seconds,jdbcType=INTEGER},
+      </if>
+      <if test="isTask != null">
+        #{isTask,jdbcType=TINYINT},
+      </if>
+      <if test="addtime != null">
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdelete != null">
+        #{isdelete,jdbcType=TINYINT},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.logibeat.cloud.persistent.entity.MobileSettingEntity">
+    update mobile_setting
+    <trim prefix="SET" suffixOverrides=",">
+      <if test="phoneBrand != null">
+        phone_brand = #{phoneBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneModel != null">
+          phone_model = #{phoneModel,jdbcType=VARCHAR},
+      </if>
+      <if test="gpsUpload != null">
+          gps_upload = #{gpsUpload,jdbcType=INTEGER},
+      </if>
+      <if test="gpsAcquisition != null">
+          gps_acquisition = #{gpsAcquisition,jdbcType=INTEGER},
+      </if>
+      <if test="gpsHistory != null">
+          gps_history = #{gpsHistory,jdbcType=INTEGER},
+      </if>
+      <if test="distance != null">
+          distance = #{distance,jdbcType=INTEGER},
+      </if>
+      <if test="seconds != null">
+          seconds = #{seconds,jdbcType=INTEGER},
+      </if>
+      <if test="isTask != null">
+          isTask = #{isTask,jdbcType=TINYINT},
+      </if>
+      <if test="addtime != null">
+          addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdelete != null">
+          isdelete = #{isdelete,jdbcType=TINYINT},
+      </if>
+      <if test="level != null">
+          level = #{level,jdbcType=INTEGER}
+      </if>
+    </trim>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getMobileSettingByModel" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from mobile_setting
+    where isdelete = 0 and phone_model = #{phoneModel} and isTask = #{isTask}
+  </select>
+
+  <select id="getMobileSettingList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from mobile_setting
+    where isdelete = 0 order by level
+  </select>
+
+  <select id="getListByModel" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from mobile_setting
+    where isdelete = 0 and phone_model = #{phoneModel}
+  </select>
+</mapper>

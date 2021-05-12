@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.logibeat.cloud.persistent.dao.HeartbeatCallbackDao">
+  <resultMap id="BaseResultMap" type="com.logibeat.cloud.persistent.entity.HeartbeatCallbackEntity">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="event_id" jdbcType="VARCHAR" property="eventId" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="callback_time" jdbcType="TIMESTAMP" property="callbackTime" />
+    <result column="gps_pack_num" jdbcType="INTEGER" property="gpsPackNum" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, event_id, start_time, end_time, callback_time, gps_pack_num
+  </sql>
+  <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_heartbeat_callback
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="delete" parameterType="java.lang.String">
+    delete from sys_heartbeat_callback
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.logibeat.cloud.persistent.entity.HeartbeatCallbackEntity">
+    insert into sys_heartbeat_callback
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="eventId != null">
+        event_id,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="callbackTime != null">
+        callback_time,
+      </if>
+      <if test="gpsPackNum != null">
+        gps_pack_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="eventId != null">
+        #{eventId,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="callbackTime != null">
+        #{callbackTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gpsPackNum != null">
+        #{gpsPackNum,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.logibeat.cloud.persistent.entity.HeartbeatCallbackEntity">
+    update sys_heartbeat_callback
+    <trim prefix="SET" suffixOverrides=",">
+      <if test="eventId != null">
+        event_id = #{eventId,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+          start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+          end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="callbackTime != null">
+          callback_time = #{callbackTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gpsPackNum != null">
+          gps_pack_num = #{gpsPackNum,jdbcType=INTEGER}
+      </if>
+    </trim>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getEntityByEventId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_heartbeat_callback
+    where event_id = #{eventId}
+  </select>
+</mapper>

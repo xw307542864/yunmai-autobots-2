@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.logibeat.cloud.persistent.dao.NewFriendLogDetailDao">
+  <resultMap id="BaseResultMap" type="com.logibeat.cloud.persistent.entity.NewFriendLogDetailEntity">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="newfriendlog_id" jdbcType="VARCHAR" property="newfriendlogId" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="person_id" jdbcType="VARCHAR" property="personId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, newfriendlog_id, remark, add_time, person_id
+  </sql>
+  <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from im_newfriendlog_detail
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="delete" parameterType="java.lang.String">
+    delete from im_newfriendlog_detail
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.logibeat.cloud.persistent.entity.NewFriendLogDetailEntity">
+    insert into im_newfriendlog_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="newfriendlogId != null">
+        newfriendlog_id,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="personId != null">
+        person_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="newfriendlogId != null">
+        #{newfriendlogId,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="personId != null">
+        #{personId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.logibeat.cloud.persistent.entity.NewFriendLogDetailEntity">
+    update im_newfriendlog_detail
+    <trim prefix="SET" suffixOverrides=",">
+      <if test="newfriendlogId != null">
+        newfriendlog_id = #{newfriendlogId,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+          remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+          add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="personId != null">
+          person_id = #{personId,jdbcType=VARCHAR}
+      </if>
+    </trim>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

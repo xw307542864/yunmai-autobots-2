@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.logibeat.cloud.persistent.dao.AuditDao">
+  <resultMap id="BaseResultMap" type="com.logibeat.cloud.persistent.entity.AuditEntity">
+    <id column="guid" jdbcType="VARCHAR" property="guid" />
+    <result column="object_id" jdbcType="VARCHAR" property="objectId" />
+    <result column="ent_id" jdbcType="VARCHAR" property="entId" />
+    <result column="apply_person_id" jdbcType="VARCHAR" property="applyPersonId" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="edit_time" jdbcType="TIMESTAMP" property="editTime" />
+    <result column="audit_status" jdbcType="INTEGER" property="auditStatus" />
+    <result column="audit_time" jdbcType="TIMESTAMP" property="auditTime" />
+    <result column="audit_person_id" jdbcType="VARCHAR" property="auditPersonId" />
+    <result column="audit_event_model" jdbcType="INTEGER" property="auditEventModel" />
+    <result column="audit_event_type" jdbcType="INTEGER" property="auditEventType" />
+    <result column="audit_source" jdbcType="INTEGER" property="auditSource" />
+    <result column="audit_info" jdbcType="LONGVARCHAR" property="auditInfo" />
+    <result column="audit_message" jdbcType="VARCHAR" property="auditMessage" />
+    <result column="expire_date" jdbcType="VARCHAR" property="expireDate" />
+    <result column="diffDays" jdbcType="VARCHAR" property="diffDays" />
+    <result column="identification_number" jdbcType="VARCHAR" property="identificationNumber" />
+
+
+
+  </resultMap>
+  <delete id="delete" parameterType="java.lang.String">
+    delete from bs_audit
+    where guid = #{guid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="merge" parameterType="com.logibeat.cloud.persistent.entity.AuditEntity">
+    insert into bs_audit (guid, object_id, ent_id, 
+      apply_person_id, add_time, edit_time, 
+      audit_status, audit_time, audit_person_id, 
+      audit_event_model, audit_event_type, audit_event_type_item,audit_source,
+      audit_info,expire_date,identification_number)
+    values (#{guid,jdbcType=VARCHAR},
+      #{objectId,jdbcType=VARCHAR},
+      #{entId,jdbcType=VARCHAR},
+      #{applyPersonId,jdbcType=VARCHAR},
+      #{addTime,jdbcType=TIMESTAMP},
+      #{editTime,jdbcType=TIMESTAMP},
+      #{auditStatus,jdbcType=INTEGER},
+      #{auditTime,jdbcType=TIMESTAMP},
+      #{auditPersonId,jdbcType=VARCHAR},
+      #{auditEventModel,jdbcType=INTEGER},
+      #{auditEventType,jdbcType=INTEGER},
+      #{auditEventTypeItem,jdbcType=VARCHAR},
+      #{auditSource,jdbcType=INTEGER},
+      #{auditInfo,jdbcType=LONGVARCHAR},
+      #{expireDate,jdbcType=VARCHAR},
+      #{identificationNumber,jdbcType=VARCHAR}
+
+
+      )
+  </insert>
+  <update id="update" parameterType="com.logibeat.cloud.persistent.entity.AuditEntity">
+    update bs_audit
+    set object_id = #{objectId,jdbcType=VARCHAR},
+      ent_id = #{entId,jdbcType=VARCHAR},
+      apply_person_id = #{applyPersonId,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      edit_time = #{editTime,jdbcType=TIMESTAMP},
+      audit_status = #{auditStatus,jdbcType=INTEGER},
+      audit_time = #{auditTime,jdbcType=TIMESTAMP},
+      audit_person_id = #{auditPersonId,jdbcType=VARCHAR},
+      audit_event_model = #{auditEventModel,jdbcType=INTEGER},
+      audit_event_type = #{auditEventType,jdbcType=INTEGER},
+      audit_source = #{auditSource,jdbcType=INTEGER},
+      audit_info = #{auditInfo,jdbcType=LONGVARCHAR},
+      expire_date = #{expireDate,jdbcType=VARCHAR},
+      identification_number = #{identificationNumber,jdbcType=VARCHAR}
+
+    where guid = #{guid,jdbcType=VARCHAR}
+  </update>
+  <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select guid, object_id, ent_id, apply_person_id, add_time, edit_time, audit_status, 
+    audit_time, audit_person_id, audit_event_model, audit_event_type, audit_source, audit_info,audit_message,identification_number,expire_date
+    from bs_audit
+    where guid = #{guid,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select guid, object_id, ent_id, apply_person_id, add_time, edit_time, audit_status, 
+    audit_time, audit_person_id, audit_event_model, audit_event_type, audit_source, audit_info
+    from bs_audit
+  </select>
+   <select id="getAuditEnity"  resultMap="BaseResultMap">
+         select * from bs_audit where object_Id = #{objectId}
+		and audit_event_type = #{auditEventType} order by add_time desc
+    	limit 1
+    </select>
+
+  <select id="getsAuditListByType"  resultType="com.logibeat.cloud.persistent.entity.AuditEntity">
+         select * from bs_audit where object_Id = #{objectId}
+		and audit_event_type = #{auditEventType} order by add_time desc
+    </select>
+
+
+  <select id="getsAuditEnityByItem"  resultMap="BaseResultMap">
+         select * from bs_audit where object_Id = #{objectId}
+		and audit_event_type = #{auditEventType}
+		and audit_event_type_item = #{auditEventTypeItem}
+		order by add_time desc
+    	limit 1
+   </select>
+
+
+    <select id="getAuditByPersonId"  resultType="com.logibeat.cloud.persistent.entity.AuditEntity">
+        select * from bs_audit where  apply_person_iD =#{baseUserId} and audit_event_Type = 4
+    </select>
+    <select id="getAuditEnityBySubmitType"  resultType="com.logibeat.cloud.persistent.entity.AuditEntity">
+        select * from bs_audit where object_Id = #{objectId} and apply_person_id =#{personId} 
+		 and audit_event_type = #{auditEventType} order by add_time desc
+        limit 1
+    </select>
+
+    <select id="getAuditEntityByPass"  resultType="com.logibeat.cloud.persistent.entity.AuditEntity">
+        select * from bs_audit where apply_person_id =#{personId} and audit_status = 2 
+		and audit_event_type = #{auditEventType} order by add_time desc
+    </select>
+
+  <select id="getExpireList" resultMap="BaseResultMap">
+    SELECT
+    *,
+    datediff(expire_date,NOW()) as diffDays
+    FROM bs_audit  WHERE  expire_date is not NULL and audit_status = 2
+    <if test="objectId!=null and objectId!=''">
+      and object_id = #{objectId}
+    </if>
+    and datediff(expire_date,NOW()) in(30,15,0,1,2,3,-1)
+  </select>
+
+  <select id="getWillExpireList" resultMap="BaseResultMap">
+    SELECT
+    *,
+    datediff(expire_date,NOW()) as diffDays
+    FROM bs_audit  WHERE  expire_date is not NULL and audit_status = 2
+    <if test="objectId!=null and objectId!=''">
+      and object_id = #{objectId}
+    </if>
+    and datediff(expire_date,NOW()) &lt;=30  and datediff(expire_date,NOW()) >=0
+  </select>
+  
+  <select id="getAuditEnityByStatus"  resultMap="BaseResultMap">
+         select * from bs_audit where object_Id = #{objectId}
+		and audit_event_type = #{auditEventType} and audit_status =#{auditStatus} order by add_time desc
+    </select>
+
+  <select id="getAllEntityByEventType"  resultMap="BaseResultMap">
+         select * from bs_audit where audit_event_type = #{auditEventType} and audit_status = 2
+    </select>
+    
+</mapper>

@@ -1,0 +1,859 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.logibeat.cloud.persistent.dao.TaskOrdersCarDao">
+  <resultMap id="BaseResultMap" type="com.logibeat.cloud.persistent.entity.TaskOrdersCarEntity">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="OrdersCID" jdbcType="VARCHAR" property="ordersCID" />
+    <result column="YYYYMMDD" jdbcType="INTEGER" property="yyyymmdd" />
+    <result column="CarID" jdbcType="VARCHAR" property="carID" />
+    <result column="IsSelfCar" jdbcType="TINYINT" property="isSelfCar" />
+    <result column="FirstDriverPersonID" jdbcType="VARCHAR" property="firstDriverPersonID" />
+    <result column="SecondDriverPersonID" jdbcType="VARCHAR" property="secondDriverPersonID" />
+    <result column="IsReceiv" jdbcType="TINYINT" property="isReceiv" />
+    <result column="IsRefuse" jdbcType="TINYINT" property="isRefuse" />
+    <result column="ReceivPersonID" jdbcType="VARCHAR" property="receivPersonID" />
+    <result column="ReceivTime" jdbcType="TIMESTAMP" property="receivTime" />
+    <result column="RefusePersonID" jdbcType="VARCHAR" property="refusePersonID" />
+    <result column="RefuseTime" jdbcType="TIMESTAMP" property="refuseTime" />
+    <result column="AddTime" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="EditTime" jdbcType="TIMESTAMP" property="editTime" />
+    <result column="EditPersonID" jdbcType="VARCHAR" property="editPersonID" />
+    <result column="IsDelete" jdbcType="TINYINT" property="isDelete" />
+    <result column="EntrustOrdersCID" jdbcType="VARCHAR" property="entrustOrdersCID" />
+    <result column="EntrustPersonID" jdbcType="VARCHAR" property="entrustPersonID" />
+    <result column="EntrustTime" jdbcType="TIMESTAMP" property="entrustTime" />
+    <result column="IsCancleEntrust" jdbcType="TINYINT" property="isCancleEntrust" />
+    <result column="CancleEntrustPersonID" jdbcType="VARCHAR" property="cancleEntrustPersonID" />
+    <result column="CancleEntrustTime" jdbcType="TIMESTAMP" property="cancleEntrustTime" />
+    <result column="entrustEntid" jdbcType="VARCHAR" property="entrustEntid" />
+    <result column="State" jdbcType="TINYINT" property="state" />
+    <result column="is_share_car" jdbcType="TINYINT" property="isShareCar" />
+    <result column="share_ent_id" jdbcType="VARCHAR" property="shareEntId" />
+    <result column="originalcid" jdbcType="VARCHAR" property="originalcid" />
+    <result column="freight_fee" jdbcType="REAL" property="freightFee" />
+    <result column="shipping_manifests_id" jdbcType="VARCHAR" property="shippingManifestsId" />
+    <result column="orders_type" jdbcType="INTEGER" property="ordersType" />
+    <result column="orders_status" jdbcType="INTEGER" property="ordersStatus" />
+    <result column="plan_leave_time" jdbcType="TIMESTAMP" property="planLeaveTime" />
+    <result column="actual_leave_time" jdbcType="TIMESTAMP" property="actualLeaveTime" />
+    <result column="plan_arrive_time" jdbcType="TIMESTAMP" property="planArriveTime" />
+    <result column="actual_arrive_time" jdbcType="TIMESTAMP" property="actualArriveTime" />
+    <result column="actual_leave_lat" jdbcType="DOUBLE" property="actualLeaveLat" />
+    <result column="actual_leave_lng" jdbcType="DOUBLE" property="actualLeaveLng" />
+    <result column="actual_arrive_lat" jdbcType="DOUBLE" property="actualArriveLat" />
+    <result column="actual_arrive_lng" jdbcType="DOUBLE" property="actualArriveLng" />
+    <result column="plan_mileage" jdbcType="DOUBLE" property="planMileage" />
+    <result column="coop_type" jdbcType="INTEGER" property="coopType" />
+    <result column="coop_ent_id" jdbcType="VARCHAR" property="coopEntId" />
+    <result column="is_auto_depart" jdbcType="TINYINT" property="isAutoDepart" />
+    <result column="is_auto_arrive" jdbcType="TINYINT" property="isAutoArrive" />
+    <result column="task_car_type" jdbcType="INTEGER" property="taskCarType" />
+    <result column="out_key_id" jdbcType="VARCHAR" property="outKeyId" />
+    <result column="is_time_out" jdbcType="TINYINT" property="isTimeOut" />
+    <result column="time_out_duration" jdbcType="INTEGER" property="timeOutDuration" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="coop_shipping_manifests_id" jdbcType="VARCHAR" property="coopShippingManifestsId" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="user_json" jdbcType="VARCHAR" property="userJson" />
+    <result column="actual_mileage" jdbcType="DOUBLE" property="actualMileage" />
+    <result column="actual_drivetime" jdbcType="INTEGER" property="actualDrivetime" />
+    <result column="finish_time" jdbcType="TIMESTAMP" property="finishTime" />
+    <result column="effective_time" jdbcType="INTEGER" property="effectiveTime" />
+    <result column="plate_number" jdbcType="VARCHAR" property="plateNumber" />
+    <result column="first_person_name" jdbcType="VARCHAR" property="firstPersonName" />
+    <result column="first_person_mobile" jdbcType="VARCHAR" property="firstPersonMobile" />
+    <result column="second_person_name" jdbcType="VARCHAR" property="secondPersonName" />
+    <result column="second_person_mobile" jdbcType="VARCHAR" property="secondPersonMobile" />
+    <result column="org_id" jdbcType="VARCHAR" property="orgId" />
+    <result column="exceptionSendTask" jdbcType="INTEGER" property="exceptionSendTask" />
+    <result column="exceptionArriveTask" jdbcType="INTEGER" property="exceptionArriveTask" />
+    <result column="delivery_order_id" jdbcType="VARCHAR" property="deliveryOrderId" />
+    <result column="collect_order_id" jdbcType="VARCHAR" property="collectOrderId" />
+    <result column="is_read" jdbcType="TINYINT" property="isRead" />
+    <result column="shipping_manifests_number" jdbcType="VARCHAR" property="shippingManifestsNumber" />
+    <result column="queue_number" jdbcType="INTEGER" property="queueNumber" />
+
+
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, OrdersCID, YYYYMMDD, CarID, IsSelfCar, FirstDriverPersonID, SecondDriverPersonID,
+    IsReceiv, IsRefuse, ReceivPersonID, ReceivTime, RefusePersonID, RefuseTime, AddTime,
+    EditTime, EditPersonID, IsDelete, EntrustOrdersCID, EntrustPersonID, EntrustTime,
+    IsCancleEntrust, CancleEntrustPersonID, CancleEntrustTime, entrustEntid, State, is_share_car,
+    share_ent_id, originalcid, freight_fee, shipping_manifests_id, orders_type, orders_status,
+    plan_leave_time, actual_leave_time, plan_arrive_time, actual_arrive_time, plan_mileage,
+    coop_type, coop_ent_id, is_auto_depart, is_auto_arrive, task_car_type, out_key_id,
+    is_time_out, time_out_duration, code, coop_shipping_manifests_id, remark, user_json,
+    actual_mileage, actual_drivetime, finish_time, effective_time, plate_number, first_person_name,
+    first_person_mobile, second_person_name, second_person_mobile,org_id,exceptionSendTask,exceptionArriveTask,
+    delivery_order_id,collect_order_id,is_read,queue_number
+  </sql>
+  <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from task_orderscar
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <update id="delete" parameterType="java.lang.String">
+    update task_orderscar set isdelete = 1
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <insert id="insert" parameterType="com.logibeat.cloud.persistent.entity.TaskOrdersCarEntity">
+    insert into task_orderscar
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="ordersCID != null">
+        OrdersCID,
+      </if>
+      <if test="yyyymmdd != null">
+        YYYYMMDD,
+      </if>
+      <if test="carID != null">
+        CarID,
+      </if>
+      <if test="isSelfCar != null">
+        IsSelfCar,
+      </if>
+      <if test="firstDriverPersonID != null">
+        FirstDriverPersonID,
+      </if>
+      <if test="secondDriverPersonID != null">
+        SecondDriverPersonID,
+      </if>
+      <if test="isReceiv != null">
+        IsReceiv,
+      </if>
+      <if test="isRefuse != null">
+        IsRefuse,
+      </if>
+      <if test="receivPersonID != null">
+        ReceivPersonID,
+      </if>
+      <if test="receivTime != null">
+        ReceivTime,
+      </if>
+      <if test="refusePersonID != null">
+        RefusePersonID,
+      </if>
+      <if test="refuseTime != null">
+        RefuseTime,
+      </if>
+      <if test="addTime != null">
+        AddTime,
+      </if>
+      <if test="editTime != null">
+        EditTime,
+      </if>
+      <if test="editPersonID != null">
+        EditPersonID,
+      </if>
+      <if test="isDelete != null">
+        IsDelete,
+      </if>
+      <if test="entrustOrdersCID != null">
+        EntrustOrdersCID,
+      </if>
+      <if test="entrustPersonID != null">
+        EntrustPersonID,
+      </if>
+      <if test="entrustTime != null">
+        EntrustTime,
+      </if>
+      <if test="isCancleEntrust != null">
+        IsCancleEntrust,
+      </if>
+      <if test="cancleEntrustPersonID != null">
+        CancleEntrustPersonID,
+      </if>
+      <if test="cancleEntrustTime != null">
+        CancleEntrustTime,
+      </if>
+      <if test="entrustEntid != null">
+        entrustEntid,
+      </if>
+      <if test="state != null">
+        State,
+      </if>
+      <if test="isShareCar != null">
+        is_share_car,
+      </if>
+      <if test="shareEntId != null">
+        share_ent_id,
+      </if>
+      <if test="originalcid != null">
+        originalcid,
+      </if>
+      <if test="freightFee != null">
+        freight_fee,
+      </if>
+      <if test="shippingManifestsId != null">
+        shipping_manifests_id,
+      </if>
+      <if test="ordersType != null">
+        orders_type,
+      </if>
+      <if test="ordersStatus != null">
+        orders_status,
+      </if>
+      <if test="planLeaveTime != null">
+        plan_leave_time,
+      </if>
+      <if test="actualLeaveTime != null">
+        actual_leave_time,
+      </if>
+      <if test="planArriveTime != null">
+        plan_arrive_time,
+      </if>
+      <if test="actualArriveTime != null">
+        actual_arrive_time,
+      </if>
+      <if test="planMileage != null">
+        plan_mileage,
+      </if>
+      <if test="coopType != null">
+        coop_type,
+      </if>
+      <if test="coopEntId != null">
+        coop_ent_id,
+      </if>
+      <if test="isAutoDepart != null">
+        is_auto_depart,
+      </if>
+      <if test="isAutoArrive != null">
+        is_auto_arrive,
+      </if>
+      <if test="taskCarType != null">
+        task_car_type,
+      </if>
+      <if test="outKeyId != null">
+        out_key_id,
+      </if>
+      <if test="isTimeOut != null">
+        is_time_out,
+      </if>
+      <if test="timeOutDuration != null">
+        time_out_duration,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="coopShippingManifestsId != null">
+        coop_shipping_manifests_id,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="userJson != null">
+        user_json,
+      </if>
+      <if test="actualMileage != null">
+        actual_mileage,
+      </if>
+      <if test="actualDrivetime != null">
+        actual_drivetime,
+      </if>
+      <if test="finishTime != null">
+        finish_time,
+      </if>
+      <if test="effectiveTime != null">
+        effective_time,
+      </if>
+      <if test="plateNumber != null">
+        plate_number,
+      </if>
+      <if test="firstPersonName != null">
+        first_person_name,
+      </if>
+      <if test="firstPersonMobile != null">
+        first_person_mobile,
+      </if>
+      <if test="secondPersonName != null">
+        second_person_name,
+      </if>
+      <if test="secondPersonMobile != null">
+        second_person_mobile,
+      </if>
+      <if test="orgId != null">
+        org_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="ordersCID != null">
+        #{ordersCID,jdbcType=VARCHAR},
+      </if>
+      <if test="yyyymmdd != null">
+        #{yyyymmdd,jdbcType=INTEGER},
+      </if>
+      <if test="carID != null">
+        #{carID,jdbcType=VARCHAR},
+      </if>
+      <if test="isSelfCar != null">
+        #{isSelfCar,jdbcType=TINYINT},
+      </if>
+      <if test="firstDriverPersonID != null">
+        #{firstDriverPersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="secondDriverPersonID != null">
+        #{secondDriverPersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="isReceiv != null">
+        #{isReceiv,jdbcType=TINYINT},
+      </if>
+      <if test="isRefuse != null">
+        #{isRefuse,jdbcType=TINYINT},
+      </if>
+      <if test="receivPersonID != null">
+        #{receivPersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="receivTime != null">
+        #{receivTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="refusePersonID != null">
+        #{refusePersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="refuseTime != null">
+        #{refuseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null">
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editPersonID != null">
+        #{editPersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="entrustOrdersCID != null">
+        #{entrustOrdersCID,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustPersonID != null">
+        #{entrustPersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustTime != null">
+        #{entrustTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isCancleEntrust != null">
+        #{isCancleEntrust,jdbcType=TINYINT},
+      </if>
+      <if test="cancleEntrustPersonID != null">
+        #{cancleEntrustPersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="cancleEntrustTime != null">
+        #{cancleEntrustTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="entrustEntid != null">
+        #{entrustEntid,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=TINYINT},
+      </if>
+      <if test="isShareCar != null">
+        #{isShareCar,jdbcType=TINYINT},
+      </if>
+      <if test="shareEntId != null">
+        #{shareEntId,jdbcType=VARCHAR},
+      </if>
+      <if test="originalcid != null">
+        #{originalcid,jdbcType=VARCHAR},
+      </if>
+      <if test="freightFee != null">
+        #{freightFee,jdbcType=REAL},
+      </if>
+      <if test="shippingManifestsId != null">
+        #{shippingManifestsId,jdbcType=VARCHAR},
+      </if>
+      <if test="ordersType != null">
+        #{ordersType,jdbcType=INTEGER},
+      </if>
+      <if test="ordersStatus != null">
+        #{ordersStatus,jdbcType=INTEGER},
+      </if>
+      <if test="planLeaveTime != null">
+        #{planLeaveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actualLeaveTime != null">
+        #{actualLeaveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planArriveTime != null">
+        #{planArriveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actualArriveTime != null">
+        #{actualArriveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planMileage != null">
+        #{planMileage,jdbcType=DOUBLE},
+      </if>
+      <if test="coopType != null">
+        #{coopType,jdbcType=INTEGER},
+      </if>
+      <if test="coopEntId != null">
+        #{coopEntId,jdbcType=VARCHAR},
+      </if>
+      <if test="isAutoDepart != null">
+        #{isAutoDepart,jdbcType=TINYINT},
+      </if>
+      <if test="isAutoArrive != null">
+        #{isAutoArrive,jdbcType=TINYINT},
+      </if>
+      <if test="taskCarType != null">
+        #{taskCarType,jdbcType=INTEGER},
+      </if>
+      <if test="outKeyId != null">
+        #{outKeyId,jdbcType=VARCHAR},
+      </if>
+      <if test="isTimeOut != null">
+        #{isTimeOut,jdbcType=TINYINT},
+      </if>
+      <if test="timeOutDuration != null">
+        #{timeOutDuration,jdbcType=INTEGER},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="coopShippingManifestsId != null">
+        #{coopShippingManifestsId,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="userJson != null">
+        #{userJson,jdbcType=VARCHAR},
+      </if>
+      <if test="actualMileage != null">
+        #{actualMileage,jdbcType=DOUBLE},
+      </if>
+      <if test="actualDrivetime != null">
+        #{actualDrivetime,jdbcType=INTEGER},
+      </if>
+      <if test="finishTime != null">
+        #{finishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="effectiveTime != null">
+        #{effectiveTime,jdbcType=INTEGER},
+      </if>
+      <if test="plateNumber != null">
+        #{plateNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="firstPersonName != null">
+        #{firstPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="firstPersonMobile != null">
+        #{firstPersonMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="secondPersonName != null">
+        #{secondPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="secondPersonMobile != null">
+        #{secondPersonMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null">
+        #{orgId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.logibeat.cloud.persistent.entity.TaskOrdersCarEntity">
+    update task_orderscar
+    <trim prefix="SET" suffixOverrides=",">
+      <if test="ordersCID != null">
+        OrdersCID = #{ordersCID,jdbcType=VARCHAR},
+      </if>
+      <if test="yyyymmdd != null">
+          YYYYMMDD = #{yyyymmdd,jdbcType=INTEGER},
+      </if>
+      <if test="carID != null">
+          CarID = #{carID,jdbcType=VARCHAR},
+      </if>
+      <if test="isSelfCar != null">
+          IsSelfCar = #{isSelfCar,jdbcType=TINYINT},
+      </if>
+      <if test="firstDriverPersonID != null">
+          FirstDriverPersonID = #{firstDriverPersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="secondDriverPersonID != null">
+          SecondDriverPersonID = #{secondDriverPersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="isReceiv != null">
+          IsReceiv = #{isReceiv,jdbcType=TINYINT},
+      </if>
+      <if test="isRefuse != null">
+          IsRefuse = #{isRefuse,jdbcType=TINYINT},
+      </if>
+      <if test="receivPersonID != null">
+          ReceivPersonID = #{receivPersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="receivTime != null">
+          ReceivTime = #{receivTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="refusePersonID != null">
+          RefusePersonID = #{refusePersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="refuseTime != null">
+          RefuseTime = #{refuseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addTime != null">
+          AddTime = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null">
+          EditTime = #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editPersonID != null">
+          EditPersonID = #{editPersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+          IsDelete = #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="entrustOrdersCID != null">
+          EntrustOrdersCID = #{entrustOrdersCID,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustPersonID != null">
+          EntrustPersonID = #{entrustPersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustTime != null">
+          EntrustTime = #{entrustTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isCancleEntrust != null">
+          IsCancleEntrust = #{isCancleEntrust,jdbcType=TINYINT},
+      </if>
+      <if test="cancleEntrustPersonID != null">
+          CancleEntrustPersonID = #{cancleEntrustPersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="cancleEntrustTime != null">
+          CancleEntrustTime = #{cancleEntrustTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="entrustEntid != null">
+          entrustEntid = #{entrustEntid,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+          State = #{state,jdbcType=TINYINT},
+      </if>
+      <if test="isShareCar != null">
+          is_share_car = #{isShareCar,jdbcType=TINYINT},
+      </if>
+      <if test="shareEntId != null">
+          share_ent_id = #{shareEntId,jdbcType=VARCHAR},
+      </if>
+      <if test="originalcid != null">
+          originalcid = #{originalcid,jdbcType=VARCHAR},
+      </if>
+      <if test="freightFee != null">
+          freight_fee = #{freightFee,jdbcType=REAL},
+      </if>
+      <if test="shippingManifestsId != null">
+          shipping_manifests_id = #{shippingManifestsId,jdbcType=VARCHAR},
+      </if>
+      <if test="ordersType != null">
+          orders_type = #{ordersType,jdbcType=INTEGER},
+      </if>
+      <if test="ordersStatus != null">
+          orders_status = #{ordersStatus,jdbcType=INTEGER},
+      </if>
+      <if test="planLeaveTime != null">
+          plan_leave_time = #{planLeaveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actualLeaveTime != null">
+          actual_leave_time = #{actualLeaveTime,jdbcType=TIMESTAMP},
+      </if>
+
+      <if test="actualLeaveLat != null">
+        actual_leave_lat = #{actualLeaveLat,jdbcType=DOUBLE},
+      </if>
+
+      <if test="actualLeaveLng != null">
+        actual_leave_lng = #{actualLeaveLng,jdbcType=DOUBLE},
+      </if>
+
+      <if test="actualArriveLat != null">
+        actual_arrive_lat = #{actualArriveLat,jdbcType=DOUBLE},
+      </if>
+
+      <if test="actualArriveLng != null">
+        actual_arrive_lng = #{actualArriveLng,jdbcType=DOUBLE},
+      </if>
+
+      <if test="planArriveTime != null">
+          plan_arrive_time = #{planArriveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actualArriveTime != null">
+          actual_arrive_time = #{actualArriveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planMileage != null">
+          plan_mileage = #{planMileage,jdbcType=DOUBLE},
+      </if>
+      <if test="coopType != null">
+          coop_type = #{coopType,jdbcType=INTEGER},
+      </if>
+      <if test="coopEntId != null">
+          coop_ent_id = #{coopEntId,jdbcType=VARCHAR},
+      </if>
+      <if test="isAutoDepart != null">
+          is_auto_depart = #{isAutoDepart,jdbcType=TINYINT},
+      </if>
+      <if test="isAutoArrive != null">
+          is_auto_arrive = #{isAutoArrive,jdbcType=TINYINT},
+      </if>
+      <if test="taskCarType != null">
+          task_car_type = #{taskCarType,jdbcType=INTEGER},
+      </if>
+      <if test="outKeyId != null">
+          out_key_id = #{outKeyId,jdbcType=VARCHAR},
+      </if>
+      <if test="isTimeOut != null">
+          is_time_out = #{isTimeOut,jdbcType=TINYINT},
+      </if>
+      <if test="timeOutDuration != null">
+          time_out_duration = #{timeOutDuration,jdbcType=INTEGER},
+      </if>
+      <if test="code != null">
+          code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="coopShippingManifestsId != null">
+          coop_shipping_manifests_id = #{coopShippingManifestsId,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+          remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="userJson != null">
+          user_json = #{userJson,jdbcType=VARCHAR},
+      </if>
+      <if test="actualMileage != null">
+          actual_mileage = #{actualMileage,jdbcType=DOUBLE},
+      </if>
+      <if test="actualDrivetime != null">
+          actual_drivetime = #{actualDrivetime,jdbcType=INTEGER},
+      </if>
+      <if test="finishTime != null">
+          finish_time = #{finishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="effectiveTime != null">
+          effective_time = #{effectiveTime,jdbcType=INTEGER},
+      </if>
+      <if test="plateNumber != null">
+          plate_number = #{plateNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="firstPersonName != null">
+          first_person_name = #{firstPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="firstPersonMobile != null">
+          first_person_mobile = #{firstPersonMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="secondPersonName != null">
+          second_person_name = #{secondPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="secondPersonMobile != null">
+          second_person_mobile = #{secondPersonMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null">
+       org_id = #{orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="isRead != null">
+        is_read = #{isRead}
+      </if>
+    </trim>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getOrdersCarByOriginalcid" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from task_orderscar where originalcid = #{originalcid} and iscancleEntrust = 0 and isDelete=0
+  </select>
+
+  <select id="getOrdersCarByOrderId" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM task_orderscar WHERE OrdersCID = #{ordersCid} AND IsCancleEntrust = 0
+  </select>
+
+  <select id="getUnFinishOrdersCar" resultMap="BaseResultMap">
+    SELECT
+    *
+    FROM task_orderscar  
+    WHERE orders_status != 7 AND isDelete = 0 AND isCancleEntrust= 0
+    AND (FirstDriverPersonID = #{personId} OR SecondDriverPersonID = #{personId} )
+    ORDER BY EntrustTime DESC
+  </select>
+
+  <select id="getTaskNum" resultType="java.lang.Long">
+    select count(1) from  task_orderscar
+    where iscancleEntrust = 0 and isDelete = 0
+    and orders_status = #{ordersStatus}
+    <if test="entId != null">
+      and entrustEntid = #{entId}
+    </if>
+    <if test="carId != null">
+      and CarID = #{carId}
+    </if>
+  </select>
+
+
+
+
+  <select id="getDriverTaskNum" resultType="java.lang.Long">
+    select count(1) from  task_orderscar
+    where iscancleEntrust = 0 and isDelete = 0
+    and orders_status = #{taskStatus}
+    and (FirstDriverPersonID = #{personId} OR SecondDriverPersonID = #{personId} )
+  </select>
+
+
+
+  <select id="getTaskOrdersCarByCid" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from task_orderscar where ordersCid = #{ordersCID}
+
+  </select>
+
+  <select id="getNoticeList" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM task_orderscar
+    WHERE ( FirstDriverPersonID = #{personId} OR SecondDriverPersonID = #{personId} )
+    and orders_status != 7 AND IsDelete = 0 AND IsCancleEntrust = 0 AND orders_type IS NULL
+    <if test="isUp == true">
+      AND EntrustTime &lt; #{time}
+    </if>
+    <if test="isUp == false">
+      AND EntrustTime &gt; #{time}
+    </if>
+   ORDER BY EntrustTime DESC LIMIT 0,5
+  </select>
+
+  <select id="getRunningTaskList" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM task_orderscar WHERE IsCancleEntrust=0 AND orders_status = 5  AND isDelete = 0
+    AND (FirstDriverPersonID = #{personId} OR SecondDriverPersonID = #{personId})
+   <if test="entId != null">
+     AND entrustEntid = #{entId}
+   </if>
+   <if test="ordersStatus != null">
+     AND orders_status = #{ordersStatus}
+   </if>
+   ORDER BY AddTime DESC
+  </select>
+
+
+  <select id="getWaitDepartTaskList" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM task_orderscar WHERE IsCancleEntrust=0 AND orders_status in(4,11,12,13,15)  AND isDelete = 0
+    AND (FirstDriverPersonID = #{personId} OR SecondDriverPersonID = #{personId})
+    ORDER BY AddTime DESC
+  </select>
+
+  <select id="getAllTaskList" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM task_orderscar WHERE IsDelete = 0
+    AND (FirstDriverPersonID = #{personId} OR SecondDriverPersonID = #{personId}) 
+    and orders_status in (5,4,11,12,13,15,7)
+    <if test="entId != null">
+      AND entrustEntid = #{entId}
+    </if>
+    <if test='ordersStatus != null and ordersStatus != "" and ordersStatus != "0" '>
+     <if test='ordersStatus == "5" '>
+      AND IsCancleEntrust=0 AND orders_status = 5 order by addtime desc
+    </if>
+    <if test='ordersStatus == "4" '>
+      AND IsCancleEntrust=0 AND orders_status in(4,11,12,13,15) order by is_read,plan_leave_time is NULL,plan_leave_time 
+    </if>
+    <if test='ordersStatus == "7" '>
+      AND orders_status = 7 AND IsCancleEntrust = 0 order by finish_time desc
+    </if>
+    <if test='ordersStatus == "14" '>
+      AND IsCancleEntrust = 1 order by CancleEntrustTime desc
+    </if>
+    <if test='ordersStatus == "101" '>
+      AND IsCancleEntrust = 0 AND orders_status in(5,4,11,12,13,15) order by field(orders_status,5,4,11,12,13,15),is_read,addtime desc
+    </if>
+   </if>
+   <if test='ordersStatus == null or ordersStatus == "" or ordersStatus == "0" '>
+    order by IsCancleEntrust,field(orders_status,5,4,11,12,13,15,7),is_read,plan_leave_time is NULL,plan_leave_time 
+   </if>
+  </select>
+
+  <select id="getHistoryTaskList" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM task_orderscar WHERE IsDelete = 0 AND (IsCancleEntrust = 1 or orders_status = 7)
+    AND (FirstDriverPersonID = #{personId} OR SecondDriverPersonID = #{personId})
+    <if test="entId != null">
+      AND entrustEntid = #{entId}
+    </if>
+    ORDER BY AddTime DESC
+  </select>
+
+  <select id="getAllTaskCount" resultType="java.lang.Long">
+    SELECT count(1) FROM task_orderscar WHERE  IsDelete = 0
+    AND (FirstDriverPersonID = #{personId} OR SecondDriverPersonID = #{personId})
+    <if test="entId != null">
+      AND entrustEntid = #{entId}
+    </if>
+  </select>
+
+  <select id="getUnfinishTaskCount" resultType="java.lang.Long">
+    SELECT count(1) FROM task_orderscar WHERE IsDelete = 0 AND orders_status != 7
+    AND (FirstDriverPersonID = #{personId} OR SecondDriverPersonID = #{personId})
+    <if test="entId != null">
+      AND entrustEntid = #{entId}
+    </if>
+  </select>
+
+  <update id="updateTask" >
+    update task_orderscar
+    <trim prefix="SET" suffixOverrides=",">
+      <if test="actualLeaveTime != null">
+        actual_leave_time = #{actualLeaveTime,jdbcType=TIMESTAMP},
+        <if test="lat != null">
+          actual_leave_lat = #{lat,jdbcType=DOUBLE},
+        </if>
+        <if test="lng != null">
+          actual_leave_lng = #{lng,jdbcType=DOUBLE},
+        </if>
+      </if>
+      <if test="actualArriveTime != null">
+        actual_arrive_time = #{actualArriveTime,jdbcType=TIMESTAMP},
+        <if test="lat != null">
+          actual_arrive_lat = #{lat,jdbcType=DOUBLE},
+        </if>
+        <if test="lng != null">
+          actual_arrive_lng = #{lng,jdbcType=DOUBLE},
+        </if>
+      </if>
+      <if test="taskStatus != null">
+        orders_status = #{taskStatus,jdbcType=INTEGER},
+      </if>
+      <if test="finishTime != null">
+        finish_time = #{finishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="exceptionSendTask !=null">
+        exceptionSendTask = #{exceptionSendTask,jdbcType=INTEGER},
+      </if>
+      <if test="exceptionArriveTask !=null">
+        exceptionArriveTask = #{exceptionArriveTask,jdbcType=INTEGER},
+      </if>
+    </trim>
+    where id = #{taskId,jdbcType=VARCHAR}
+  </update>
+
+
+
+
+  <update id="autoFinishPlanCar" >
+     update task_orderscar set isdelete = 1 where
+     TIMESTAMPDIFF(HOUR,AddTime,NOW()) >=24
+     and task_car_type = 37
+     and orders_status = 15
+  </update>
+
+
+</mapper>

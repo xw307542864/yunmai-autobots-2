@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.logibeat.cloud.persistent.dao.CarsDao">
+  <resultMap id="BaseResultMap" type="com.logibeat.cloud.persistent.entity.CarsEntity">
+    <id column="CarID" jdbcType="VARCHAR" property="carID" />
+    <result column="VIN" jdbcType="VARCHAR" property="vin" />
+    <result column="PlateNumber" jdbcType="VARCHAR" property="plateNumber" />
+    <result column="EntID" jdbcType="VARCHAR" property="entID" />
+    <result column="OwnerPersonID" jdbcType="VARCHAR" property="ownerPersonID" />
+    <result column="OrgID" jdbcType="VARCHAR" property="orgID" />
+    <result column="PlateColor" jdbcType="VARCHAR" property="plateColor" />
+    <result column="OperationLic" jdbcType="VARCHAR" property="operationLic" />
+    <result column="DrivingLic" jdbcType="VARCHAR" property="drivingLic" />
+    <result column="CoachTypeDictGUID" jdbcType="VARCHAR" property="coachTypeDictGUID" />
+    <result column="CarLengthDictGUID" jdbcType="VARCHAR" property="carLengthDictGUID" />
+    <result column="RatedLoad" jdbcType="DOUBLE" property="ratedLoad" />
+    <result column="RatedVolume" jdbcType="DOUBLE" property="ratedVolume" />
+    <result column="Logo" jdbcType="VARCHAR" property="logo" />
+    <result column="Photos" jdbcType="VARCHAR" property="photos" />
+    <result column="DrivingPics" jdbcType="VARCHAR" property="drivingPics" />
+    <result column="FirstDriverPersonID" jdbcType="VARCHAR" property="firstDriverPersonID" />
+    <result column="SecondDriverPersonID" jdbcType="VARCHAR" property="secondDriverPersonID" />
+    <result column="Remark" jdbcType="VARCHAR" property="remark" />
+    <result column="IsDelete" jdbcType="TINYINT" property="isDelete" />
+    <result column="DeleteTime" jdbcType="TIMESTAMP" property="deleteTime" />
+    <result column="AddTime" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="EditTime" jdbcType="TIMESTAMP" property="editTime" />
+    <result column="EditPersonID" jdbcType="VARCHAR" property="editPersonID" />
+    <result column="CarAuditStatus" jdbcType="INTEGER" property="carAuditStatus" />
+    <result column="DrivingAuditStatus" jdbcType="INTEGER" property="drivingAuditStatus" />
+    <result column="IsEnt" jdbcType="TINYINT" property="isEnt" />
+    <result column="isSelf" jdbcType="TINYINT" property="isSelf" />
+    <result column="CarStatus" jdbcType="TINYINT" property="carStatus" />
+    <result column="CarLength" jdbcType="DOUBLE" property="carLength" />
+    <result column="isImp" jdbcType="TINYINT" property="isImp" />
+    <result column="srcSoid" jdbcType="INTEGER" property="srcSoid" />
+    <result column="frame" jdbcType="VARCHAR" property="frame" />
+    <result column="engine" jdbcType="VARCHAR" property="engine" />
+    <result column="brank" jdbcType="VARCHAR" property="brank" />
+    <result column="carLengthValue" jdbcType="VARCHAR" property="carLengthValue" />
+    <result column="car_type_value" jdbcType="VARCHAR" property="carTypeValue" />
+    <result column="usualCity" jdbcType="VARCHAR" property="usualCity" />
+    <result column="lastLocation0" jdbcType="VARCHAR" property="lastLocation0" />
+    <result column="lastLocation1" jdbcType="VARCHAR" property="lastLocation1" />
+    <result column="lastLocationTime" jdbcType="TIMESTAMP" property="lastLocationTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    CarID, VIN, PlateNumber, EntID, OwnerPersonID, OrgID, PlateColor, OperationLic, DrivingLic, 
+    CoachTypeDictGUID, CarLengthDictGUID, RatedLoad, RatedVolume, Logo, Photos, DrivingPics, 
+    FirstDriverPersonID, SecondDriverPersonID, Remark, IsDelete, DeleteTime, AddTime, 
+    EditTime, EditPersonID, CarAuditStatus, DrivingAuditStatus, IsEnt, isSelf, CarStatus, 
+    CarLength, isImp, srcSoid, frame, engine, brank, carLengthValue, usualCity, lastLocation0, 
+    lastLocation1, lastLocationTime
+  </sql>
+  <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from car_cars
+    where CarID = #{carID,jdbcType=VARCHAR}
+  </select>
+  <delete id="delete" parameterType="java.lang.String">
+    delete from car_cars
+    where CarID = #{carID,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.logibeat.cloud.persistent.entity.CarsEntity">
+    insert into car_cars
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="carID != null">
+        CarID,
+      </if>
+      <if test="vin != null">
+        VIN,
+      </if>
+      <if test="plateNumber != null">
+        PlateNumber,
+      </if>
+      <if test="entID != null">
+        EntID,
+      </if>
+      <if test="ownerPersonID != null">
+        OwnerPersonID,
+      </if>
+      <if test="orgID != null">
+        OrgID,
+      </if>
+      <if test="plateColor != null">
+        PlateColor,
+      </if>
+      <if test="operationLic != null">
+        OperationLic,
+      </if>
+      <if test="drivingLic != null">
+        DrivingLic,
+      </if>
+      <if test="coachTypeDictGUID != null">
+        CoachTypeDictGUID,
+      </if>
+      <if test="carLengthDictGUID != null">
+        CarLengthDictGUID,
+      </if>
+      <if test="ratedLoad != null">
+        RatedLoad,
+      </if>
+      <if test="ratedVolume != null">
+        RatedVolume,
+      </if>
+      <if test="logo != null">
+        Logo,
+      </if>
+      <if test="photos != null">
+        Photos,
+      </if>
+      <if test="drivingPics != null">
+        DrivingPics,
+      </if>
+      <if test="firstDriverPersonID != null">
+        FirstDriverPersonID,
+      </if>
+      <if test="secondDriverPersonID != null">
+        SecondDriverPersonID,
+      </if>
+      <if test="remark != null">
+        Remark,
+      </if>
+      <if test="isDelete != null">
+        IsDelete,
+      </if>
+      <if test="deleteTime != null">
+        DeleteTime,
+      </if>
+      <if test="addTime != null">
+        AddTime,
+      </if>
+      <if test="editTime != null">
+        EditTime,
+      </if>
+      <if test="editPersonID != null">
+        EditPersonID,
+      </if>
+      <if test="carAuditStatus != null">
+        CarAuditStatus,
+      </if>
+      <if test="drivingAuditStatus != null">
+        DrivingAuditStatus,
+      </if>
+      <if test="isEnt != null">
+        IsEnt,
+      </if>
+      <if test="isSelf != null">
+        isSelf,
+      </if>
+      <if test="carStatus != null">
+        CarStatus,
+      </if>
+      <if test="carLength != null">
+        CarLength,
+      </if>
+      <if test="isImp != null">
+        isImp,
+      </if>
+      <if test="srcSoid != null">
+        srcSoid,
+      </if>
+      <if test="frame != null">
+        frame,
+      </if>
+      <if test="engine != null">
+        engine,
+      </if>
+      <if test="brank != null">
+        brank,
+      </if>
+      <if test="carLengthValue != null">
+        carLengthValue,
+      </if>
+      <if test="usualCity != null">
+        usualCity,
+      </if>
+      <if test="lastLocation0 != null">
+        lastLocation0,
+      </if>
+      <if test="lastLocation1 != null">
+        lastLocation1,
+      </if>
+      <if test="lastLocationTime != null">
+        lastLocationTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="carID != null">
+        #{carID,jdbcType=VARCHAR},
+      </if>
+      <if test="vin != null">
+        #{vin,jdbcType=VARCHAR},
+      </if>
+      <if test="plateNumber != null">
+        #{plateNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="entID != null">
+        #{entID,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerPersonID != null">
+        #{ownerPersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="orgID != null">
+        #{orgID,jdbcType=VARCHAR},
+      </if>
+      <if test="plateColor != null">
+        #{plateColor,jdbcType=VARCHAR},
+      </if>
+      <if test="operationLic != null">
+        #{operationLic,jdbcType=VARCHAR},
+      </if>
+      <if test="drivingLic != null">
+        #{drivingLic,jdbcType=VARCHAR},
+      </if>
+      <if test="coachTypeDictGUID != null">
+        #{coachTypeDictGUID,jdbcType=VARCHAR},
+      </if>
+      <if test="carLengthDictGUID != null">
+        #{carLengthDictGUID,jdbcType=VARCHAR},
+      </if>
+      <if test="ratedLoad != null">
+        #{ratedLoad,jdbcType=DOUBLE},
+      </if>
+      <if test="ratedVolume != null">
+        #{ratedVolume,jdbcType=DOUBLE},
+      </if>
+      <if test="logo != null">
+        #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="photos != null">
+        #{photos,jdbcType=VARCHAR},
+      </if>
+      <if test="drivingPics != null">
+        #{drivingPics,jdbcType=VARCHAR},
+      </if>
+      <if test="firstDriverPersonID != null">
+        #{firstDriverPersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="secondDriverPersonID != null">
+        #{secondDriverPersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="deleteTime != null">
+        #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null">
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editPersonID != null">
+        #{editPersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="carAuditStatus != null">
+        #{carAuditStatus,jdbcType=INTEGER},
+      </if>
+      <if test="drivingAuditStatus != null">
+        #{drivingAuditStatus,jdbcType=INTEGER},
+      </if>
+      <if test="isEnt != null">
+        #{isEnt,jdbcType=TINYINT},
+      </if>
+      <if test="isSelf != null">
+        #{isSelf,jdbcType=TINYINT},
+      </if>
+      <if test="carStatus != null">
+        #{carStatus,jdbcType=TINYINT},
+      </if>
+      <if test="carLength != null">
+        #{carLength,jdbcType=DOUBLE},
+      </if>
+      <if test="isImp != null">
+        #{isImp,jdbcType=TINYINT},
+      </if>
+      <if test="srcSoid != null">
+        #{srcSoid,jdbcType=INTEGER},
+      </if>
+      <if test="frame != null">
+        #{frame,jdbcType=VARCHAR},
+      </if>
+      <if test="engine != null">
+        #{engine,jdbcType=VARCHAR},
+      </if>
+      <if test="brank != null">
+        #{brank,jdbcType=VARCHAR},
+      </if>
+      <if test="carLengthValue != null">
+        #{carLengthValue,jdbcType=VARCHAR},
+      </if>
+      <if test="usualCity != null">
+        #{usualCity,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLocation0 != null">
+        #{lastLocation0,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLocation1 != null">
+        #{lastLocation1,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLocationTime != null">
+        #{lastLocationTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.logibeat.cloud.persistent.entity.CarsEntity">
+    update car_cars
+    <trim prefix="SET" suffixOverrides=",">
+      <if test="vin != null">
+        VIN = #{vin,jdbcType=VARCHAR},
+      </if>
+      <if test="plateNumber != null">
+          PlateNumber = #{plateNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="entID != null">
+          EntID = #{entID,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerPersonID != null">
+          OwnerPersonID = #{ownerPersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="orgID != null">
+          OrgID = #{orgID,jdbcType=VARCHAR},
+      </if>
+      <if test="plateColor != null">
+          PlateColor = #{plateColor,jdbcType=VARCHAR},
+      </if>
+      <if test="operationLic != null">
+          OperationLic = #{operationLic,jdbcType=VARCHAR},
+      </if>
+      <if test="drivingLic != null">
+          DrivingLic = #{drivingLic,jdbcType=VARCHAR},
+      </if>
+      <if test="coachTypeDictGUID != null">
+          CoachTypeDictGUID = #{coachTypeDictGUID,jdbcType=VARCHAR},
+      </if>
+      <if test="carLengthDictGUID != null">
+          CarLengthDictGUID = #{carLengthDictGUID,jdbcType=VARCHAR},
+      </if>
+      <if test="ratedLoad != null">
+          RatedLoad = #{ratedLoad,jdbcType=DOUBLE},
+      </if>
+      <if test="ratedVolume != null">
+          RatedVolume = #{ratedVolume,jdbcType=DOUBLE},
+      </if>
+      <if test="logo != null">
+          Logo = #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="photos != null">
+          Photos = #{photos,jdbcType=VARCHAR},
+      </if>
+      <if test="drivingPics != null">
+          DrivingPics = #{drivingPics,jdbcType=VARCHAR},
+      </if>
+      <if test="firstDriverPersonID != null">
+          FirstDriverPersonID = #{firstDriverPersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="secondDriverPersonID != null">
+          SecondDriverPersonID = #{secondDriverPersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+          Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+          IsDelete = #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="deleteTime != null">
+          DeleteTime = #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addTime != null">
+          AddTime = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null">
+          EditTime = #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editPersonID != null">
+          EditPersonID = #{editPersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="carAuditStatus != null">
+          CarAuditStatus = #{carAuditStatus,jdbcType=INTEGER},
+      </if>
+      <if test="drivingAuditStatus != null">
+          DrivingAuditStatus = #{drivingAuditStatus,jdbcType=INTEGER},
+      </if>
+      <if test="isEnt != null">
+          IsEnt = #{isEnt,jdbcType=TINYINT},
+      </if>
+      <if test="isSelf != null">
+          isSelf = #{isSelf,jdbcType=TINYINT},
+      </if>
+      <if test="carStatus != null">
+          CarStatus = #{carStatus,jdbcType=TINYINT},
+      </if>
+      <if test="carLength != null">
+          CarLength = #{carLength,jdbcType=DOUBLE},
+      </if>
+      <if test="isImp != null">
+          isImp = #{isImp,jdbcType=TINYINT},
+      </if>
+      <if test="srcSoid != null">
+          srcSoid = #{srcSoid,jdbcType=INTEGER},
+      </if>
+      <if test="frame != null">
+          frame = #{frame,jdbcType=VARCHAR},
+      </if>
+      <if test="engine != null">
+          engine = #{engine,jdbcType=VARCHAR},
+      </if>
+      <if test="brank != null">
+          brank = #{brank,jdbcType=VARCHAR},
+      </if>
+      <if test="carLengthValue != null">
+          carLengthValue = #{carLengthValue,jdbcType=VARCHAR},
+      </if>
+      <if test="usualCity != null">
+          usualCity = #{usualCity,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLocation0 != null">
+          lastLocation0 = #{lastLocation0,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLocation1 != null">
+          lastLocation1 = #{lastLocation1,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLocationTime != null">
+          lastLocationTime = #{lastLocationTime,jdbcType=TIMESTAMP}
+      </if>
+    </trim>
+    where CarID = #{carID,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getMySelfCar" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from car_cars
+    where IsDelete = 0 and OwnerPersonID = #{personId}
+  </select>
+
+
+  <update id="updateAuditStatus">
+    update car_cars
+    set audit_status = #{auditStatus},
+    vehicle_license=#{vehicleLicense},
+    vehicle_identification_code=#{vehicleIdentificationCode},
+    vehicle_engine_code=#{vehicleEngineCode},
+    vehicle_license_owner=#{vehicleLicenseOwner},
+    vehicle_pic=#{vehiclePic}
+    WHERE CarID = #{carId}
+  </update>
+  
+  <select id="getCountByAuditStatus" resultType="java.lang.Long">
+		select count(1)
+		from car_cars
+		where isDelete=0
+		and plateNumber = #{plateNumber}
+		and PlateColor = #{plateColor}
+		and audit_status = 2
+	</select>
+
+</mapper>

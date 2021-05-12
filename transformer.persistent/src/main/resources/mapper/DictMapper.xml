@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.logibeat.cloud.persistent.dao.DictDao">
+  <resultMap id="BaseResultMap" type="com.logibeat.cloud.persistent.entity.DictEntity">
+    <id column="GUID" jdbcType="VARCHAR" property="guid" />
+    <result column="ParentGUID" jdbcType="VARCHAR" property="parentGUID" />
+    <result column="DictType" jdbcType="INTEGER" property="dictType" />
+    <result column="Code" jdbcType="VARCHAR" property="code" />
+    <result column="Name" jdbcType="VARCHAR" property="name" />
+    <result column="Value" jdbcType="VARCHAR" property="value" />
+    <result column="EntID" jdbcType="VARCHAR" property="entID" />
+    <result column="AddTime" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="EditTime" jdbcType="TIMESTAMP" property="editTime" />
+    <result column="EditPersonID" jdbcType="VARCHAR" property="editPersonID" />
+    <result column="Remark" jdbcType="VARCHAR" property="remark" />
+    <result column="IsDelete" jdbcType="TINYINT" property="isDelete" />
+    <result column="seque" jdbcType="INTEGER" property="seque" />
+    <result column="picUrl" jdbcType="VARCHAR" property="picUrl" />
+    <result column="picUrl2" jdbcType="VARCHAR" property="picUrl2" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GUID, ParentGUID, DictType, Code, Name, Value, EntID, AddTime, EditTime, EditPersonID, 
+    Remark, IsDelete, seque, picUrl, picUrl2
+  </sql>
+  <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bs_dict
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </select>
+  <delete id="delete" parameterType="java.lang.String">
+    delete from bs_dict
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.logibeat.cloud.persistent.entity.DictEntity">
+    insert into bs_dict
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        GUID,
+      </if>
+      <if test="parentGUID != null">
+        ParentGUID,
+      </if>
+      <if test="dictType != null">
+        DictType,
+      </if>
+      <if test="code != null">
+        Code,
+      </if>
+      <if test="name != null">
+        Name,
+      </if>
+      <if test="value != null">
+        Value,
+      </if>
+      <if test="entID != null">
+        EntID,
+      </if>
+      <if test="addTime != null">
+        AddTime,
+      </if>
+      <if test="editTime != null">
+        EditTime,
+      </if>
+      <if test="editPersonID != null">
+        EditPersonID,
+      </if>
+      <if test="remark != null">
+        Remark,
+      </if>
+      <if test="isDelete != null">
+        IsDelete,
+      </if>
+      <if test="seque != null">
+        seque,
+      </if>
+      <if test="picUrl != null">
+        picUrl,
+      </if>
+      <if test="picUrl2 != null">
+        picUrl2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        #{guid,jdbcType=VARCHAR},
+      </if>
+      <if test="parentGUID != null">
+        #{parentGUID,jdbcType=VARCHAR},
+      </if>
+      <if test="dictType != null">
+        #{dictType,jdbcType=INTEGER},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null">
+        #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="entID != null">
+        #{entID,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null">
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editPersonID != null">
+        #{editPersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="seque != null">
+        #{seque,jdbcType=INTEGER},
+      </if>
+      <if test="picUrl != null">
+        #{picUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="picUrl2 != null">
+        #{picUrl2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.logibeat.cloud.persistent.entity.DictEntity">
+    update bs_dict
+    <trim prefix="SET" suffixOverrides=",">
+      <if test="parentGUID != null">
+        ParentGUID = #{parentGUID,jdbcType=VARCHAR},
+      </if>
+      <if test="dictType != null">
+          DictType = #{dictType,jdbcType=INTEGER},
+      </if>
+      <if test="code != null">
+          Code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+          Name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null">
+          Value = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="entID != null">
+          EntID = #{entID,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+          AddTime = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null">
+          EditTime = #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editPersonID != null">
+          EditPersonID = #{editPersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+          Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+          IsDelete = #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="seque != null">
+          seque = #{seque,jdbcType=INTEGER},
+      </if>
+      <if test="picUrl != null">
+          picUrl = #{picUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="picUrl2 != null">
+          picUrl2 = #{picUrl2,jdbcType=VARCHAR}
+      </if>
+    </trim>
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getDictNameByGuid" resultType="java.lang.String">
+    select Name from bs_dict where GUID = #{guid}
+  </select>
+</mapper>

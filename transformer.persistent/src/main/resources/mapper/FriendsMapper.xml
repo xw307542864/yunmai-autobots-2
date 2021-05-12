@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.logibeat.cloud.persistent.dao.FriendsDao">
+  <resultMap id="BaseResultMap" type="com.logibeat.cloud.persistent.entity.FriendsEntity">
+    <id column="GUID" jdbcType="VARCHAR" property="guid" />
+    <result column="PersonID" jdbcType="VARCHAR" property="personID" />
+    <result column="GroupGUID" jdbcType="VARCHAR" property="groupGUID" />
+    <result column="FriendPersonID" jdbcType="VARCHAR" property="friendPersonID" />
+    <result column="FriendPersonEntID" jdbcType="VARCHAR" property="friendPersonEntID" />
+    <result column="FriendName" jdbcType="VARCHAR" property="friendName" />
+    <result column="Initial" jdbcType="VARCHAR" property="initial" />
+    <result column="FriendRemark" jdbcType="VARCHAR" property="friendRemark" />
+    <result column="InviteType" jdbcType="INTEGER" property="inviteType" />
+    <result column="InviteState" jdbcType="INTEGER" property="inviteState" />
+    <result column="IsFriend" jdbcType="TINYINT" property="isFriend" />
+    <result column="IsInvite" jdbcType="TINYINT" property="isInvite" />
+    <result column="IsUsual" jdbcType="TINYINT" property="isUsual" />
+    <result column="Remark" jdbcType="VARCHAR" property="remark" />
+    <result column="LastEventTime" jdbcType="TIMESTAMP" property="lastEventTime" />
+    <result column="IsDelete" jdbcType="TINYINT" property="isDelete" />
+    <result column="DeleteTime" jdbcType="TIMESTAMP" property="deleteTime" />
+    <result column="AddTime" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="EditTime" jdbcType="TIMESTAMP" property="editTime" />
+    <result column="IsEnt" jdbcType="TINYINT" property="isEnt" />
+    <result column="pinYin" jdbcType="VARCHAR" property="pinYin" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GUID, PersonID, GroupGUID, FriendPersonID, FriendPersonEntID, FriendName, Initial, 
+    FriendRemark, InviteType, InviteState, IsFriend, IsInvite, IsUsual, Remark, LastEventTime, 
+    IsDelete, DeleteTime, AddTime, EditTime, IsEnt, pinYin
+  </sql>
+  <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from im_friends
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </select>
+  <delete id="delete" parameterType="java.lang.String">
+    delete from im_friends
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.logibeat.cloud.persistent.entity.FriendsEntity">
+    insert into im_friends
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        GUID,
+      </if>
+      <if test="personID != null">
+        PersonID,
+      </if>
+      <if test="groupGUID != null">
+        GroupGUID,
+      </if>
+      <if test="friendPersonID != null">
+        FriendPersonID,
+      </if>
+      <if test="friendPersonEntID != null">
+        FriendPersonEntID,
+      </if>
+      <if test="friendName != null">
+        FriendName,
+      </if>
+      <if test="initial != null">
+        Initial,
+      </if>
+      <if test="friendRemark != null">
+        FriendRemark,
+      </if>
+      <if test="inviteType != null">
+        InviteType,
+      </if>
+      <if test="inviteState != null">
+        InviteState,
+      </if>
+      <if test="isFriend != null">
+        IsFriend,
+      </if>
+      <if test="isInvite != null">
+        IsInvite,
+      </if>
+      <if test="isUsual != null">
+        IsUsual,
+      </if>
+      <if test="remark != null">
+        Remark,
+      </if>
+      <if test="lastEventTime != null">
+        LastEventTime,
+      </if>
+      <if test="isDelete != null">
+        IsDelete,
+      </if>
+      <if test="deleteTime != null">
+        DeleteTime,
+      </if>
+      <if test="addTime != null">
+        AddTime,
+      </if>
+      <if test="editTime != null">
+        EditTime,
+      </if>
+      <if test="isEnt != null">
+        IsEnt,
+      </if>
+      <if test="pinYin != null">
+        pinYin,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        #{guid,jdbcType=VARCHAR},
+      </if>
+      <if test="personID != null">
+        #{personID,jdbcType=VARCHAR},
+      </if>
+      <if test="groupGUID != null">
+        #{groupGUID,jdbcType=VARCHAR},
+      </if>
+      <if test="friendPersonID != null">
+        #{friendPersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="friendPersonEntID != null">
+        #{friendPersonEntID,jdbcType=VARCHAR},
+      </if>
+      <if test="friendName != null">
+        #{friendName,jdbcType=VARCHAR},
+      </if>
+      <if test="initial != null">
+        #{initial,jdbcType=VARCHAR},
+      </if>
+      <if test="friendRemark != null">
+        #{friendRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="inviteType != null">
+        #{inviteType,jdbcType=INTEGER},
+      </if>
+      <if test="inviteState != null">
+        #{inviteState,jdbcType=INTEGER},
+      </if>
+      <if test="isFriend != null">
+        #{isFriend,jdbcType=TINYINT},
+      </if>
+      <if test="isInvite != null">
+        #{isInvite,jdbcType=TINYINT},
+      </if>
+      <if test="isUsual != null">
+        #{isUsual,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="lastEventTime != null">
+        #{lastEventTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="deleteTime != null">
+        #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null">
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isEnt != null">
+        #{isEnt,jdbcType=TINYINT},
+      </if>
+      <if test="pinYin != null">
+        #{pinYin,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.logibeat.cloud.persistent.entity.FriendsEntity">
+    update im_friends
+    <trim prefix="SET" suffixOverrides=",">
+      <if test="personID != null">
+        PersonID = #{personID,jdbcType=VARCHAR},
+      </if>
+      <if test="groupGUID != null">
+          GroupGUID = #{groupGUID,jdbcType=VARCHAR},
+      </if>
+      <if test="friendPersonID != null">
+          FriendPersonID = #{friendPersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="friendPersonEntID != null">
+          FriendPersonEntID = #{friendPersonEntID,jdbcType=VARCHAR},
+      </if>
+      <if test="friendName != null">
+          FriendName = #{friendName,jdbcType=VARCHAR},
+      </if>
+      <if test="initial != null">
+          Initial = #{initial,jdbcType=VARCHAR},
+      </if>
+      <if test="friendRemark != null">
+          FriendRemark = #{friendRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="inviteType != null">
+          InviteType = #{inviteType,jdbcType=INTEGER},
+      </if>
+      <if test="inviteState != null">
+          InviteState = #{inviteState,jdbcType=INTEGER},
+      </if>
+      <if test="isFriend != null">
+          IsFriend = #{isFriend,jdbcType=TINYINT},
+      </if>
+      <if test="isInvite != null">
+          IsInvite = #{isInvite,jdbcType=TINYINT},
+      </if>
+      <if test="isUsual != null">
+          IsUsual = #{isUsual,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null">
+          Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="lastEventTime != null">
+          LastEventTime = #{lastEventTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+          IsDelete = #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="deleteTime != null">
+          DeleteTime = #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addTime != null">
+          AddTime = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null">
+          EditTime = #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isEnt != null">
+          IsEnt = #{isEnt,jdbcType=TINYINT},
+      </if>
+      <if test="pinYin != null">
+          pinYin = #{pinYin,jdbcType=VARCHAR}
+      </if>
+    </trim>
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getMyFriendByPersonId" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM  im_friends
+    WHERE PersonID= #{personId} AND FriendPersonID= #{friendPersonId} AND isDelete = 0
+  </select>
+
+  <delete id="cancelEntFriend" >
+    delete
+    from im_friends
+    WHERE FriendPersonEntID = #{entId}  AND PersonID = #{personId} AND IsDelete = 0
+  </delete>
+</mapper>

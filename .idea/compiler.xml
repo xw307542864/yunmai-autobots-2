@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="transformer.common" />
+        <module name="transformer.service" />
+        <module name="transformer.persistent" />
+        <module name="transformer-autobots" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="transformer-autobots" target="1.8" />
+      <module name="transformer.common" target="1.8" />
+      <module name="transformer.persistent" target="1.8" />
+      <module name="transformer.service" target="1.8" />
+      <module name="yunmai-autobots" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="transformer-autobots" options="-bootclasspath /Library/Java/JavaVirtualMachines/jdk1.8.0_271.jdk/Contents/Home/jre/lib/rt.jar" />
+      <module name="transformer.common" options="-bootclasspath /Library/Java/JavaVirtualMachines/jdk1.8.0_271.jdk/Contents/Home/jre/lib/rt.jar" />
+      <module name="transformer.persistent" options="-bootclasspath /Library/Java/JavaVirtualMachines/jdk1.8.0_271.jdk/Contents/Home/jre/lib/rt.jar" />
+      <module name="transformer.service" options="-bootclasspath /Library/Java/JavaVirtualMachines/jdk1.8.0_271.jdk/Contents/Home/jre/lib/rt.jar" />
+    </option>
+  </component>
+</project>

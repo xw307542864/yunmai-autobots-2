@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.logibeat.cloud.persistent.dao.EnterpriseCooperateCarDao">
+  <resultMap id="BaseResultMap" type="com.logibeat.cloud.persistent.entity.EnterpriseCooperateCarEntity">
+    <id column="guid" jdbcType="VARCHAR" property="guid" />
+    <result column="entid" jdbcType="VARCHAR" property="entid" />
+    <result column="carid" jdbcType="VARCHAR" property="carid" />
+    <result column="ownerpersonid" jdbcType="VARCHAR" property="ownerpersonid" />
+    <result column="groupid" jdbcType="VARCHAR" property="groupid" />
+    <result column="InviteType" jdbcType="INTEGER" property="inviteType" />
+    <result column="InviteState" jdbcType="INTEGER" property="inviteState" />
+    <result column="edittime" jdbcType="TIMESTAMP" property="edittime" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="CoopType" jdbcType="INTEGER" property="coopType" />
+    <result column="IsStarMark" jdbcType="TINYINT" property="isStarMark" />
+    <result column="FirstDriverPersonID" jdbcType="VARCHAR" property="firstDriverPersonID" />
+    <result column="SecondDriverPersonID" jdbcType="VARCHAR" property="secondDriverPersonID" />
+    <result column="isDelete" jdbcType="TINYINT" property="isDelete" />
+    <result column="carStatus" jdbcType="TINYINT" property="carStatus" />
+    <result column="isFriend" jdbcType="TINYINT" property="isFriend" />
+    <result column="firstDriverMobile" jdbcType="VARCHAR" property="firstDriverMobile" />
+    <result column="firstDriverName" jdbcType="VARCHAR" property="firstDriverName" />
+    <result column="secondDriverMobile" jdbcType="VARCHAR" property="secondDriverMobile" />
+    <result column="secondDriverName" jdbcType="VARCHAR" property="secondDriverName" />
+    <result column="org_guid" jdbcType="VARCHAR" property="orgGuid" />
+    <result column="plateNumber" jdbcType="VARCHAR" property="plateNumber" />
+    <result column="plate_color" jdbcType="VARCHAR" property="plateColor" />
+    <result column="all_org_guid" jdbcType="LONGVARCHAR" property="allOrgGuid" />
+    <result column="sourceType" jdbcType="VARCHAR" property="sourceType" />
+    <result column="audit_status" jdbcType="VARCHAR" property="auditStatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    guid, entid, carid, ownerpersonid, groupid, InviteType, InviteState, edittime, remark, 
+    CoopType, IsStarMark, FirstDriverPersonID, SecondDriverPersonID, isDelete, carStatus, 
+    isFriend, firstDriverMobile, firstDriverName, secondDriverMobile, secondDriverName, 
+    org_guid, plateNumber,plate_color,all_org_guid,sourceType,audit_status
+  </sql>
+  <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ent_cooperatecar
+    where guid = #{guid,jdbcType=VARCHAR}
+  </select>
+  <update id="delete" parameterType="java.lang.String">
+    update ent_cooperatecar set isdelete = 1
+    where guid = #{guid,jdbcType=VARCHAR}
+  </update>
+  <insert id="insert" parameterType="com.logibeat.cloud.persistent.entity.EnterpriseCooperateCarEntity">
+    insert into ent_cooperatecar
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        guid,
+      </if>
+      <if test="entid != null">
+        entid,
+      </if>
+      <if test="carid != null">
+        carid,
+      </if>
+      <if test="ownerpersonid != null">
+        ownerpersonid,
+      </if>
+      <if test="groupid != null">
+        groupid,
+      </if>
+      <if test="inviteType != null">
+        InviteType,
+      </if>
+      <if test="inviteState != null">
+        InviteState,
+      </if>
+      <if test="edittime != null">
+        edittime,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="coopType != null">
+        CoopType,
+      </if>
+      <if test="isStarMark != null">
+        IsStarMark,
+      </if>
+      <if test="firstDriverPersonID != null">
+        FirstDriverPersonID,
+      </if>
+      <if test="secondDriverPersonID != null">
+        SecondDriverPersonID,
+      </if>
+      <if test="isDelete != null">
+        isDelete,
+      </if>
+      <if test="carStatus != null">
+        carStatus,
+      </if>
+      <if test="isFriend != null">
+        isFriend,
+      </if>
+      <if test="firstDriverMobile != null">
+        firstDriverMobile,
+      </if>
+      <if test="firstDriverName != null">
+        firstDriverName,
+      </if>
+      <if test="secondDriverMobile != null">
+        secondDriverMobile,
+      </if>
+      <if test="secondDriverName != null">
+        secondDriverName,
+      </if>
+      <if test="orgGuid != null">
+        org_guid,
+      </if>
+      <if test="plateNumber != null">
+        plateNumber,
+      </if>
+      <if test="allOrgGuid != null">
+        all_org_guid,
+      </if>
+      <if test="auditStatus != null">
+        audit_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        #{guid,jdbcType=VARCHAR},
+      </if>
+      <if test="entid != null">
+        #{entid,jdbcType=VARCHAR},
+      </if>
+      <if test="carid != null">
+        #{carid,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerpersonid != null">
+        #{ownerpersonid,jdbcType=VARCHAR},
+      </if>
+      <if test="groupid != null">
+        #{groupid,jdbcType=VARCHAR},
+      </if>
+      <if test="inviteType != null">
+        #{inviteType,jdbcType=INTEGER},
+      </if>
+      <if test="inviteState != null">
+        #{inviteState,jdbcType=INTEGER},
+      </if>
+      <if test="edittime != null">
+        #{edittime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="coopType != null">
+        #{coopType,jdbcType=INTEGER},
+      </if>
+      <if test="isStarMark != null">
+        #{isStarMark,jdbcType=TINYINT},
+      </if>
+      <if test="firstDriverPersonID != null">
+        #{firstDriverPersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="secondDriverPersonID != null">
+        #{secondDriverPersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="carStatus != null">
+        #{carStatus,jdbcType=TINYINT},
+      </if>
+      <if test="isFriend != null">
+        #{isFriend,jdbcType=TINYINT},
+      </if>
+      <if test="firstDriverMobile != null">
+        #{firstDriverMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="firstDriverName != null">
+        #{firstDriverName,jdbcType=VARCHAR},
+      </if>
+      <if test="secondDriverMobile != null">
+        #{secondDriverMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="secondDriverName != null">
+        #{secondDriverName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgGuid != null">
+        #{orgGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="plateNumber != null">
+        #{plateNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="allOrgGuid != null">
+        #{allOrgGuid,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="auditStatus != null">
+        #{auditStatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.logibeat.cloud.persistent.entity.EnterpriseCooperateCarEntity">
+    update ent_cooperatecar
+    <trim prefix="SET" suffixOverrides=",">
+      <if test="entid != null">
+        entid = #{entid,jdbcType=VARCHAR},
+      </if>
+      <if test="carid != null">
+          carid = #{carid,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerpersonid != null">
+          ownerpersonid = #{ownerpersonid,jdbcType=VARCHAR},
+      </if>
+      <if test="groupid != null">
+          groupid = #{groupid,jdbcType=VARCHAR},
+      </if>
+      <if test="inviteType != null">
+          InviteType = #{inviteType,jdbcType=INTEGER},
+      </if>
+      <if test="inviteState != null">
+          InviteState = #{inviteState,jdbcType=INTEGER},
+      </if>
+      <if test="edittime != null">
+          edittime = #{edittime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+          remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="coopType != null">
+          CoopType = #{coopType,jdbcType=INTEGER},
+      </if>
+      <if test="isStarMark != null">
+          IsStarMark = #{isStarMark,jdbcType=TINYINT},
+      </if>
+      <if test="firstDriverPersonID != null">
+          FirstDriverPersonID = #{firstDriverPersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="secondDriverPersonID != null">
+          SecondDriverPersonID = #{secondDriverPersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+          isDelete = #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="carStatus != null">
+          carStatus = #{carStatus,jdbcType=TINYINT},
+      </if>
+      <if test="isFriend != null">
+          isFriend = #{isFriend,jdbcType=TINYINT},
+      </if>
+      <if test="firstDriverMobile != null">
+          firstDriverMobile = #{firstDriverMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="firstDriverName != null">
+          firstDriverName = #{firstDriverName,jdbcType=VARCHAR},
+      </if>
+      <if test="secondDriverMobile != null">
+          secondDriverMobile = #{secondDriverMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="secondDriverName != null">
+          secondDriverName = #{secondDriverName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgGuid != null">
+          org_guid = #{orgGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="plateNumber != null">
+          plateNumber = #{plateNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="allOrgGuid != null">
+          all_org_guid = #{allOrgGuid,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="auditStatus != null">
+          audit_status = #{auditStatus,jdbcType=INTEGER}
+      </if>
+    </trim>
+    where guid = #{guid,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getCarsByEntIdAndPersonId" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM ent_cooperatecar
+    WHERE inviteState = 1 AND isDelete = 0
+    AND  CoopType in (51,52) AND entid = #{entId}
+    AND (FirstDriverPersonID = #{personId} OR SecondDriverPersonID = #{personId})
+    limit 1
+  </select>
+
+  <select id="getSelfCarByEntIdAndPersonId" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM ent_cooperatecar
+    WHERE inviteState = 1 AND isDelete = 0
+    AND  CoopType = 51 AND entid = #{entId}
+    AND (FirstDriverPersonID = #{personId} OR SecondDriverPersonID = #{personId})
+  </select>
+
+  <select id="getCoopCarPassedByEntIdAndPersonId" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM ent_cooperatecar
+    WHERE inviteState = 1 AND isDelete = 0
+    AND  CoopType = 52 AND entid = #{entId}
+    AND FirstDriverPersonID = #{personId}
+  </select>
+
+  <select id="getCoopCarByEntIdAndPersonId" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM ent_cooperatecar
+    WHERE isDelete = 0
+    AND  CoopType = 52 AND entid = #{entId}
+    AND FirstDriverPersonID = #{personId}
+  </select>
+
+  <update id="updateCarStatus">
+    update ent_cooperatecar
+    set carStatus = #{status}
+    WHERE carId = #{carId} and entId = #{entId} AND InviteState = 1 AND isDelete = 0
+  </update>
+
+
+
+
+
+  <select id="getCooperCarByEntIdAndCarId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ent_cooperatecar where isDelete = 0 and entId = #{entId} and carId = #{carId}
+  </select>
+
+  <select id="getEntCarByCarId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ent_cooperatecar where entId = #{entId} and carId = #{carId}
+    and isdelete = 0
+  </select>
+
+  <update id="updateIsFriend">
+    update ent_cooperatecar set isFriend = #{isFriend}  where entId = #{entId} and carId = #{carId}
+  </update>
+
+  <select id="getDriverEntCarList" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM ent_cooperatecar
+    WHERE  (FirstDriverPersonID = #{personId} OR SecondDriverPersonID = #{personId})
+    AND CoopType REGEXP #{coopType} AND isDelete = 0 AND InviteState = 1
+  </select>
+
+  <select id="getEntCarNum" resultType="java.lang.Long">
+   SELECT
+   COUNT(*)
+   FROM ent_cooperatecar
+   WHERE entid = #{entId} AND CoopType = #{coopType} AND isDelete = 0
+  </select>
+
+  <select id="getSelfCarByEntId" resultMap="BaseResultMap">
+   select
+   <include refid="Base_Column_List" />
+   from ent_cooperatecar
+   where isDelete = 0 and coopType = 51 and InviteState = 1 and entId = #{entId} and carId = #{carId}
+  </select>
+
+  <select id="getAllCoopCarByCarId" resultMap="BaseResultMap">
+   select
+   <include refid="Base_Column_List" />
+   from ent_cooperatecar
+   where isDelete = 0 and InviteState = 1 and carId = #{carId}
+   and (FirstDriverPersonID = #{personId} OR SecondDriverPersonID = #{personId})
+  </select>
+  <select id="getDriverCarList"  resultMap="BaseResultMap">
+			SELECT  entCar.* from ent_cooperatecar entCar WHERE
+		entCar.isDelete = 0
+		<if test="coopType!=null and coopType!=''">
+			AND CoopType  REGEXP #{coopType}
+		</if>
+		<if test="personId!=null and personId!=''">
+			AND entCar.FirstDriverPersonID = #{personId}
+		</if>
+		<if test="phoneNumber!=null and phoneNumber!=''">
+			AND entCar.firstDriverMobile = #{phoneNumber}
+		</if>
+	</select>
+	<select id="getCarByPersonIdAndEntId" resultMap="BaseResultMap">
+		SELECT
+		*
+		FROM ent_cooperatecar WHERE
+		FirstDriverPersonID =#{firstDriverId}
+		AND entid = #{entId} and coopType = 52 and isdelete = 0
+	</select>
+
+
+  <update id="updateAuditStatus">
+    update ent_cooperatecar
+    set audit_status = #{auditStatus},
+    vehicle_license=#{vehicleLicense},
+    vehicle_identification_code=#{vehicleIdentificationCode},
+    vehicle_engine_code=#{vehicleEngineCode},
+    vehicle_license_owner=#{vehicleLicenseOwner},
+    vehicle_pic = #{vehiclePic}
+    WHERE guid = #{entCarId}
+  </update>
+  
+  <select id="getCountByAuditStatus" resultType="java.lang.Long">
+		select count(1)
+		from ent_cooperatecar
+		where isDelete=0
+		and plateNumber = #{plateNumber}
+		and plate_color = #{plateColor}
+		and audit_status = 2 
+		<if test="coopType!=null and coopType!=''">
+			AND CoopType = #{coopType}
+		</if>
+	</select>
+	
+	<select id="getEntCarByPlateNumberAndColor" resultMap="BaseResultMap">
+		select *
+		from ent_cooperatecar
+		where isDelete=0
+		and plateNumber = #{plateNumber}
+		and plate_color = #{plateColor}
+		<if test="coopType!=null and coopType!=''">
+			AND CoopType = #{coopType}
+		</if>
+		<if test="entId!=null and entId!=''">
+			AND entid = #{entId}
+		</if>
+	</select>
+	
+	<update id="updateAuditStatusByEntCarId">
+
+      update ent_cooperatecar set audit_status = #{auditStatus} where guid=#{entCarId}
+
+    </update>
+    
+    <update id="updateInvitestate">
+
+      update ent_cooperatecar set invitestate = #{invitestate} where guid=#{entCarId}
+
+    </update>
+    
+    <update id="updateEntCarByEntCarId">
+      update ent_cooperatecar set
+      vehicle_pic = #{vehiclePic},
+      vehicle_identification_code=#{vehicleIdentificationCode},
+      vehicle_engine_code=#{vehicleEngineCode},
+      vehicle_license=#{vehicleLicense},
+      vehicle_license_owner = #{vehicleLicenseOwner}
+      where guid=#{entCarId}
+    </update>
+    
+    <update id="setCoopCarToNullByCarId">
+        UPDATE  ent_cooperatecar
+        SET
+        FirstDriverPersonID  = NULL ,
+        FirstDriverName = NULL,
+        FirstDriverMobile = NULL,
+        SecondDriverPersonID  = NULL ,
+        SecondDriverName = NULL,
+        SecondDriverMobile = NULL,
+        work_item = 2
+        WHERE EntID = #{entId}
+        AND carid = #{carId}
+        AND IsDelete = 0
+        AND  CoopType = 51;
+    </update>
+    
+    <update id="updateCoopNum">
+        UPDATE  ent_cooperatecar
+        SET
+        coopNum  = coopNum+1 
+        WHERE EntID = #{entId}
+        AND carid = #{carId}
+        AND IsDelete = 0;
+    </update>
+	
+</mapper>

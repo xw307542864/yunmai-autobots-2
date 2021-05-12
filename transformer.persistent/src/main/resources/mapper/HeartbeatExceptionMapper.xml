@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.logibeat.cloud.persistent.dao.HeartbeatExceptionDao">
+  <resultMap id="BaseResultMap" type="com.logibeat.cloud.persistent.entity.HeartbeatExceptionEntity">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="task_id" jdbcType="VARCHAR" property="taskId" />
+    <result column="person_id" jdbcType="VARCHAR" property="personId" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="exception_num" jdbcType="INTEGER" property="exceptionNum" />
+    <result column="is_send_message" jdbcType="TINYINT" property="isSendMessage" />
+    <result column="send_message_num" jdbcType="INTEGER" property="sendMessageNum" />
+    <result column="last_send_time" jdbcType="TIMESTAMP" property="lastSendTime" />
+    <result column="is_call_phone" jdbcType="TINYINT" property="isCallPhone" />
+    <result column="call_phone_num" jdbcType="INTEGER" property="callPhoneNum" />
+    <result column="last_phone_time" jdbcType="TIMESTAMP" property="lastPhoneTime" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, task_id, person_id, mobile, exception_num, is_send_message, send_message_num, 
+    last_send_time, is_call_phone, call_phone_num, last_phone_time, add_time, type
+  </sql>
+  <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_heartbeat_exception
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="delete" parameterType="java.lang.String">
+    delete from sys_heartbeat_exception
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.logibeat.cloud.persistent.entity.HeartbeatExceptionEntity">
+    insert into sys_heartbeat_exception
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="taskId != null">
+        task_id,
+      </if>
+      <if test="personId != null">
+        person_id,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="exceptionNum != null">
+        exception_num,
+      </if>
+      <if test="isSendMessage != null">
+        is_send_message,
+      </if>
+      <if test="sendMessageNum != null">
+        send_message_num,
+      </if>
+      <if test="lastSendTime != null">
+        last_send_time,
+      </if>
+      <if test="isCallPhone != null">
+        is_call_phone,
+      </if>
+      <if test="callPhoneNum != null">
+        call_phone_num,
+      </if>
+      <if test="lastPhoneTime != null">
+        last_phone_time,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="taskId != null">
+        #{taskId,jdbcType=VARCHAR},
+      </if>
+      <if test="personId != null">
+        #{personId,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="exceptionNum != null">
+        #{exceptionNum,jdbcType=INTEGER},
+      </if>
+      <if test="isSendMessage != null">
+        #{isSendMessage,jdbcType=TINYINT},
+      </if>
+      <if test="sendMessageNum != null">
+        #{sendMessageNum,jdbcType=INTEGER},
+      </if>
+      <if test="lastSendTime != null">
+        #{lastSendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isCallPhone != null">
+        #{isCallPhone,jdbcType=TINYINT},
+      </if>
+      <if test="callPhoneNum != null">
+        #{callPhoneNum,jdbcType=INTEGER},
+      </if>
+      <if test="lastPhoneTime != null">
+        #{lastPhoneTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.logibeat.cloud.persistent.entity.HeartbeatExceptionEntity">
+    update sys_heartbeat_exception
+    <trim prefix="SET" suffixOverrides=",">
+      <if test="taskId != null">
+        task_id = #{taskId,jdbcType=VARCHAR},
+      </if>
+      <if test="personId != null">
+          person_id = #{personId,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+          mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="exceptionNum != null">
+          exception_num = #{exceptionNum,jdbcType=INTEGER},
+      </if>
+      <if test="isSendMessage != null">
+          is_send_message = #{isSendMessage,jdbcType=TINYINT},
+      </if>
+      <if test="sendMessageNum != null">
+          send_message_num = #{sendMessageNum,jdbcType=INTEGER},
+      </if>
+      <if test="lastSendTime != null">
+          last_send_time = #{lastSendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isCallPhone != null">
+          is_call_phone = #{isCallPhone,jdbcType=TINYINT},
+      </if>
+      <if test="callPhoneNum != null">
+          call_phone_num = #{callPhoneNum,jdbcType=INTEGER},
+      </if>
+      <if test="lastPhoneTime != null">
+          last_phone_time = #{lastPhoneTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addTime != null">
+          add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null">
+          type = #{type,jdbcType=INTEGER}
+      </if>
+    </trim>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getExceptionList" resultMap="BaseResultMap">
+    SELECT * from sys_heartbeat_exception where exception_num &gt;= #{exceptionNum}
+    <if test="type == 1">
+      AND is_send_message = 0
+    </if>
+    <if test="type == 2">
+      AND is_send_message = 0
+    </if>
+  </select>
+</mapper>

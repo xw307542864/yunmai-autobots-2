@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.logibeat.cloud.persistent.dao.EntClassLineNetworkDao">
+  <resultMap id="BaseResultMap" type="com.logibeat.cloud.persistent.entity.EntClassLineNetworkEntity">
+    <id column="guid" jdbcType="VARCHAR" property="guid" />
+    <result column="ent_id" jdbcType="VARCHAR" property="entId" />
+    <result column="line_id" jdbcType="VARCHAR" property="lineId" />
+    <result column="network_id" jdbcType="VARCHAR" property="networkId" />
+    <result column="sequence" jdbcType="INTEGER" property="sequence" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="add_person_id" jdbcType="VARCHAR" property="addPersonId" />
+    <result column="edit_time" jdbcType="TIMESTAMP" property="editTime" />
+    <result column="edit_person_id" jdbcType="VARCHAR" property="editPersonId" />
+    <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
+    <result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    guid, ent_id, line_id, network_id, sequence, add_time, add_person_id, edit_time, 
+    edit_person_id, is_delete, delete_time
+  </sql>
+  <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ent_classline_network
+    where guid = #{guid,jdbcType=VARCHAR}
+  </select>
+  <delete id="delete" parameterType="java.lang.String">
+    delete from ent_classline_network
+    where guid = #{guid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.logibeat.cloud.persistent.entity.EntClassLineNetworkEntity">
+    insert into ent_classline_network
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        guid,
+      </if>
+      <if test="entId != null">
+        ent_id,
+      </if>
+      <if test="lineId != null">
+        line_id,
+      </if>
+      <if test="networkId != null">
+        network_id,
+      </if>
+      <if test="sequence != null">
+        sequence,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="addPersonId != null">
+        add_person_id,
+      </if>
+      <if test="editTime != null">
+        edit_time,
+      </if>
+      <if test="editPersonId != null">
+        edit_person_id,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+      <if test="deleteTime != null">
+        delete_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        #{guid,jdbcType=VARCHAR},
+      </if>
+      <if test="entId != null">
+        #{entId,jdbcType=VARCHAR},
+      </if>
+      <if test="lineId != null">
+        #{lineId,jdbcType=VARCHAR},
+      </if>
+      <if test="networkId != null">
+        #{networkId,jdbcType=VARCHAR},
+      </if>
+      <if test="sequence != null">
+        #{sequence,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addPersonId != null">
+        #{addPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="editTime != null">
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editPersonId != null">
+        #{editPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="deleteTime != null">
+        #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.logibeat.cloud.persistent.entity.EntClassLineNetworkEntity">
+    update ent_classline_network
+    <trim prefix="SET" suffixOverrides=",">
+      <if test="entId != null">
+        ent_id = #{entId,jdbcType=VARCHAR},
+      </if>
+      <if test="lineId != null">
+          line_id = #{lineId,jdbcType=VARCHAR},
+      </if>
+      <if test="networkId != null">
+          network_id = #{networkId,jdbcType=VARCHAR},
+      </if>
+      <if test="sequence != null">
+          sequence = #{sequence,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+          add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addPersonId != null">
+          add_person_id = #{addPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="editTime != null">
+          edit_time = #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editPersonId != null">
+          edit_person_id = #{editPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+          is_delete = #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="deleteTime != null">
+          delete_time = #{deleteTime,jdbcType=TIMESTAMP}
+      </if>
+    </trim>
+    where guid = #{guid,jdbcType=VARCHAR}
+  </update>
+</mapper>

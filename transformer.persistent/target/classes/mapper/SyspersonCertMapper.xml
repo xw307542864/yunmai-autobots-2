@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.logibeat.cloud.persistent.dao.SyspersonCertDao">
+    <resultMap id="SyspersonCertMap" type="com.logibeat.cloud.persistent.entity.SyspersonCertEntity">
+        <result column="guid" property="guid"/>
+        <result column="person_id" property="personId"/>
+        <result column="cert_type" property="certType"/>
+        <result column="cert_name" property="certName"/>
+        <result column="cert_source" property="certSource"/>
+        <result column="cert_info" property="certInfo"/>
+        <result column="is_del" property="isDel"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="startsoft_cert_id" property="startsoftCertId"/>
+    </resultMap>
+
+    <sql id="table">
+        sysperson_cert
+    </sql>
+
+    <sql id="columns">
+        guid, person_id, cert_type, cert_name, cert_source, cert_info, is_del, create_time, update_time,startsoft_cert_id
+    </sql>
+
+    <sql id="values">
+        #{guid}, #{personId}, #{certType}, #{certName}, #{certSource}, #{certInfo}, #{isDel}, #{createTime}, #{updateTime}, #{startsoftCertId}
+    </sql>
+
+    <insert id="insert" parameterType="com.logibeat.cloud.persistent.entity.SyspersonCertEntity">
+        INSERT INTO
+        <include refid="table"/>
+        (<include refid="columns"/>)
+        VALUES
+        (<include refid="values"/>)
+    </insert>
+
+    <select id="findById" parameterType="string" resultMap="SyspersonCertMap" >
+        SELECT <include refid="columns" />
+        FROM <include refid="table" />
+        WHERE guid = #{guid} and is_del = 0
+    </select>
+
+    <select id="findByPerson" parameterType="string" resultMap="SyspersonCertMap" >
+        SELECT <include refid="columns" />
+        FROM <include refid="table" />
+        WHERE person_id = #{personId} and is_del = 0 order by create_time desc
+    </select>
+
+    <select id="findByPersonList" parameterType="string" resultMap="SyspersonCertMap" >
+        SELECT <include refid="columns" />
+        FROM <include refid="table" />
+        WHERE person_id in
+        <foreach collection="personIdList" item="person" separator="," open="(" close=")">
+            #{person}
+        </foreach>
+        and is_del = 0 and cert_type = #{certType}
+    </select>
+
+    <select id="findByType" parameterType="string" resultMap="SyspersonCertMap" >
+        SELECT <include refid="columns" />
+        FROM <include refid="table" />
+        WHERE person_id = #{personId} and cert_type = #{certType} and is_del = 0
+    </select>
+    
+    <select id="findByStartsoftCertId" parameterType="string" resultMap="SyspersonCertMap" >
+        SELECT <include refid="columns" />
+        FROM <include refid="table" />
+        WHERE startsoft_cert_id = #{startsoftCertId} and is_del = 0 
+    </select>
+
+    <update id="update" parameterType="com.logibeat.cloud.persistent.entity.SyspersonCertEntity">
+        UPDATE
+        <include refid="table"/>
+        <set>
+            <if test="guid != null">guid = #{guid},</if>
+            <if test="personId != null">person_id = #{personId},</if>
+            <if test="certType != null">cert_type = #{certType},</if>
+            <if test="certName != null">cert_name = #{certName},</if>
+            <if test="certSource != null">cert_source = #{certSource},</if>
+            <if test="certInfo != null">cert_info = #{certInfo},</if>
+            <if test="isDel != null">is_del = #{isDel},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="startsoftCertId != null">startsoft_cert_id = #{startsoftCertId},</if>
+        </set>
+        WHERE guid = #{guid}
+    </update>
+
+    <delete id="delete" parameterType="string">
+        DELETE FROM <include refid="table"/>
+        WHERE guid = #{guid}
+    </delete>
+
+    <select id="count" parameterType="com.logibeat.cloud.persistent.entity.SyspersonCertEntity" resultType="long">
+        SELECT COUNT(guid)
+        FROM
+        <include refid="table"/>
+        <where>
+            <include refid="criteria"/>
+        </where>
+    </select>
+
+    <select id="paging" parameterType="com.logibeat.cloud.persistent.entity.SyspersonCertEntity" resultMap="SyspersonCertMap">
+        SELECT
+        <include refid="columns"/>
+        FROM
+        <include refid="table"/>
+        <where>
+            <include refid="criteria"/>
+        </where>
+        LIMIT #{offset}, #{limit}
+    </select>
+
+    <sql id="criteria">
+        <if test="guid != null"> and guid = #{guid}</if>
+        <if test="personId != null"> and person_id = #{personId}</if>
+        <if test="certType != null"> and cert_type = #{certType}</if>
+        <if test="certName != null"> and cert_name = #{certName}</if>
+        <if test="certSource != null"> and cert_source = #{certSource}</if>
+        <if test="certInfo != null"> and cert_info = #{certInfo}</if>
+        <if test="isDel != null"> and is_del = #{isDel}</if>
+        <if test="createTime != null"> and create_time = #{createTime}</if>
+        <if test="updateTime != null"> and update_time = #{updateTime}</if>
+        <if test="startsoftCertId != null"> and startsoft_cert_id = #{startsoftCertId}</if>
+    </sql>
+</mapper>

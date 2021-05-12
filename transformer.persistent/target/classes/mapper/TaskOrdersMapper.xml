@@ -1,0 +1,938 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.logibeat.cloud.persistent.dao.TaskOrdersDao">
+  <resultMap id="BaseResultMap" type="com.logibeat.cloud.persistent.entity.TaskOrdersEntity">
+    <id column="OrdersCID" jdbcType="VARCHAR" property="ordersCID" />
+    <result column="EntID" jdbcType="VARCHAR" property="entID" />
+    <result column="YYYYMMDD" jdbcType="INTEGER" property="yyyymmdd" />
+    <result column="IsFirstOrders" jdbcType="TINYINT" property="isFirstOrders" />
+    <result column="IsEndOrders" jdbcType="TINYINT" property="isEndOrders" />
+    <result column="IsGoodsOrders" jdbcType="TINYINT" property="isGoodsOrders" />
+    <result column="IsCarrierOrders" jdbcType="TINYINT" property="isCarrierOrders" />
+    <result column="CarrierPersonId" jdbcType="VARCHAR" property="carrierPersonId" />
+    <result column="CarrierEntID" jdbcType="VARCHAR" property="carrierEntID" />
+    <result column="IsCarOrders" jdbcType="TINYINT" property="isCarOrders" />
+    <result column="entrustPersonId" jdbcType="VARCHAR" property="entrustPersonId" />
+    <result column="iscancleEntrust" jdbcType="TINYINT" property="iscancleEntrust" />
+    <result column="IsEntrustOrders" jdbcType="TINYINT" property="isEntrustOrders" />
+    <result column="entrustTime" jdbcType="TIMESTAMP" property="entrustTime" />
+    <result column="EntrustEntID" jdbcType="VARCHAR" property="entrustEntID" />
+    <result column="IsSplit" jdbcType="TINYINT" property="isSplit" />
+    <result column="ParentOrdersCID" jdbcType="VARCHAR" property="parentOrdersCID" />
+    <result column="Name" jdbcType="VARCHAR" property="name" />
+    <result column="Code" jdbcType="VARCHAR" property="code" />
+    <result column="IsUpStream" jdbcType="TINYINT" property="isUpStream" />
+    <result column="IsDownStream" jdbcType="TINYINT" property="isDownStream" />
+    <result column="StartAreaGUID" jdbcType="VARCHAR" property="startAreaGUID" />
+    <result column="EndAreaGUID" jdbcType="VARCHAR" property="endAreaGUID" />
+    <result column="StartAreaPlanLeavTime" jdbcType="TIMESTAMP" property="startAreaPlanLeavTime" />
+    <result column="EndAreaPlanArriveTime" jdbcType="TIMESTAMP" property="endAreaPlanArriveTime" />
+    <result column="StartAreaActualLeavTime" jdbcType="TIMESTAMP" property="startAreaActualLeavTime" />
+    <result column="EndAreaActualArriveTime" jdbcType="TIMESTAMP" property="endAreaActualArriveTime" />
+    <result column="Statute" jdbcType="INTEGER" property="statute" />
+    <result column="Volume" jdbcType="DOUBLE" property="volume" />
+    <result column="Weight" jdbcType="DOUBLE" property="weight" />
+    <result column="GoodsRemark" jdbcType="VARCHAR" property="goodsRemark" />
+    <result column="OrdersRemark" jdbcType="VARCHAR" property="ordersRemark" />
+    <result column="Remark" jdbcType="VARCHAR" property="remark" />
+    <result column="OrdersStatus" jdbcType="INTEGER" property="ordersStatus" />
+    <result column="IsCancle" jdbcType="TINYINT" property="isCancle" />
+    <result column="AddTime" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="EditTime" jdbcType="TIMESTAMP" property="editTime" />
+    <result column="EditPersonID" jdbcType="VARCHAR" property="editPersonID" />
+    <result column="IsDelete" jdbcType="TINYINT" property="isDelete" />
+    <result column="createPersonId" jdbcType="VARCHAR" property="createPersonId" />
+    <result column="originalcid" jdbcType="VARCHAR" property="originalcid" />
+    <result column="entrustStatus" jdbcType="INTEGER" property="entrustStatus" />
+    <result column="createorder" jdbcType="BIGINT" property="createorder" />
+    <result column="lng" jdbcType="DOUBLE" property="lng" />
+    <result column="lat" jdbcType="DOUBLE" property="lat" />
+    <result column="gpstime" jdbcType="TIMESTAMP" property="gpstime" />
+    <result column="IsRead" jdbcType="TINYINT" property="isRead" />
+    <result column="ordersType" jdbcType="TINYINT" property="ordersType" />
+    <result column="actual_mileage" jdbcType="DOUBLE" property="actualMileage" />
+    <result column="actual_drivetime" jdbcType="BIGINT" property="actualDrivetime" />
+    <result column="duration" jdbcType="INTEGER" property="duration" />
+    <result column="is_manual" jdbcType="TINYINT" property="isManual" />
+    <result column="expects_mileage" jdbcType="INTEGER" property="expectsMileage" />
+    <result column="start_area_name" jdbcType="VARCHAR" property="startAreaName" />
+    <result column="end_area_name" jdbcType="VARCHAR" property="endAreaName" />
+    <result column="start_area_code" jdbcType="VARCHAR" property="startAreaCode" />
+    <result column="end_area_code" jdbcType="VARCHAR" property="endAreaCode" />
+    <result column="finishTime" jdbcType="TIMESTAMP" property="finishTime" />
+    <result column="ownOrderId" jdbcType="VARCHAR" property="ownOrderId" />
+    <result column="ownType" jdbcType="VARCHAR" property="ownType" />
+    <result column="isAuto" jdbcType="INTEGER" property="isAuto" />
+    <result column="line_id" jdbcType="VARCHAR" property="lineId" />
+    <result column="is_allow_change" jdbcType="TINYINT" property="isAllowChange" />
+    <result column="is_report" jdbcType="TINYINT" property="isReport" />
+    <result column="actual_end_area_code" jdbcType="CHAR" property="actualEndAreaCode" />
+    <result column="freightFee" jdbcType="REAL" property="freightFee" />
+    <result column="unloadingFee" jdbcType="REAL" property="unloadingFee" />
+    <result column="is_exception" jdbcType="TINYINT" property="isException" />
+    <result column="is_need_sign" jdbcType="TINYINT" property="isNeedSign" />
+    <result column="is_sign" jdbcType="TINYINT" property="isSign" />
+    <result column="sign_person_id" jdbcType="VARCHAR" property="signPersonId" />
+    <result column="is_print" jdbcType="VARCHAR" property="isPrint" />
+    <result column="muck_quantities" jdbcType="DOUBLE" property="muckQuantities" />
+    <result column="car_id" jdbcType="VARCHAR" property="carId" />
+    <result column="plate_number" jdbcType="VARCHAR" property="plateNumber" />
+    <result column="start_region_code" jdbcType="VARCHAR" property="startRegionCode" />
+    <result column="end_region_code" jdbcType="VARCHAR" property="endRegionCode" />
+    <result column="first_person_id" jdbcType="VARCHAR" property="firstPersonId" />
+    <result column="first_person_name" jdbcType="VARCHAR" property="firstPersonName" />
+    <result column="first_person_mobile" jdbcType="VARCHAR" property="firstPersonMobile" />
+    <result column="second_person_id" jdbcType="VARCHAR" property="secondPersonId" />
+    <result column="second_person_name" jdbcType="VARCHAR" property="secondPersonName" />
+    <result column="second_person_mobile" jdbcType="VARCHAR" property="secondPersonMobile" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    OrdersCID, EntID, YYYYMMDD, IsFirstOrders, IsEndOrders, IsGoodsOrders, IsCarrierOrders, 
+    CarrierPersonId, CarrierEntID, IsCarOrders, entrustPersonId, iscancleEntrust, IsEntrustOrders, 
+    entrustTime, EntrustEntID, IsSplit, ParentOrdersCID, Name, Code, IsUpStream, IsDownStream, 
+    StartAreaGUID, EndAreaGUID, StartAreaPlanLeavTime, EndAreaPlanArriveTime, StartAreaActualLeavTime, 
+    EndAreaActualArriveTime, Statute, Volume, Weight, GoodsRemark, OrdersRemark, Remark, 
+    OrdersStatus, IsCancle, AddTime, EditTime, EditPersonID, IsDelete, createPersonId, 
+    originalcid, entrustStatus, createorder, lng, lat, gpstime, IsRead, ordersType, actual_mileage, 
+    actual_drivetime, duration, is_manual, expects_mileage, start_area_name, end_area_name, 
+    start_area_code, end_area_code, finishTime, ownOrderId, ownType, isAuto, line_id, 
+    is_allow_change, is_report, actual_end_area_code, freightFee, unloadingFee, is_exception, 
+    is_need_sign, is_sign, sign_person_id, is_print, muck_quantities, car_id, plate_number, 
+    start_region_code, end_region_code, first_person_id, first_person_name, first_person_mobile, 
+    second_person_id, second_person_name, second_person_mobile
+  </sql>
+  <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from task_orders
+    where OrdersCID = #{ordersCID,jdbcType=VARCHAR}
+  </select>
+  <update id="delete" parameterType="java.lang.String">
+    update task_orders set isdelete = 1
+    where OrdersCID = #{ordersCID,jdbcType=VARCHAR}
+  </update>
+  <insert id="insert" parameterType="com.logibeat.cloud.persistent.entity.TaskOrdersEntity">
+    insert into task_orders
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ordersCID != null">
+        OrdersCID,
+      </if>
+      <if test="entID != null">
+        EntID,
+      </if>
+      <if test="yyyymmdd != null">
+        YYYYMMDD,
+      </if>
+      <if test="isFirstOrders != null">
+        IsFirstOrders,
+      </if>
+      <if test="isEndOrders != null">
+        IsEndOrders,
+      </if>
+      <if test="isGoodsOrders != null">
+        IsGoodsOrders,
+      </if>
+      <if test="isCarrierOrders != null">
+        IsCarrierOrders,
+      </if>
+      <if test="carrierPersonId != null">
+        CarrierPersonId,
+      </if>
+      <if test="carrierEntID != null">
+        CarrierEntID,
+      </if>
+      <if test="carrierInfo != null">
+        carrierInfo,
+      </if>
+      <if test="isCarOrders != null">
+        IsCarOrders,
+      </if>
+      <if test="entrustPersonId != null">
+        entrustPersonId,
+      </if>
+      <if test="entrustInfo != null">
+        entrustInfo,
+      </if>
+      <if test="iscancleEntrust != null">
+        iscancleEntrust,
+      </if>
+      <if test="isEntrustOrders != null">
+        IsEntrustOrders,
+      </if>
+      <if test="entrustTime != null">
+        entrustTime,
+      </if>
+      <if test="entrustEntID != null">
+        EntrustEntID,
+      </if>
+      <if test="isSplit != null">
+        IsSplit,
+      </if>
+      <if test="parentOrdersCID != null">
+        ParentOrdersCID,
+      </if>
+      <if test="name != null">
+        Name,
+      </if>
+      <if test="code != null">
+        Code,
+      </if>
+      <if test="isUpStream != null">
+        IsUpStream,
+      </if>
+      <if test="isDownStream != null">
+        IsDownStream,
+      </if>
+      <if test="startAreaGUID != null">
+        StartAreaGUID,
+      </if>
+      <if test="endAreaGUID != null">
+        EndAreaGUID,
+      </if>
+      <if test="startAreaPlanLeavTime != null">
+        StartAreaPlanLeavTime,
+      </if>
+      <if test="endAreaPlanArriveTime != null">
+        EndAreaPlanArriveTime,
+      </if>
+      <if test="startAreaActualLeavTime != null">
+        StartAreaActualLeavTime,
+      </if>
+      <if test="endAreaActualArriveTime != null">
+        EndAreaActualArriveTime,
+      </if>
+      <if test="statute != null">
+        Statute,
+      </if>
+      <if test="volume != null">
+        Volume,
+      </if>
+      <if test="weight != null">
+        Weight,
+      </if>
+      <if test="goodsRemark != null">
+        GoodsRemark,
+      </if>
+      <if test="ordersRemark != null">
+        OrdersRemark,
+      </if>
+      <if test="remark != null">
+        Remark,
+      </if>
+      <if test="ordersStatus != null">
+        OrdersStatus,
+      </if>
+      <if test="isCancle != null">
+        IsCancle,
+      </if>
+      <if test="addTime != null">
+        AddTime,
+      </if>
+      <if test="editTime != null">
+        EditTime,
+      </if>
+      <if test="editPersonID != null">
+        EditPersonID,
+      </if>
+      <if test="isDelete != null">
+        IsDelete,
+      </if>
+      <if test="createPersonId != null">
+        createPersonId,
+      </if>
+      <if test="createPersonInfo != null">
+        createPersonInfo,
+      </if>
+      <if test="originalcid != null">
+        originalcid,
+      </if>
+      <if test="entrustStatus != null">
+        entrustStatus,
+      </if>
+      <if test="createorder != null">
+        createorder,
+      </if>
+      <if test="lng != null">
+        lng,
+      </if>
+      <if test="lat != null">
+        lat,
+      </if>
+      <if test="gpstime != null">
+        gpstime,
+      </if>
+      <if test="isRead != null">
+        IsRead,
+      </if>
+      <if test="ordersType != null">
+        ordersType,
+      </if>
+      <if test="actualMileage != null">
+        actual_mileage,
+      </if>
+      <if test="actualDrivetime != null">
+        actual_drivetime,
+      </if>
+      <if test="duration != null">
+        duration,
+      </if>
+      <if test="isManual != null">
+        is_manual,
+      </if>
+      <if test="expectsMileage != null">
+        expects_mileage,
+      </if>
+      <if test="startAreaName != null">
+        start_area_name,
+      </if>
+      <if test="endAreaName != null">
+        end_area_name,
+      </if>
+      <if test="startAreaCode != null">
+        start_area_code,
+      </if>
+      <if test="endAreaCode != null">
+        end_area_code,
+      </if>
+      <if test="finishTime != null">
+        finishTime,
+      </if>
+      <if test="ownOrderId != null">
+        ownOrderId,
+      </if>
+      <if test="ownType != null">
+        ownType,
+      </if>
+      <if test="isAuto != null">
+        isAuto,
+      </if>
+      <if test="lineId != null">
+        line_id,
+      </if>
+      <if test="isAllowChange != null">
+        is_allow_change,
+      </if>
+      <if test="isReport != null">
+        is_report,
+      </if>
+      <if test="actualEndAreaCode != null">
+        actual_end_area_code,
+      </if>
+      <if test="freightFee != null">
+        freightFee,
+      </if>
+      <if test="unloadingFee != null">
+        unloadingFee,
+      </if>
+      <if test="isException != null">
+        is_exception,
+      </if>
+      <if test="isNeedSign != null">
+        is_need_sign,
+      </if>
+      <if test="isSign != null">
+        is_sign,
+      </if>
+      <if test="signPersonId != null">
+        sign_person_id,
+      </if>
+      <if test="isPrint != null">
+        is_print,
+      </if>
+      <if test="muckQuantities != null">
+        muck_quantities,
+      </if>
+      <if test="carId != null">
+        car_id,
+      </if>
+      <if test="plateNumber != null">
+        plate_number,
+      </if>
+      <if test="startRegionCode != null">
+        start_region_code,
+      </if>
+      <if test="endRegionCode != null">
+        end_region_code,
+      </if>
+      <if test="firstPersonId != null">
+        first_person_id,
+      </if>
+      <if test="firstPersonName != null">
+        first_person_name,
+      </if>
+      <if test="firstPersonMobile != null">
+        first_person_mobile,
+      </if>
+      <if test="secondPersonId != null">
+        second_person_id,
+      </if>
+      <if test="secondPersonName != null">
+        second_person_name,
+      </if>
+      <if test="secondPersonMobile != null">
+        second_person_mobile,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ordersCID != null">
+        #{ordersCID,jdbcType=VARCHAR},
+      </if>
+      <if test="entID != null">
+        #{entID,jdbcType=VARCHAR},
+      </if>
+      <if test="yyyymmdd != null">
+        #{yyyymmdd,jdbcType=INTEGER},
+      </if>
+      <if test="isFirstOrders != null">
+        #{isFirstOrders,jdbcType=TINYINT},
+      </if>
+      <if test="isEndOrders != null">
+        #{isEndOrders,jdbcType=TINYINT},
+      </if>
+      <if test="isGoodsOrders != null">
+        #{isGoodsOrders,jdbcType=TINYINT},
+      </if>
+      <if test="isCarrierOrders != null">
+        #{isCarrierOrders,jdbcType=TINYINT},
+      </if>
+      <if test="carrierPersonId != null">
+        #{carrierPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="carrierEntID != null">
+        #{carrierEntID,jdbcType=VARCHAR},
+      </if>
+
+      <if test="carrierInfo != null">
+        #{carrierInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="isCarOrders != null">
+        #{isCarOrders,jdbcType=TINYINT},
+      </if>
+      <if test="entrustPersonId != null">
+        #{entrustPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustInfo != null">
+        #{entrustInfo},
+      </if>
+      <if test="iscancleEntrust != null">
+        #{iscancleEntrust,jdbcType=TINYINT},
+      </if>
+      <if test="isEntrustOrders != null">
+        #{isEntrustOrders,jdbcType=TINYINT},
+      </if>
+      <if test="entrustTime != null">
+        #{entrustTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="entrustEntID != null">
+        #{entrustEntID,jdbcType=VARCHAR},
+      </if>
+      <if test="isSplit != null">
+        #{isSplit,jdbcType=TINYINT},
+      </if>
+      <if test="parentOrdersCID != null">
+        #{parentOrdersCID,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="isUpStream != null">
+        #{isUpStream,jdbcType=TINYINT},
+      </if>
+      <if test="isDownStream != null">
+        #{isDownStream,jdbcType=TINYINT},
+      </if>
+      <if test="startAreaGUID != null">
+        #{startAreaGUID,jdbcType=VARCHAR},
+      </if>
+      <if test="endAreaGUID != null">
+        #{endAreaGUID,jdbcType=VARCHAR},
+      </if>
+      <if test="startAreaPlanLeavTime != null">
+        #{startAreaPlanLeavTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endAreaPlanArriveTime != null">
+        #{endAreaPlanArriveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startAreaActualLeavTime != null">
+        #{startAreaActualLeavTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endAreaActualArriveTime != null">
+        #{endAreaActualArriveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="statute != null">
+        #{statute,jdbcType=INTEGER},
+      </if>
+      <if test="volume != null">
+        #{volume,jdbcType=DOUBLE},
+      </if>
+      <if test="weight != null">
+        #{weight,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsRemark != null">
+        #{goodsRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="ordersRemark != null">
+        #{ordersRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="ordersStatus != null">
+        #{ordersStatus,jdbcType=INTEGER},
+      </if>
+      <if test="isCancle != null">
+        #{isCancle,jdbcType=TINYINT},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null">
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editPersonID != null">
+        #{editPersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="createPersonId != null">
+        #{createPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="createPersonInfo != null">
+        #{createPersonInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="originalcid != null">
+        #{originalcid,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustStatus != null">
+        #{entrustStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createorder != null">
+        #{createorder,jdbcType=BIGINT},
+      </if>
+      <if test="lng != null">
+        #{lng,jdbcType=DOUBLE},
+      </if>
+      <if test="lat != null">
+        #{lat,jdbcType=DOUBLE},
+      </if>
+      <if test="gpstime != null">
+        #{gpstime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isRead != null">
+        #{isRead,jdbcType=TINYINT},
+      </if>
+      <if test="ordersType != null">
+        #{ordersType,jdbcType=TINYINT},
+      </if>
+      <if test="actualMileage != null">
+        #{actualMileage,jdbcType=DOUBLE},
+      </if>
+      <if test="actualDrivetime != null">
+        #{actualDrivetime,jdbcType=BIGINT},
+      </if>
+      <if test="duration != null">
+        #{duration,jdbcType=INTEGER},
+      </if>
+      <if test="isManual != null">
+        #{isManual,jdbcType=TINYINT},
+      </if>
+      <if test="expectsMileage != null">
+        #{expectsMileage,jdbcType=INTEGER},
+      </if>
+      <if test="startAreaName != null">
+        #{startAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="endAreaName != null">
+        #{endAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="startAreaCode != null">
+        #{startAreaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="endAreaCode != null">
+        #{endAreaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="finishTime != null">
+        #{finishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ownOrderId != null">
+        #{ownOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="ownType != null">
+        #{ownType,jdbcType=VARCHAR},
+      </if>
+      <if test="isAuto != null">
+        #{isAuto,jdbcType=INTEGER},
+      </if>
+      <if test="lineId != null">
+        #{lineId,jdbcType=VARCHAR},
+      </if>
+      <if test="isAllowChange != null">
+        #{isAllowChange,jdbcType=TINYINT},
+      </if>
+      <if test="isReport != null">
+        #{isReport,jdbcType=TINYINT},
+      </if>
+      <if test="actualEndAreaCode != null">
+        #{actualEndAreaCode,jdbcType=CHAR},
+      </if>
+      <if test="freightFee != null">
+        #{freightFee,jdbcType=REAL},
+      </if>
+      <if test="unloadingFee != null">
+        #{unloadingFee,jdbcType=REAL},
+      </if>
+      <if test="isException != null">
+        #{isException,jdbcType=TINYINT},
+      </if>
+      <if test="isNeedSign != null">
+        #{isNeedSign,jdbcType=TINYINT},
+      </if>
+      <if test="isSign != null">
+        #{isSign,jdbcType=TINYINT},
+      </if>
+      <if test="signPersonId != null">
+        #{signPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="isPrint != null">
+        #{isPrint,jdbcType=VARCHAR},
+      </if>
+      <if test="muckQuantities != null">
+        #{muckQuantities,jdbcType=DOUBLE},
+      </if>
+      <if test="carId != null">
+        #{carId,jdbcType=VARCHAR},
+      </if>
+      <if test="plateNumber != null">
+        #{plateNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="startRegionCode != null">
+        #{startRegionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="endRegionCode != null">
+        #{endRegionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="firstPersonId != null">
+        #{firstPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="firstPersonName != null">
+        #{firstPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="firstPersonMobile != null">
+        #{firstPersonMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="secondPersonId != null">
+        #{secondPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="secondPersonName != null">
+        #{secondPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="secondPersonMobile != null">
+        #{secondPersonMobile,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.logibeat.cloud.persistent.entity.TaskOrdersEntity">
+    update task_orders
+    <trim prefix="SET" suffixOverrides=",">
+      <if test="entID != null">
+        EntID = #{entID,jdbcType=VARCHAR},
+      </if>
+      <if test="yyyymmdd != null">
+          YYYYMMDD = #{yyyymmdd,jdbcType=INTEGER},
+      </if>
+      <if test="isFirstOrders != null">
+          IsFirstOrders = #{isFirstOrders,jdbcType=TINYINT},
+      </if>
+      <if test="isEndOrders != null">
+          IsEndOrders = #{isEndOrders,jdbcType=TINYINT},
+      </if>
+      <if test="isGoodsOrders != null">
+          IsGoodsOrders = #{isGoodsOrders,jdbcType=TINYINT},
+      </if>
+      <if test="isCarrierOrders != null">
+          IsCarrierOrders = #{isCarrierOrders,jdbcType=TINYINT},
+      </if>
+      <if test="carrierPersonId != null">
+          CarrierPersonId = #{carrierPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="carrierEntID != null">
+          CarrierEntID = #{carrierEntID,jdbcType=VARCHAR},
+      </if>
+      <if test="isCarOrders != null">
+          IsCarOrders = #{isCarOrders,jdbcType=TINYINT},
+      </if>
+      <if test="entrustPersonId != null">
+          entrustPersonId = #{entrustPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="iscancleEntrust != null">
+          iscancleEntrust = #{iscancleEntrust,jdbcType=TINYINT},
+      </if>
+      <if test="isEntrustOrders != null">
+          IsEntrustOrders = #{isEntrustOrders,jdbcType=TINYINT},
+      </if>
+      <if test="entrustType != null">
+        entrustType = #{entrustType,jdbcType=INT},
+      </if>
+      <if test="entrustTime != null">
+          entrustTime = #{entrustTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="entrustEntID != null">
+          EntrustEntID = #{entrustEntID,jdbcType=VARCHAR},
+      </if>
+      <if test="isSplit != null">
+          IsSplit = #{isSplit,jdbcType=TINYINT},
+      </if>
+      <if test="parentOrdersCID != null">
+          ParentOrdersCID = #{parentOrdersCID,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+          Name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+          Code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="isUpStream != null">
+          IsUpStream = #{isUpStream,jdbcType=TINYINT},
+      </if>
+      <if test="isDownStream != null">
+          IsDownStream = #{isDownStream,jdbcType=TINYINT},
+      </if>
+      <if test="startAreaGUID != null">
+          StartAreaGUID = #{startAreaGUID,jdbcType=VARCHAR},
+      </if>
+      <if test="endAreaGUID != null">
+          EndAreaGUID = #{endAreaGUID,jdbcType=VARCHAR},
+      </if>
+      <if test="startAreaPlanLeavTime != null">
+          StartAreaPlanLeavTime = #{startAreaPlanLeavTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endAreaPlanArriveTime != null">
+          EndAreaPlanArriveTime = #{endAreaPlanArriveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startAreaActualLeavTime != null">
+          StartAreaActualLeavTime = #{startAreaActualLeavTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endAreaActualArriveTime != null">
+          EndAreaActualArriveTime = #{endAreaActualArriveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="statute != null">
+          Statute = #{statute,jdbcType=INTEGER},
+      </if>
+      <if test="volume != null">
+          Volume = #{volume,jdbcType=DOUBLE},
+      </if>
+      <if test="weight != null">
+          Weight = #{weight,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsRemark != null">
+          GoodsRemark = #{goodsRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="ordersRemark != null">
+          OrdersRemark = #{ordersRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+          Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="ordersStatus != null">
+          OrdersStatus = #{ordersStatus,jdbcType=INTEGER},
+      </if>
+      <if test="isCancle != null">
+          IsCancle = #{isCancle,jdbcType=TINYINT},
+      </if>
+      <if test="addTime != null">
+          AddTime = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null">
+          EditTime = #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editPersonID != null">
+          EditPersonID = #{editPersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+          IsDelete = #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="createPersonId != null">
+          createPersonId = #{createPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="originalcid != null">
+          originalcid = #{originalcid,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustStatus != null">
+          entrustStatus = #{entrustStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createorder != null">
+          createorder = #{createorder,jdbcType=BIGINT},
+      </if>
+      <if test="lng != null">
+          lng = #{lng,jdbcType=DOUBLE},
+      </if>
+      <if test="lat != null">
+          lat = #{lat,jdbcType=DOUBLE},
+      </if>
+      <if test="gpstime != null">
+          gpstime = #{gpstime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isRead != null">
+          IsRead = #{isRead,jdbcType=TINYINT},
+      </if>
+      <if test="ordersType != null">
+          ordersType = #{ordersType,jdbcType=TINYINT},
+      </if>
+      <if test="actualMileage != null">
+          actual_mileage = #{actualMileage,jdbcType=DOUBLE},
+      </if>
+      <if test="actualDrivetime != null">
+          actual_drivetime = #{actualDrivetime,jdbcType=BIGINT},
+      </if>
+      <if test="duration != null">
+          duration = #{duration,jdbcType=INTEGER},
+      </if>
+      <if test="isManual != null">
+          is_manual = #{isManual,jdbcType=TINYINT},
+      </if>
+      <if test="expectsMileage != null">
+          expects_mileage = #{expectsMileage,jdbcType=INTEGER},
+      </if>
+      <if test="startAreaName != null">
+          start_area_name = #{startAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="endAreaName != null">
+          end_area_name = #{endAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="startAreaCode != null">
+          start_area_code = #{startAreaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="endAreaCode != null">
+          end_area_code = #{endAreaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="finishTime != null">
+          finishTime = #{finishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ownOrderId != null">
+          ownOrderId = #{ownOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="ownType != null">
+          ownType = #{ownType,jdbcType=VARCHAR},
+      </if>
+      <if test="isAuto != null">
+          isAuto = #{isAuto,jdbcType=INTEGER},
+      </if>
+      <if test="lineId != null">
+          line_id = #{lineId,jdbcType=VARCHAR},
+      </if>
+      <if test="isAllowChange != null">
+          is_allow_change = #{isAllowChange,jdbcType=TINYINT},
+      </if>
+      <if test="isReport != null">
+          is_report = #{isReport,jdbcType=TINYINT},
+      </if>
+      <if test="actualEndAreaCode != null">
+          actual_end_area_code = #{actualEndAreaCode,jdbcType=CHAR},
+      </if>
+      <if test="freightFee != null">
+          freightFee = #{freightFee,jdbcType=REAL},
+      </if>
+      <if test="unloadingFee != null">
+          unloadingFee = #{unloadingFee,jdbcType=REAL},
+      </if>
+      <if test="isException != null">
+          is_exception = #{isException,jdbcType=TINYINT},
+      </if>
+      <if test="isNeedSign != null">
+          is_need_sign = #{isNeedSign,jdbcType=TINYINT},
+      </if>
+      <if test="isSign != null">
+          is_sign = #{isSign,jdbcType=TINYINT},
+      </if>
+      <if test="signPersonId != null">
+          sign_person_id = #{signPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="isPrint != null">
+          is_print = #{isPrint,jdbcType=VARCHAR},
+      </if>
+      <if test="muckQuantities != null">
+          muck_quantities = #{muckQuantities,jdbcType=DOUBLE},
+      </if>
+      <if test="carId != null">
+          car_id = #{carId,jdbcType=VARCHAR},
+      </if>
+      <if test="plateNumber != null">
+          plate_number = #{plateNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="startRegionCode != null">
+          start_region_code = #{startRegionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="endRegionCode != null">
+          end_region_code = #{endRegionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="firstPersonId != null">
+          first_person_id = #{firstPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="firstPersonName != null">
+          first_person_name = #{firstPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="firstPersonMobile != null">
+          first_person_mobile = #{firstPersonMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="secondPersonId != null">
+          second_person_id = #{secondPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="secondPersonName != null">
+          second_person_name = #{secondPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="secondPersonMobile != null">
+          second_person_mobile = #{secondPersonMobile,jdbcType=VARCHAR}
+      </if>
+    </trim>
+    where OrdersCID = #{ordersCID,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getTaskOrdersByOriginalcid" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from task_orders where originalcid = #{originalcid} AND iscancleEntrust = 0
+  </select>
+
+  <select id="getEndOrders" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from task_orders where originalcid = #{originalcid,jdbcType=VARCHAR} and
+    isEndOrders=1 and iscancleEntrust=0 and isdelete=0
+  </select>
+
+  <select id="getOrersByEnd" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from task_orders where originalcid = #{originalcid} AND isDelete=0 AND  IsEndOrders = 0
+  </select>
+
+  <select id="getOrderFormList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from task_orders where originalcid = (select originalcid from task_orders where orderscid = #{orderscid})
+  </select>
+
+  <select id="getFirstOrders" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from task_orders where originalcid = #{originalcid} and IsFirstOrders=1 and iscancleEntrust=0 and isdelete=0
+  </select>
+
+  <select id="getDownEntrustOrderCount" resultType="java.lang.Long">
+    select count(*)
+    from task_orders
+    where isDelete=0 and originalcid = #{orderscid} and createorder > #{createorder} and isCancleEntrust=0
+  </select>
+
+  <select id="getUnFinishedOrderNum" resultType="java.lang.Long">
+       SELECT count(1)
+       FROM task_orderscar
+       WHERE orders_status in(5,6)  AND IsDelete = 0 AND IsCancleEntrust=0
+       AND (FirstDriverPersonID = #{personId} OR SecondDriverPersonID = #{personId})
+  </select>
+
+</mapper>

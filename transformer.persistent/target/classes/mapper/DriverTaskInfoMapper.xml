@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.logibeat.cloud.persistent.dao.DriverTaskInfoDao">
+    
+    <resultMap type="DriverTaskInfoEntity" id="DriverTaskInfoResult">
+        <result property="guid"    column="guid"    />
+        <result property="taskId"    column="task_id"    />
+        <result property="orderNum"    column="order_num"    />
+        <result property="originalNetworkId"    column="original_network_id"    />
+        <result property="originalNetworkName"    column="original_network_name"    />
+        <result property="originalCityCode"    column="original_city_code"    />
+        <result property="originalCity"    column="original_city"    />
+        <result property="originalAddress"    column="original_address"    />
+        <result property="originalLat"    column="original_lat"    />
+        <result property="originalLng"    column="original_lng"    />
+        <result property="originatContact"    column="originat_contact"    />
+        <result property="originatPhone"    column="originat_phone"    />
+        <result property="destinationNetworkId"    column="destination_network_id"    />
+        <result property="destinationNetworkName"    column="destination_network_name"    />
+        <result property="destinationCityCode"    column="destination_city_code"    />
+        <result property="destinationCity"    column="destination_city"    />
+        <result property="destinationAddress"    column="destination_address"    />
+        <result property="destinationLat"    column="destination_lat"    />
+        <result property="destinationLng"    column="destination_lng"    />
+        <result property="destinationContact"    column="destination_contact"    />
+        <result property="destinationPhone"    column="destination_phone"    />
+        <result property="outKeyId"    column="out_key_id"    />
+        <result property="outDestinationId"    column="out_destination_id"    />
+        <result column="cargo_name"   property="cargoName" />
+        <result column="cargo_num"   property="cargoNum" />
+        <result column="cargo_weight"   property="cargoWeight" />
+        <result column="cargo_volume"   property="cargoVolume" />
+        <result column="queue_number"   property="queueNumber" />
+
+    </resultMap>
+	
+	<sql id="selectDriverTaskInfoVo">
+        select guid, task_id, order_num, original_network_id, original_network_name, original_city_code, original_city, original_address, original_lat, original_lng, originat_contact, originat_phone, destination_network_id, destination_network_name, destination_city_code, destination_city, destination_address, destination_lat, destination_lng, destination_contact, destination_phone, out_key_id, out_destination_id,cargo_name,cargo_num,cargo_weight,cargo_volume,queue_number from driver_task_info
+    </sql>
+	
+    <select id="selectDriverTaskInfoList" parameterType="DriverTaskInfoEntity" resultMap="DriverTaskInfoResult">
+        <include refid="selectDriverTaskInfoVo"/>
+        <where>  
+            <if test="guid != null  and guid != '' "> and guid = #{guid}</if>
+             <if test="taskId != null  and taskId != '' "> and task_id = #{taskId}</if>
+             <if test="orderNum != null "> and order_num = #{orderNum}</if>
+             <if test="originalNetworkId != null  and originalNetworkId != '' "> and original_network_id = #{originalNetworkId}</if>
+             <if test="originalNetworkName != null  and originalNetworkName != '' "> and original_network_name = #{originalNetworkName}</if>
+             <if test="originalCityCode != null  and originalCityCode != '' "> and original_city_code = #{originalCityCode}</if>
+             <if test="originalCity != null  and originalCity != '' "> and original_city = #{originalCity}</if>
+             <if test="originalAddress != null  and originalAddress != '' "> and original_address = #{originalAddress}</if>
+             <if test="originalLat != null "> and original_lat = #{originalLat}</if>
+             <if test="originalLng != null "> and original_lng = #{originalLng}</if>
+             <if test="originatContact != null  and originatContact != '' "> and originat_contact = #{originatContact}</if>
+             <if test="originatPhone != null  and originatPhone != '' "> and originat_phone = #{originatPhone}</if>
+             <if test="destinationNetworkId != null  and destinationNetworkId != '' "> and destination_network_id = #{destinationNetworkId}</if>
+             <if test="destinationNetworkName != null  and destinationNetworkName != '' "> and destination_network_name = #{destinationNetworkName}</if>
+             <if test="destinationCityCode != null  and destinationCityCode != '' "> and destination_city_code = #{destinationCityCode}</if>
+             <if test="destinationCity != null  and destinationCity != '' "> and destination_city = #{destinationCity}</if>
+             <if test="destinationAddress != null  and destinationAddress != '' "> and destination_address = #{destinationAddress}</if>
+             <if test="destinationLat != null "> and destination_lat = #{destinationLat}</if>
+             <if test="destinationLng != null  and destinationLng != '' "> and destination_lng = #{destinationLng}</if>
+             <if test="destinationContact != null  and destinationContact != '' "> and destination_contact = #{destinationContact}</if>
+             <if test="destinationPhone != null  and destinationPhone != '' "> and destination_phone = #{destinationPhone}</if>
+             <if test="outKeyId != null  and outKeyId != '' "> and out_key_id = #{outKeyId}</if>
+             <if test="outDestinationId != null  and outDestinationId != '' "> and out_destination_id = #{outDestinationId}</if>
+         </where>
+    </select>
+    
+    <select id="selectDriverTaskInfoById" parameterType="String" resultMap="DriverTaskInfoResult">
+        <include refid="selectDriverTaskInfoVo"/>
+        where guid = #{guid}
+    </select>
+
+    <select id="selectDriverTaskInfoByTaskId" parameterType="String" resultMap="DriverTaskInfoResult">
+        <include refid="selectDriverTaskInfoVo"/>
+        where task_id = #{taskId}
+    </select>
+
+        
+    <insert id="insertDriverTaskInfo" parameterType="DriverTaskInfoEntity">
+        insert into driver_task_info
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="guid != null  and guid != ''  ">guid,</if>
+			<if test="taskId != null  and taskId != ''  ">task_id,</if>
+			<if test="orderNum != null  ">order_num,</if>
+			<if test="originalNetworkId != null  and originalNetworkId != ''  ">original_network_id,</if>
+			<if test="originalNetworkName != null  and originalNetworkName != ''  ">original_network_name,</if>
+			<if test="originalCityCode != null  and originalCityCode != ''  ">original_city_code,</if>
+			<if test="originalCity != null  and originalCity != ''  ">original_city,</if>
+			<if test="originalAddress != null  and originalAddress != ''  ">original_address,</if>
+			<if test="originalLat != null  ">original_lat,</if>
+			<if test="originalLng != null  ">original_lng,</if>
+			<if test="originatContact != null  and originatContact != ''  ">originat_contact,</if>
+			<if test="originatPhone != null  and originatPhone != ''  ">originat_phone,</if>
+			<if test="destinationNetworkId != null  and destinationNetworkId != ''  ">destination_network_id,</if>
+			<if test="destinationNetworkName != null  and destinationNetworkName != ''  ">destination_network_name,</if>
+			<if test="destinationCityCode != null  and destinationCityCode != ''  ">destination_city_code,</if>
+			<if test="destinationCity != null  and destinationCity != ''  ">destination_city,</if>
+			<if test="destinationAddress != null  and destinationAddress != ''  ">destination_address,</if>
+			<if test="destinationLat != null  ">destination_lat,</if>
+			<if test="destinationLng != null  and destinationLng != ''  ">destination_lng,</if>
+			<if test="destinationContact != null  and destinationContact != ''  ">destination_contact,</if>
+			<if test="destinationPhone != null  and destinationPhone != ''  ">destination_phone,</if>
+			<if test="outKeyId != null  and outKeyId != ''  ">out_key_id,</if>
+			<if test="outDestinationId != null  and outDestinationId != ''  ">out_destination_id,</if>
+            <if test="cargoName != null  and cargoName != ''  ">cargo_name,</if>
+            <if test="cargoNum != null  and cargoNum != ''  ">cargo_num,</if>
+            <if test="cargoWeight != null  and cargoWeight != ''  ">cargo_weight,</if>
+            <if test="cargoVolume != null  and cargoVolume != ''  ">cargo_volume,</if>
+            <if test="queueNumber != null  and queueNumber != ''  ">queue_number,</if>
+
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="guid != null  and guid != ''  ">#{guid},</if>
+			<if test="taskId != null  and taskId != ''  ">#{taskId},</if>
+			<if test="orderNum != null  ">#{orderNum},</if>
+			<if test="originalNetworkId != null  and originalNetworkId != ''  ">#{originalNetworkId},</if>
+			<if test="originalNetworkName != null  and originalNetworkName != ''  ">#{originalNetworkName},</if>
+			<if test="originalCityCode != null  and originalCityCode != ''  ">#{originalCityCode},</if>
+			<if test="originalCity != null  and originalCity != ''  ">#{originalCity},</if>
+			<if test="originalAddress != null  and originalAddress != ''  ">#{originalAddress},</if>
+			<if test="originalLat != null  ">#{originalLat},</if>
+			<if test="originalLng != null  ">#{originalLng},</if>
+			<if test="originatContact != null  and originatContact != ''  ">#{originatContact},</if>
+			<if test="originatPhone != null  and originatPhone != ''  ">#{originatPhone},</if>
+			<if test="destinationNetworkId != null  and destinationNetworkId != ''  ">#{destinationNetworkId},</if>
+			<if test="destinationNetworkName != null  and destinationNetworkName != ''  ">#{destinationNetworkName},</if>
+			<if test="destinationCityCode != null  and destinationCityCode != ''  ">#{destinationCityCode},</if>
+			<if test="destinationCity != null  and destinationCity != ''  ">#{destinationCity},</if>
+			<if test="destinationAddress != null  and destinationAddress != ''  ">#{destinationAddress},</if>
+			<if test="destinationLat != null  ">#{destinationLat},</if>
+			<if test="destinationLng != null  and destinationLng != ''  ">#{destinationLng},</if>
+			<if test="destinationContact != null  and destinationContact != ''  ">#{destinationContact},</if>
+			<if test="destinationPhone != null  and destinationPhone != ''  ">#{destinationPhone},</if>
+			<if test="outKeyId != null  and outKeyId != ''  ">#{outKeyId},</if>
+			<if test="outDestinationId != null  and outDestinationId != ''  ">#{outDestinationId},</if>
+            <if test="cargoName != null  and cargoName != ''  ">#{cargoName},</if>
+            <if test="cargoNum != null  and cargoNum != ''  ">#{cargoNum},</if>
+            <if test="cargoWeight != null  and cargoWeight != ''  ">#{cargoWeight},</if>
+            <if test="cargoVolume != null  and cargoVolume != ''  ">#{cargoVolume},</if>
+            <if test="queueNumber != null  and queueNumber != ''  ">#{queueNumber},</if>
+
+        </trim>
+    </insert>
+	 
+    <update id="updateDriverTaskInfo" parameterType="DriverTaskInfoEntity">
+        update driver_task_info
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="taskId != null  and taskId != ''  ">task_id = #{taskId},</if>
+            <if test="orderNum != null  ">order_num = #{orderNum},</if>
+            <if test="originalNetworkId != null  and originalNetworkId != ''  ">original_network_id = #{originalNetworkId},</if>
+            <if test="originalNetworkName != null  and originalNetworkName != ''  ">original_network_name = #{originalNetworkName},</if>
+            <if test="originalCityCode != null  and originalCityCode != ''  ">original_city_code = #{originalCityCode},</if>
+            <if test="originalCity != null  and originalCity != ''  ">original_city = #{originalCity},</if>
+            <if test="originalAddress != null  and originalAddress != ''  ">original_address = #{originalAddress},</if>
+            <if test="originalLat != null  ">original_lat = #{originalLat},</if>
+            <if test="originalLng != null  ">original_lng = #{originalLng},</if>
+            <if test="originatContact != null  and originatContact != ''  ">originat_contact = #{originatContact},</if>
+            <if test="originatPhone != null  and originatPhone != ''  ">originat_phone = #{originatPhone},</if>
+            <if test="destinationNetworkId != null  and destinationNetworkId != ''  ">destination_network_id = #{destinationNetworkId},</if>
+            <if test="destinationNetworkName != null  and destinationNetworkName != ''  ">destination_network_name = #{destinationNetworkName},</if>
+            <if test="destinationCityCode != null  and destinationCityCode != ''  ">destination_city_code = #{destinationCityCode},</if>
+            <if test="destinationCity != null  and destinationCity != ''  ">destination_city = #{destinationCity},</if>
+            <if test="destinationAddress != null  and destinationAddress != ''  ">destination_address = #{destinationAddress},</if>
+            <if test="destinationLat != null  ">destination_lat = #{destinationLat},</if>
+            <if test="destinationLng != null  and destinationLng != ''  ">destination_lng = #{destinationLng},</if>
+            <if test="destinationContact != null  and destinationContact != ''  ">destination_contact = #{destinationContact},</if>
+            <if test="destinationPhone != null  and destinationPhone != ''  ">destination_phone = #{destinationPhone},</if>
+            <if test="outKeyId != null  and outKeyId != ''  ">out_key_id = #{outKeyId},</if>
+            <if test="outDestinationId != null  and outDestinationId != ''  ">out_destination_id = #{outDestinationId},</if>
+        </trim>
+        where guid = #{guid}
+    </update>
+
+	<delete id="deleteDriverTaskInfoById" parameterType="String">
+        delete from driver_task_info where guid = #{guid}
+    </delete>
+	
+    <delete id="deleteDriverTaskInfoByIds" parameterType="String">
+        delete from driver_task_info where guid in 
+        <foreach item="guid" collection="array" open="(" separator="," close=")">
+            #{guid}
+        </foreach>
+    </delete>
+    <delete id="deleteDriverTaskInfoByTaskId" parameterType="String">
+        delete from driver_task_info where task_id = #{taskId}
+    </delete>
+
+
+
+    
+</mapper>

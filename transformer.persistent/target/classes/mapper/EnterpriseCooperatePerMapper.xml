@@ -1,0 +1,672 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.logibeat.cloud.persistent.dao.EnterpriseCooperatePerDao">
+  <resultMap id="BaseResultMap" type="com.logibeat.cloud.persistent.entity.EnterpriseCooperatePerEntity">
+    <id column="GUID" jdbcType="VARCHAR" property="guid" />
+    <result column="CoopGUID" jdbcType="VARCHAR" property="coopGUID" />
+    <result column="EntID" jdbcType="VARCHAR" property="entID" />
+    <result column="CoopObjectID" jdbcType="VARCHAR" property="coopObjectID" />
+    <result column="CoopType" jdbcType="INTEGER" property="coopType" />
+    <result column="NameRemark" jdbcType="VARCHAR" property="nameRemark" />
+    <result column="Initial" jdbcType="VARCHAR" property="initial" />
+    <result column="IsCoopGoods" jdbcType="TINYINT" property="isCoopGoods" />
+    <result column="Remark" jdbcType="VARCHAR" property="remark" />
+    <result column="StartTime" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="EndTime" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="AddTime" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="IsInvite" jdbcType="TINYINT" property="isInvite" />
+    <result column="InviteType" jdbcType="INTEGER" property="inviteType" />
+    <result column="InviteState" jdbcType="INTEGER" property="inviteState" />
+    <result column="IsHandle" jdbcType="TINYINT" property="isHandle" />
+    <result column="HandleTime" jdbcType="TIMESTAMP" property="handleTime" />
+    <result column="HandleRemark" jdbcType="VARCHAR" property="handleRemark" />
+    <result column="HandlePersonID" jdbcType="VARCHAR" property="handlePersonID" />
+    <result column="IsContact" jdbcType="TINYINT" property="isContact" />
+    <result column="IsFriend" jdbcType="TINYINT" property="isFriend" />
+    <result column="IsStarMark" jdbcType="TINYINT" property="isStarMark" />
+    <result column="Address" jdbcType="VARCHAR" property="address" />
+    <result column="Contact" jdbcType="VARCHAR" property="contact" />
+    <result column="ChildAdminType" jdbcType="INTEGER" property="childAdminType" />
+    <result column="EditTime" jdbcType="TIMESTAMP" property="editTime" />
+    <result column="EditPersonID" jdbcType="VARCHAR" property="editPersonID" />
+    <result column="IsDelete" jdbcType="TINYINT" property="isDelete" />
+    <result column="IsShareGps" jdbcType="TINYINT" property="isShareGps" />
+    <result column="isUsual" jdbcType="TINYINT" property="isUsual" />
+    <result column="position" jdbcType="VARCHAR" property="position" />
+    <result column="PersonType" jdbcType="INTEGER" property="personType" />
+    <result column="phoneNumber" jdbcType="VARCHAR" property="phoneNumber" />
+    <result column="ImGUID" jdbcType="VARCHAR" property="imGUID" />
+    <result column="isVisible" jdbcType="TINYINT" property="isVisible" />
+    <result column="pinYin" jdbcType="VARCHAR" property="pinYin" />
+    <result column="isDisable" jdbcType="TINYINT" property="isDisable" />
+    <result column="org_guid" jdbcType="VARCHAR" property="orgGuid" />
+    <result column="all_org_guid" jdbcType="VARCHAR" property="allOrgGuid" />
+    <result column="carid" jdbcType="VARCHAR" property="carid" />
+    <result column="PlateNumber" jdbcType="VARCHAR" property="plateNumber" />
+    <result column="is_first_driver" jdbcType="TINYINT" property="isFirstDriver" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GUID, CoopGUID, EntID, CoopObjectID, CoopType, NameRemark, Initial, IsCoopGoods, 
+    Remark, StartTime, EndTime, AddTime, IsInvite, InviteType, InviteState, IsHandle, 
+    HandleTime, HandleRemark, HandlePersonID, IsContact, IsFriend, IsStarMark, Address, 
+    Contact, ChildAdminType, EditTime, EditPersonID, IsDelete, IsShareGps, isUsual, position, 
+    PersonType, phoneNumber, ImGUID, isVisible, pinYin, isDisable, org_guid, all_org_guid, 
+    carid, PlateNumber, is_first_driver
+  </sql>
+  <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ent_cooperateper
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </select>
+  <delete id="delete" parameterType="java.lang.String">
+    delete from ent_cooperateper
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.logibeat.cloud.persistent.entity.EnterpriseCooperatePerEntity">
+    insert into ent_cooperateper
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        GUID,
+      </if>
+      <if test="coopGUID != null">
+        CoopGUID,
+      </if>
+      <if test="entID != null">
+        EntID,
+      </if>
+      <if test="coopObjectID != null">
+        CoopObjectID,
+      </if>
+      <if test="coopType != null">
+        CoopType,
+      </if>
+      <if test="nameRemark != null">
+        NameRemark,
+      </if>
+      <if test="initial != null">
+        Initial,
+      </if>
+      <if test="isCoopGoods != null">
+        IsCoopGoods,
+      </if>
+      <if test="remark != null">
+        Remark,
+      </if>
+      <if test="startTime != null">
+        StartTime,
+      </if>
+      <if test="endTime != null">
+        EndTime,
+      </if>
+      <if test="addTime != null">
+        AddTime,
+      </if>
+      <if test="isInvite != null">
+        IsInvite,
+      </if>
+      <if test="inviteType != null">
+        InviteType,
+      </if>
+      <if test="inviteState != null">
+        InviteState,
+      </if>
+      <if test="isHandle != null">
+        IsHandle,
+      </if>
+      <if test="handleTime != null">
+        HandleTime,
+      </if>
+      <if test="handleRemark != null">
+        HandleRemark,
+      </if>
+      <if test="handlePersonID != null">
+        HandlePersonID,
+      </if>
+      <if test="isContact != null">
+        IsContact,
+      </if>
+      <if test="isFriend != null">
+        IsFriend,
+      </if>
+      <if test="isStarMark != null">
+        IsStarMark,
+      </if>
+      <if test="address != null">
+        Address,
+      </if>
+      <if test="contact != null">
+        Contact,
+      </if>
+      <if test="childAdminType != null">
+        ChildAdminType,
+      </if>
+      <if test="editTime != null">
+        EditTime,
+      </if>
+      <if test="editPersonID != null">
+        EditPersonID,
+      </if>
+      <if test="isDelete != null">
+        IsDelete,
+      </if>
+      <if test="isShareGps != null">
+        IsShareGps,
+      </if>
+      <if test="isUsual != null">
+        isUsual,
+      </if>
+      <if test="position != null">
+        position,
+      </if>
+      <if test="personType != null">
+        PersonType,
+      </if>
+      <if test="phoneNumber != null">
+        phoneNumber,
+      </if>
+      <if test="imGUID != null">
+        ImGUID,
+      </if>
+      <if test="isVisible != null">
+        isVisible,
+      </if>
+      <if test="pinYin != null">
+        pinYin,
+      </if>
+      <if test="isDisable != null">
+        isDisable,
+      </if>
+      <if test="orgGuid != null">
+        org_guid,
+      </if>
+      <if test="allOrgGuid != null">
+        all_org_guid,
+      </if>
+      <if test="carid != null">
+        carid,
+      </if>
+      <if test="plateNumber != null">
+        PlateNumber,
+      </if>
+      <if test="isFirstDriver != null">
+        is_first_driver,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        #{guid,jdbcType=VARCHAR},
+      </if>
+      <if test="coopGUID != null">
+        #{coopGUID,jdbcType=VARCHAR},
+      </if>
+      <if test="entID != null">
+        #{entID,jdbcType=VARCHAR},
+      </if>
+      <if test="coopObjectID != null">
+        #{coopObjectID,jdbcType=VARCHAR},
+      </if>
+      <if test="coopType != null">
+        #{coopType,jdbcType=INTEGER},
+      </if>
+      <if test="nameRemark != null">
+        #{nameRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="initial != null">
+        #{initial,jdbcType=VARCHAR},
+      </if>
+      <if test="isCoopGoods != null">
+        #{isCoopGoods,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isInvite != null">
+        #{isInvite,jdbcType=TINYINT},
+      </if>
+      <if test="inviteType != null">
+        #{inviteType,jdbcType=INTEGER},
+      </if>
+      <if test="inviteState != null">
+        #{inviteState,jdbcType=INTEGER},
+      </if>
+      <if test="isHandle != null">
+        #{isHandle,jdbcType=TINYINT},
+      </if>
+      <if test="handleTime != null">
+        #{handleTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="handleRemark != null">
+        #{handleRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="handlePersonID != null">
+        #{handlePersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="isContact != null">
+        #{isContact,jdbcType=TINYINT},
+      </if>
+      <if test="isFriend != null">
+        #{isFriend,jdbcType=TINYINT},
+      </if>
+      <if test="isStarMark != null">
+        #{isStarMark,jdbcType=TINYINT},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null">
+        #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="childAdminType != null">
+        #{childAdminType,jdbcType=INTEGER},
+      </if>
+      <if test="editTime != null">
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editPersonID != null">
+        #{editPersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="isShareGps != null">
+        #{isShareGps,jdbcType=TINYINT},
+      </if>
+      <if test="isUsual != null">
+        #{isUsual,jdbcType=TINYINT},
+      </if>
+      <if test="position != null">
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="personType != null">
+        #{personType,jdbcType=INTEGER},
+      </if>
+      <if test="phoneNumber != null">
+        #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="imGUID != null">
+        #{imGUID,jdbcType=VARCHAR},
+      </if>
+      <if test="isVisible != null">
+        #{isVisible,jdbcType=TINYINT},
+      </if>
+      <if test="pinYin != null">
+        #{pinYin,jdbcType=VARCHAR},
+      </if>
+      <if test="isDisable != null">
+        #{isDisable,jdbcType=TINYINT},
+      </if>
+      <if test="orgGuid != null">
+        #{orgGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="allOrgGuid != null">
+        #{allOrgGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="carid != null">
+        #{carid,jdbcType=VARCHAR},
+      </if>
+      <if test="plateNumber != null">
+        #{plateNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="isFirstDriver != null">
+        #{isFirstDriver,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.logibeat.cloud.persistent.entity.EnterpriseCooperatePerEntity">
+    update ent_cooperateper
+    <trim prefix="SET" suffixOverrides=",">
+      <if test="coopGUID != null">
+        CoopGUID = #{coopGUID,jdbcType=VARCHAR},
+      </if>
+      <if test="entID != null">
+          EntID = #{entID,jdbcType=VARCHAR},
+      </if>
+      <if test="coopObjectID != null">
+          CoopObjectID = #{coopObjectID,jdbcType=VARCHAR},
+      </if>
+      <if test="coopType != null">
+          CoopType = #{coopType,jdbcType=INTEGER},
+      </if>
+      <if test="nameRemark != null">
+          NameRemark = #{nameRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="initial != null">
+          Initial = #{initial,jdbcType=VARCHAR},
+      </if>
+      <if test="isCoopGoods != null">
+          IsCoopGoods = #{isCoopGoods,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null">
+          Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+          StartTime = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+          EndTime = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addTime != null">
+          AddTime = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isInvite != null">
+          IsInvite = #{isInvite,jdbcType=TINYINT},
+      </if>
+      <if test="inviteType != null">
+          InviteType = #{inviteType,jdbcType=INTEGER},
+      </if>
+      <if test="inviteState != null">
+          InviteState = #{inviteState,jdbcType=INTEGER},
+      </if>
+      <if test="isHandle != null">
+          IsHandle = #{isHandle,jdbcType=TINYINT},
+      </if>
+      <if test="handleTime != null">
+          HandleTime = #{handleTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="handleRemark != null">
+          HandleRemark = #{handleRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="handlePersonID != null">
+          HandlePersonID = #{handlePersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="isContact != null">
+          IsContact = #{isContact,jdbcType=TINYINT},
+      </if>
+      <if test="isFriend != null">
+          IsFriend = #{isFriend,jdbcType=TINYINT},
+      </if>
+      <if test="isStarMark != null">
+          IsStarMark = #{isStarMark,jdbcType=TINYINT},
+      </if>
+      <if test="address != null">
+          Address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null">
+          Contact = #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="childAdminType != null">
+          ChildAdminType = #{childAdminType,jdbcType=INTEGER},
+      </if>
+      <if test="editTime != null">
+          EditTime = #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editPersonID != null">
+          EditPersonID = #{editPersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+          IsDelete = #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="isShareGps != null">
+          IsShareGps = #{isShareGps,jdbcType=TINYINT},
+      </if>
+      <if test="isUsual != null">
+          isUsual = #{isUsual,jdbcType=TINYINT},
+      </if>
+      <if test="position != null">
+          position = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="personType != null">
+          PersonType = #{personType,jdbcType=INTEGER},
+      </if>
+      <if test="phoneNumber != null">
+          phoneNumber = #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="imGUID != null">
+          ImGUID = #{imGUID,jdbcType=VARCHAR},
+      </if>
+      <if test="isVisible != null">
+          isVisible = #{isVisible,jdbcType=TINYINT},
+      </if>
+      <if test="pinYin != null">
+          pinYin = #{pinYin,jdbcType=VARCHAR},
+      </if>
+      <if test="isDisable != null">
+          isDisable = #{isDisable,jdbcType=TINYINT},
+      </if>
+      <if test="orgGuid != null">
+          org_guid = #{orgGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="allOrgGuid != null">
+          all_org_guid = #{allOrgGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="carid != null">
+          carid = #{carid,jdbcType=VARCHAR},
+      </if>
+      <if test="plateNumber != null">
+          PlateNumber = #{plateNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="isFirstDriver != null">
+          is_first_driver = #{isFirstDriver,jdbcType=TINYINT}
+      </if>
+    </trim>
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getCoopByEntIdAndPersonId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ent_cooperateper
+    where CoopType in (41,42) and IsDelete = 0
+    and EntID = #{entId} and coopObjectId = #{personId}
+  </select>
+
+  <select id="getEntOwnerPerson" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ent_cooperateper
+    where  IsDelete = 0
+    and EntID = #{entId}
+    <if test="personId != null">
+      and coopObjectId = #{personId} and CoopType in (1,2,3)
+    </if>
+    <if test="personId == null">
+      and coopObjectId = #{personId} and CoopType in (2)
+    </if>
+  </select>
+
+  <update id="updateIsFriend">
+    update ent_cooperateper set isFriend = #{isFriend}
+    where entId = #{entId}
+    <trim prefix="and coopObjectId in (" suffix=")" suffixOverrides=",">
+      <if test="firstDriverPersonId != null">
+        #{firstDriverPersonId},
+      </if>
+      <if test="sencondDriverPersonId != null">
+        #{sencondDriverPersonId},
+      </if>
+    </trim>
+  </update>
+
+  <select id="getCoopByEntAndPersonByDelete" resultMap="BaseResultMap">
+    select * from ent_cooperateper
+    where entId = #{entId} and coopObjectId = #{personId}
+    and isdelete=0 and coopType in(41,42,43) order by addTime
+  </select>
+
+  <select id="getEntContact" resultMap="BaseResultMap">
+      select
+      <include refid="Base_Column_List" />
+      from ent_cooperateper
+      where entId = #{entId} and isdelete=0 and coopType in(3,2) order by coopType desc limit 1
+  </select>
+
+  <select id="getEnterpriseCooperatePer" resultMap="BaseResultMap">
+    SELECT pe.*
+    FROM ent_cooperateper pe
+    LEFT JOIN ent_enterprise ent ON pe.EntID = ent.ID
+    LEFT JOIN bs_dict dt ON ent.DictGUID = dt.GUID
+    WHERE  ((pe.InviteType=5 and pe.InviteState=6) or pe.InviteState=1)
+      and pe.CoopObjectID = #{personId} AND pe.isDelete = 0 AND pe.InviteState in(1,6)
+      <if test="keyword != null and keyword != ''">
+          AND ent.NAME LIKE concat('%',#{keyword},'%')
+      </if>
+      <if test="coopType != null">
+        AND pe.CoopType = #{coopType}
+      </if>
+      <if test="isAll == false">
+        <if test="starMark != null">
+          AND pe.IsStarMark = #{starMark}
+        </if>
+        <if test="entTypeDictGUID != null">
+            AND (dt.GUID = #{entTypeDictGUID} or dt.ParentGUID = #{entTypeDictGUID})
+        </if>
+        <if test="friend == 1">
+            AND EXISTS (SELECT * from task_orderscar car where car.entrustEntid  = pe.EntID and (car.FirstDriverPersonID = #{personId} OR car.SecondDriverPersonID = #{personId}) and iscancleentrust = 0)
+        </if>
+        <if test="friend == 2">
+            AND NOT EXISTS (SELECT * from task_orderscar car where car.entrustEntid  = pe.EntID and (car.FirstDriverPersonID = #{personId} OR car.SecondDriverPersonID = #{personId}) and iscancleentrust = 0)
+        </if>
+      </if>
+      order by ent.pinYin
+  </select>
+
+  <select id="getDriverEntList" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM  ent_cooperateper  WHERE CoopObjectID = #{personId} AND InviteState = 1 AND isDelete = 0
+    <if test="coopType == 40">
+      AND ecp.CoopType in (41,42)
+    </if>
+    <if test="coopType != 40">
+        AND CoopType = #{coopType}
+    </if>
+  </select>
+
+  <select id="getCoopEntIsVisiblePersonCount" resultType="java.lang.Long">
+    select
+    count(1)
+    from ent_cooperateper where isDelete = 0 and isVisible = 1 and EntID = #{entId}
+    <if test='orgGuid != null and orgGuid != "0"'>
+      and all_org_guid like concat('%',#{orgGuid},'%')
+    </if>
+  </select>
+
+  <select id="getCoopEntIsVisiblePerson" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ent_cooperateper where isDelete = 0 and isVisible = 1 and EntID = #{entId}
+    <if test='orgGuid != null and orgGuid != "0"'>
+      and all_org_guid like concat('%',#{orgGuid},'%')
+    </if>
+  </select>
+
+  <select id="getEntPerNumByOrgGuid" resultType="java.lang.Long">
+    SELECT COUNT(*) FROM ent_cooperateper WHERE entid = #{entId}  AND InviteState in (1,7,8) AND isdelete = 0
+      <if test="all == true">
+        AND coopType in (1,2,3,41,42)
+      </if>
+      <if test="all == false">
+        AND coopType in (1,2,3,41)
+      </if>
+      <if test='orgGuid != null and orgGuid != "0"'>
+        AND all_org_guid  LIKE concat('%',#{orgGuid},'%')
+      </if>
+  </select>
+
+  <select id="getEntPerByOrgGuid" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM ent_cooperateper WHERE entid = #{entId}  AND InviteState in (1,7,8) AND isdelete = 0
+      <if test="all == true">
+        AND coopType in (1,2,3,41,42)
+      </if>
+      <if test="all == false">
+        AND coopType in (1,2,3,41)
+      </if>
+      <if test='orgGuid != null and orgGuid != "0"'>
+        AND all_org_guid  LIKE concat('%',#{orgGuid},'%')
+      </if>
+      ORDER BY upper(pinyin)
+  </select>
+
+  <select id="getFriendDriverNum" resultType="java.lang.Long">
+    SELECT
+    COUNT(*)
+    FROM ent_cooperateper
+    WHERE InviteState = 1 AND isdelete = 0 AND coopType = 42
+    AND entid = #{entId} AND org_guid  = #{orgGuid}
+  </select>
+
+  <select id="getSelfEntByPersonId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ent_cooperateper where InviteState=1 and coopType = 41  and isdelete = 0 and coopObjectId = #{personId}
+  </select>
+
+  <select id="getCoopEntByPersonId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ent_cooperateper where InviteState=1 and coopType = 42  and isdelete = 0 and coopObjectId = #{personId}
+  </select>
+
+  <select id="getCoopEntByEntIdAndPersonId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ent_cooperateper where coopType = 42  and isdelete = 0
+    and coopObjectId = #{personId} and entId = #{entId}
+  </select>
+
+  <select id="getCoopEntPassedByEntIdAndPersonId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ent_cooperateper where coopType = 42  and isdelete = 0 and InviteState = 1
+    and coopObjectId = #{personId} and entId = #{entId}
+  </select>
+
+  <select id="getSelfEntPassedByEntIdAndPersonId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ent_cooperateper where coopType = 41  and isdelete = 0 and InviteState = 1
+    and coopObjectId = #{personId} and entId = #{entId}
+  </select>
+
+  <select id="getEntAdministrators" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    FROM  ent_cooperateper WHERE EntId = #{entId} AND PersonType in(0,1) AND isDelete = 0
+  </select>
+
+  <select id="getCommonEntList" resultType="java.lang.String">
+    SELECT
+    EntID
+    FROM
+        ent_cooperateper
+    WHERE
+        CoopObjectID IN(#{baseUserId},#{personId})
+    AND InviteState = 1
+    AND isDelete = 0
+    AND CoopType = 41 group by entId HAVING count(1)>1;
+  </select>
+  
+  <update id="setCoopPerToNullByCarId">
+        UPDATE  ent_cooperateper
+        SET
+        carid  = NULL ,
+        PlateNumber = NULL
+        WHERE EntID = #{entId}
+        AND carid = #{carId}
+        AND IsDelete = 0
+        AND  CoopType = 41;
+    </update>
+
+    <update id="setDriverCar">
+        UPDATE  ent_cooperateper
+        SET
+        carid  = #{carId} ,
+        PlateNumber = #{plateNumber}
+        WHERE EntID = #{entId}
+        AND CoopObjectID = #{personId}
+        AND IsDelete = 0
+        AND  CoopType = 41;
+    </update>
+</mapper>

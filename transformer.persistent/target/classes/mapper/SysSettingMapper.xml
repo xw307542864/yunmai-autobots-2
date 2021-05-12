@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.logibeat.cloud.persistent.dao.SysSettingDao">
+  <resultMap id="BaseResultMap" type="com.logibeat.cloud.persistent.entity.SysSettingEntity">
+    <id column="guid" jdbcType="VARCHAR" property="guid" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="value" jdbcType="VARCHAR" property="value" />
+    <result column="described" jdbcType="VARCHAR" property="described" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="isdelete" jdbcType="TINYINT" property="isdelete" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    guid, code, name, value, described, time, isdelete
+  </sql>
+  <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_setting
+    where guid = #{guid,jdbcType=VARCHAR}
+  </select>
+  <delete id="delete" parameterType="java.lang.String">
+    delete from sys_setting
+    where guid = #{guid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.logibeat.cloud.persistent.entity.SysSettingEntity">
+    insert into sys_setting
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        guid,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="value != null">
+        value,
+      </if>
+      <if test="described != null">
+        described,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+      <if test="isdelete != null">
+        isdelete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        #{guid,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null">
+        #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="described != null">
+        #{described,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdelete != null">
+        #{isdelete,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.logibeat.cloud.persistent.entity.SysSettingEntity">
+    update sys_setting
+    <trim prefix="SET" suffixOverrides=",">
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+          name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null">
+          value = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="described != null">
+          described = #{described,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+          time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdelete != null">
+          isdelete = #{isdelete,jdbcType=TINYINT}
+      </if>
+    </trim>
+    where guid = #{guid,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getValue" resultType="java.lang.String">
+    select value from sys_setting where code = #{code,jdbcType=VARCHAR}
+  </select>
+</mapper>

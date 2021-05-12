@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.logibeat.cloud.persistent.dao.DriverTaskDao">
+    
+    <resultMap type="DriverTaskEntity" id="DriverTaskResult">
+        <result property="guid"    column="guid"    />
+        <result property="orderNumber"    column="order_number"    />
+        <result property="bizType"    column="biz_type"    />
+        <result property="taskType"    column="task_type"    />
+        <result property="originalCityCode"    column="original_city_code"    />
+        <result property="originalAddress"    column="original_address"    />
+        <result property="destinationCityCode"    column="destination_city_code"    />
+        <result property="destinationAddress"    column="destination_address"    />
+        <result property="relationOrderId"    column="relation_order_id"    />
+        <result property="relationOrderNumber"    column="relation_order_number"    />
+        <result property="taskStatus"    column="task_status"    />
+        <result property="outTaskId"    column="out_task_id"    />
+        <result property="taskCurrentStatus"    column="task_current_status"    />
+        <result property="entId"    column="ent_id"    />
+        <result property="relationEntId"    column="relation_ent_id"    />
+        <result property="relationStowageId"    column="relation_stowage_id"    />
+        <result property="pointType"    column="point_type"    />
+        <result property="pointCount"    column="point_count"    />
+        <result property="workPointId"    column="work_point_id"    />
+        <result property="vehicleId"    column="vehicle_id"    />
+        <result property="vehiclePlateNumber"    column="vehicle_plate_number"    />
+        <result property="vehicleType"    column="vehicle_type"    />
+        <result property="orgnId"    column="orgn_id"    />
+        <result property="firstPersonId"    column="first_person_id"    />
+        <result property="firstPersonName"    column="first_person_name"    />
+        <result property="firstPersonMobile"    column="first_person_mobile"    />
+        <result property="secondPersonId"    column="second_person_id"    />
+        <result property="secondPersonName"    column="second_person_name"    />
+        <result property="secondPersonMobile"    column="second_person_mobile"    />
+        <result property="entrustInfo"    column="entrust_info"    />
+        <result property="planDepartTime"    column="plan_depart_time"    />
+        <result property="planArriveTime"    column="plan_arrive_time"    />
+        <result property="planRuningDuration"    column="plan_runing_duration"    />
+        <result property="startTime"    column="start_time"    />
+        <result property="actualDepartTime"    column="actual_depart_time"    />
+        <result property="actualArriveTime"    column="actual_arrive_time"    />
+        <result property="actualRuningDuration"    column="actual_runing_duration"    />
+        <result property="actualRuningMileage"    column="actual_runing_mileage"    />
+        <result property="actualDepartLat"    column="actual_depart_lat"    />
+        <result property="actualDepartLng"    column="actual_depart_lng"    />
+        <result property="actualArriveLat"    column="actual_arrive_lat"    />
+        <result property="actualArriveLng"    column="actual_arrive_lng"    />
+        <result property="read"    column="read"    />
+        <result property="cancel"    column="cancel"    />
+        <result property="delete"    column="delete"    />
+        <result property="exceptionDepart"    column="exception_depart"    />
+        <result property="exceptionArrive"    column="exception_arrive"    />
+        <result property="deleteTime"    column="delete_time"    />
+        <result property="cancelTime"    column="cancel_time"    />
+        <result property="cancelReason"    column="cancel_reason"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="editTime"    column="edit_time"    />
+    </resultMap>
+	
+	<sql id="selectDriverTaskVo">
+        select guid, order_number, biz_type, task_type, original_city_code, original_address, destination_city_code, destination_address, relation_order_id, relation_order_number, task_status, task_current_status, ent_id, relation_ent_id, relation_stowage_id, point_type, point_count,work_point_id,vehicle_id, vehicle_plate_number, vehicle_type, orgn_id, first_person_id, first_person_name, first_person_mobile, second_person_id, second_person_name, second_person_mobile, entrust_info,person_id, plan_depart_time, plan_arrive_time, plan_runing_duration, start_time,actual_depart_time, actual_arrive_time, actual_runing_duration, actual_runing_mileage, `read`, `delete`,cancel, exception_depart,exception_arrive, delete_time, cancel_time, cancel_reason, create_time, edit_time from driver_task
+    </sql>
+	
+    <select id="selectDriverTaskList" parameterType="DriverTaskEntity" resultMap="DriverTaskResult">
+        <include refid="selectDriverTaskVo"/>
+        <where>
+             <if test="taskStatus != null "> and task_status = #{taskStatus}</if>
+             <if test="entId != null  and entId != '' "> and ent_id = #{entId}</if>
+            AND (first_person_id = #{personId} OR second_person_id = #{personId})
+            AND `delete` = 0
+
+        </where>
+        order  by field(task_status,400,100,800,1200),  create_time desc
+    </select>
+    
+    <select id="selectDriverTaskById" parameterType="String" resultMap="DriverTaskResult">
+        <include refid="selectDriverTaskVo"/>
+        where guid = #{guid}
+    </select>
+
+    <select id="selectDriverTaskByKeyId" parameterType="String" resultMap="DriverTaskResult">
+        <include refid="selectDriverTaskVo"/>
+        where relation_order_id = #{guid}
+    </select>
+
+    <select id="selectDriverTaskByKeyIdAndVehicleId" parameterType="String" resultMap="DriverTaskResult">
+        <include refid="selectDriverTaskVo"/>
+        where relation_order_id = #{taskKeyId} and vehicle_id = #{vehicleId}
+    </select>
+
+
+
+
+
+    <insert id="insertDriverTask" parameterType="DriverTaskEntity">
+        insert into driver_task
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="guid != null  and guid != ''  ">guid,</if>
+			<if test="orderNumber != null  and orderNumber != ''  ">order_number,</if>
+			<if test="bizType != null  ">biz_type,</if>
+			<if test="taskType != null  ">task_type,</if>
+			<if test="originalCityCode != null  and originalCityCode != ''  ">original_city_code,</if>
+			<if test="originalAddress != null  and originalAddress != ''  ">original_address,</if>
+			<if test="destinationCityCode != null  and destinationCityCode != ''  ">destination_city_code,</if>
+			<if test="destinationAddress != null  and destinationAddress != ''  ">destination_address,</if>
+			<if test="relationOrderId != null  and relationOrderId != ''  ">relation_order_id,</if>
+			<if test="relationOrderNumber != null  and relationOrderNumber != ''  ">relation_order_number,</if>
+			<if test="taskStatus != null  ">task_status,</if>
+            <if test="outTaskId != null  ">out_task_id,</if>
+            <if test="taskCurrentStatus != null  ">task_current_status,</if>
+			<if test="entId != null  and entId != ''  ">ent_id,</if>
+			<if test="relationEntId != null  and relationEntId != ''  ">relation_ent_id,</if>
+			<if test="relationStowageId != null  and relationStowageId != ''  ">relation_stowage_id,</if>
+			<if test="pointType != null  ">point_type,</if>
+            <if test="pointCount != null  ">point_count,</if>
+            <if test="workPointId != null  ">work_point_id,</if>
+            <if test="vehicleId != null  and vehicleId != ''  ">vehicle_id,</if>
+			<if test="vehiclePlateNumber != null  and vehiclePlateNumber != ''  ">vehicle_plate_number,</if>
+			<if test="vehicleType != null  ">vehicle_type,</if>
+			<if test="orgnId != null  and orgnId != ''  ">orgn_id,</if>
+			<if test="firstPersonId != null  and firstPersonId != ''  ">first_person_id,</if>
+			<if test="firstPersonName != null  and firstPersonName != ''  ">first_person_name,</if>
+			<if test="firstPersonMobile != null  and firstPersonMobile != ''  ">first_person_mobile,</if>
+			<if test="secondPersonId != null  and secondPersonId != ''  ">second_person_id,</if>
+			<if test="secondPersonName != null  and secondPersonName != ''  ">second_person_name,</if>
+			<if test="secondPersonMobile != null  and secondPersonMobile != ''  ">second_person_mobile,</if>
+			<if test="entrustInfo != null  and entrustInfo != ''  ">entrust_info,</if>
+			<if test="planDepartTime != null  ">plan_depart_time,</if>
+			<if test="planArriveTime != null  ">plan_arrive_time,</if>
+			<if test="planRuningDuration != null  ">plan_runing_duration,</if>
+            <if test="startTime != null  ">start_time,</if>
+            <if test="actualDepartTime != null  ">actual_depart_time,</if>
+			<if test="actualArriveTime != null  ">actual_arrive_time,</if>
+			<if test="actualRuningDuration != null  ">actual_runing_duration,</if>
+			<if test="actualRuningMileage != null  ">actual_runing_mileage,</if>
+            <if test="personId != null  ">person_id,</if>
+			<if test="read != null  ">`read`,</if>
+			<if test="delete != null  ">`delete`,</if>
+            <if test="cancel != null  ">`cancel`,</if>
+            <if test="exceptionDepart != null  ">`exception_depart`,</if>
+            <if test="exceptionArrive != null  ">`exception_arrive`,</if>
+            <if test="deleteTime != null  ">delete_time,</if>
+			<if test="cancelTime != null  ">cancel_time,</if>
+			<if test="cancelReason != null  and cancelReason != ''  ">cancel_reason,</if>
+			<if test="createTime != null  ">create_time,</if>
+			<if test="editTime != null  ">edit_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="guid != null  and guid != ''  ">#{guid},</if>
+			<if test="orderNumber != null  and orderNumber != ''  ">#{orderNumber},</if>
+			<if test="bizType != null  ">#{bizType},</if>
+			<if test="taskType != null  ">#{taskType},</if>
+			<if test="originalCityCode != null  and originalCityCode != ''  ">#{originalCityCode},</if>
+			<if test="originalAddress != null  and originalAddress != ''  ">#{originalAddress},</if>
+			<if test="destinationCityCode != null  and destinationCityCode != ''  ">#{destinationCityCode},</if>
+			<if test="destinationAddress != null  and destinationAddress != ''  ">#{destinationAddress},</if>
+			<if test="relationOrderId != null  and relationOrderId != ''  ">#{relationOrderId},</if>
+			<if test="relationOrderNumber != null  and relationOrderNumber != ''  ">#{relationOrderNumber},</if>
+			<if test="taskStatus != null  ">#{taskStatus},</if>
+            <if test="outTaskId != null  ">#{outTaskId},</if>
+            <if test="taskCurrentStatus != null  ">#{taskCurrentStatus},</if>
+			<if test="entId != null  and entId != ''  ">#{entId},</if>
+			<if test="relationEntId != null  and relationEntId != ''  ">#{relationEntId},</if>
+			<if test="relationStowageId != null  and relationStowageId != ''  ">#{relationStowageId},</if>
+			<if test="pointType != null  ">#{pointType},</if>
+            <if test="pointCount != null  ">#{pointCount},</if>
+            <if test="workPointId != null  ">#{workPointId},</if>
+            <if test="vehicleId != null  and vehicleId != ''  ">#{vehicleId},</if>
+			<if test="vehiclePlateNumber != null  and vehiclePlateNumber != ''  ">#{vehiclePlateNumber},</if>
+			<if test="vehicleType != null  ">#{vehicleType},</if>
+			<if test="orgnId != null  and orgnId != ''  ">#{orgnId},</if>
+			<if test="firstPersonId != null  and firstPersonId != ''  ">#{firstPersonId},</if>
+			<if test="firstPersonName != null  and firstPersonName != ''  ">#{firstPersonName},</if>
+			<if test="firstPersonMobile != null  and firstPersonMobile != ''  ">#{firstPersonMobile},</if>
+			<if test="secondPersonId != null  and secondPersonId != ''  ">#{secondPersonId},</if>
+			<if test="secondPersonName != null  and secondPersonName != ''  ">#{secondPersonName},</if>
+			<if test="secondPersonMobile != null  and secondPersonMobile != ''  ">#{secondPersonMobile},</if>
+			<if test="entrustInfo != null  and entrustInfo != ''  ">#{entrustInfo},</if>
+			<if test="planDepartTime != null  ">#{planDepartTime},</if>
+			<if test="planArriveTime != null  ">#{planArriveTime},</if>
+			<if test="planRuningDuration != null  ">#{planRuningDuration},</if>
+            <if test="startTime != null  ">#{startTime},</if>
+            <if test="actualDepartTime != null  ">#{actualDepartTime},</if>
+			<if test="actualArriveTime != null  ">#{actualArriveTime},</if>
+			<if test="actualRuningDuration != null  ">#{actualRuningDuration},</if>
+			<if test="actualRuningMileage != null  ">#{actualRuningMileage},</if>
+            <if test="personId != null  ">#{personId},</if>
+            <if test="read != null  ">#{read},</if>
+			<if test="delete != null  ">#{delete},</if>
+            <if test="cancel != null  ">#{cancel},</if>
+            <if test="exceptionDepart != null  ">#{exceptionDepart},</if>
+            <if test="exceptionArrive != null  ">#{exceptionArrive},</if>
+			<if test="deleteTime != null  ">#{deleteTime},</if>
+			<if test="cancelTime != null  ">#{cancelTime},</if>
+			<if test="cancelReason != null  and cancelReason != ''  ">#{cancelReason},</if>
+			<if test="createTime != null  ">#{createTime},</if>
+			<if test="editTime != null  ">#{editTime},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateDriverTask" parameterType="DriverTaskEntity">
+        update driver_task
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="orderNumber != null  and orderNumber != ''  ">order_number = #{orderNumber},</if>
+            <if test="bizType != null  ">biz_type = #{bizType},</if>
+            <if test="taskType != null  ">task_type = #{taskType},</if>
+            <if test="originalCityCode != null  and originalCityCode != ''  ">original_city_code = #{originalCityCode},</if>
+            <if test="originalAddress != null  and originalAddress != ''  ">original_address = #{originalAddress},</if>
+            <if test="destinationCityCode != null  and destinationCityCode != ''  ">destination_city_code = #{destinationCityCode},</if>
+            <if test="destinationAddress != null  and destinationAddress != ''  ">destination_address = #{destinationAddress},</if>
+            <if test="relationOrderId != null  and relationOrderId != ''  ">relation_order_id = #{relationOrderId},</if>
+            <if test="relationOrderNumber != null  and relationOrderNumber != ''  ">relation_order_number = #{relationOrderNumber},</if>
+            <if test="taskStatus != null  ">task_status = #{taskStatus},</if>
+            <if test="taskCurrentStatus != null  ">task_current_status = #{taskCurrentStatus},</if>
+            <if test="entId != null  and entId != ''  ">ent_id = #{entId},</if>
+            <if test="relationEntId != null  and relationEntId != ''  ">relation_ent_id = #{relationEntId},</if>
+            <if test="relationStowageId != null  and relationStowageId != ''  ">relation_stowage_id = #{relationStowageId},</if>
+            <if test="pointType != null  ">point_type = #{pointType},</if>
+            <if test="pointCount != null  ">point_count = #{pointCount},</if>
+            <if test="workPointId != null  ">work_point_id= #{workPointId},</if>
+            <if test="vehicleId != null  and vehicleId != ''  ">vehicle_id = #{vehicleId},</if>
+            <if test="vehiclePlateNumber != null  and vehiclePlateNumber != ''  ">vehicle_plate_number = #{vehiclePlateNumber},</if>
+            <if test="vehicleType != null  ">vehicle_type = #{vehicleType},</if>
+            <if test="orgnId != null  and orgnId != ''  ">orgn_id = #{orgnId},</if>
+            <if test="firstPersonId != null  and firstPersonId != ''  ">first_person_id = #{firstPersonId},</if>
+            <if test="firstPersonName != null  and firstPersonName != ''  ">first_person_name = #{firstPersonName},</if>
+            <if test="firstPersonMobile != null  and firstPersonMobile != ''  ">first_person_mobile = #{firstPersonMobile},</if>
+            <if test="secondPersonId != null  and secondPersonId != ''  ">second_person_id = #{secondPersonId},</if>
+            <if test="secondPersonName != null  and secondPersonName != ''  ">second_person_name = #{secondPersonName},</if>
+            <if test="secondPersonMobile != null  and secondPersonMobile != ''  ">second_person_mobile = #{secondPersonMobile},</if>
+            <if test="entrustInfo != null  and entrustInfo != ''  ">entrust_info = #{entrustInfo},</if>
+            <if test="planDepartTime != null  ">plan_depart_time = #{planDepartTime},</if>
+            <if test="planArriveTime != null  ">plan_arrive_time = #{planArriveTime},</if>
+            <!-- <if test="planRuningDuration != null  ">plan_runing_duration = #{planRuningDuration},</if> -->
+            plan_runing_duration = #{planRuningDuration},
+            <if test="startTime != null  ">start_time = #{startTime},</if>
+            <if test="actualDepartTime != null  ">actual_depart_time = #{actualDepartTime},</if>
+            <if test="actualArriveTime != null  ">actual_arrive_time = #{actualArriveTime},</if>
+            <if test="actualRuningDuration != null  ">actual_runing_duration = #{actualRuningDuration},</if>
+            <if test="actualRuningMileage != null  ">actual_runing_mileage = #{actualRuningMileage},</if>
+            <if test="actualDepartLat != null  ">actual_depart_lat = #{actualDepartLat},</if>
+            <if test="actualDepartLng != null  ">actual_depart_lng = #{actualDepartLng},</if>
+            <if test="actualArriveLat != null  ">actual_arrive_lat = #{actualArriveLat},</if>
+            <if test="actualArriveLng != null  ">actual_arrive_lng = #{actualArriveLng},</if>
+            <if test="read != null  ">`read` = #{read},</if>
+            <if test="delete != null  ">`delete` = #{delete},</if>
+            <if test="cancel != null  ">`cancel` = #{cancel},</if>
+            <if test="exceptionDepart != null  ">exception_depart = #{exceptionDepart},</if>
+            <if test="exceptionArrive != null  ">exception_arrive = #{exceptionArrive},</if>
+            <if test="deleteTime != null  ">delete_time = #{deleteTime},</if>
+            <if test="cancelTime != null  ">cancel_time = #{cancelTime},</if>
+            <if test="cancelReason != null  and cancelReason != ''  ">cancel_reason = #{cancelReason},</if>
+            <if test="editTime != null  ">edit_time = #{editTime},</if>
+        </trim>
+        where guid = #{guid}
+    </update>
+
+	<delete id="deleteDriverTaskById" parameterType="String">
+        delete from driver_task where guid = #{guid}
+    </delete>
+	
+    <delete id="deleteDriverTaskByIds" parameterType="String">
+        delete from driver_task where guid in 
+        <foreach item="guid" collection="array" open="(" separator="," close=")">
+            #{guid}
+        </foreach>
+    </delete>
+
+
+    <select id="queryRunningTask"  resultMap="DriverTaskResult">
+        <include refid="selectDriverTaskVo"/>
+        where (first_person_id = #{personId} OR second_person_id = #{personId})
+        AND task_status = 400
+        and `delete` = 0
+        <if test="currentTaskId != null ">
+            and guid !=#{currentTaskId}
+        </if>
+    </select>
+
+    <select id="queryExecutingTask"  resultMap="DriverTaskResult">
+        <include refid="selectDriverTaskVo"/>
+        where (first_person_id = #{personId} OR second_person_id = #{personId})
+        AND task_status in(400,100)
+        and `delete` = 0
+        and start_time is not null
+        <if test="currentTaskId != null ">
+            and guid !=#{currentTaskId}
+        </if>
+     </select>
+
+
+
+    
+</mapper>

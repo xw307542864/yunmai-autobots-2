@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.logibeat.cloud.persistent.dao.ShareLogDao">
+  <resultMap id="BaseResultMap" type="com.logibeat.cloud.persistent.entity.ShareLogEntity">
+    <id column="guid" jdbcType="VARCHAR" property="guid" />
+    <result column="object_id" jdbcType="VARCHAR" property="objectId" />
+    <result column="object_type" jdbcType="INTEGER" property="objectType" />
+    <result column="share_time" jdbcType="TIMESTAMP" property="shareTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    guid, object_id, object_type, share_time
+  </sql>
+  <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bs_share_log
+    where guid = #{guid,jdbcType=VARCHAR}
+  </select>
+  <delete id="delete" parameterType="java.lang.String">
+    delete from bs_share_log
+    where guid = #{guid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.logibeat.cloud.persistent.entity.ShareLogEntity">
+    insert into bs_share_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        guid,
+      </if>
+      <if test="objectId != null">
+        object_id,
+      </if>
+      <if test="objectType != null">
+        object_type,
+      </if>
+      <if test="shareTime != null">
+        share_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        #{guid,jdbcType=VARCHAR},
+      </if>
+      <if test="objectId != null">
+        #{objectId,jdbcType=VARCHAR},
+      </if>
+      <if test="objectType != null">
+        #{objectType,jdbcType=INTEGER},
+      </if>
+      <if test="shareTime != null">
+        #{shareTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.logibeat.cloud.persistent.entity.ShareLogEntity">
+    update bs_share_log
+    <trim prefix="SET" suffixOverrides=",">
+      <if test="objectId != null">
+        object_id = #{objectId,jdbcType=VARCHAR},
+      </if>
+      <if test="objectType != null">
+          object_type = #{objectType,jdbcType=INTEGER},
+      </if>
+      <if test="shareTime != null">
+          share_time = #{shareTime,jdbcType=TIMESTAMP}
+      </if>
+    </trim>
+    where guid = #{guid,jdbcType=VARCHAR}
+  </update>
+</mapper>

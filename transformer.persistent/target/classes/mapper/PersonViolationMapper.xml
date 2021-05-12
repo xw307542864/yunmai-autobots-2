@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.logibeat.cloud.persistent.dao.PersonViolationDao">
+    
+    <resultMap type="PersonViolationEntity" id="PersonViolationResult">
+        <result property="guid"    column="guid"    />
+        <result property="entId"    column="ent_id"    />
+        <result property="entName"    column="ent_name"    />
+        <result property="personId"    column="person_id"    />
+        <result property="personName"    column="person_name"    />
+        <result property="personPhone"    column="person_phone"    />
+        <result property="punishPersonName"    column="punish_person_name"    />
+        <result property="punishStatus"    column="punish_status"    />
+        <result property="punishType"    column="punish_type"    />
+        <result property="punishTypeValue"    column="punish_type_value"    />
+        <result property="punishDataId"    column="punish_data_id"    />
+        <result property="punishTime"    column="punish_time"    />
+        <result property="punishRemark"    column="punish_remark"    />
+        <result property="parkViolation"    column="park_violation"    />
+        <result property="businessViolation"    column="business_violation"    />
+        <result property="speedViolation"    column="speed_violation"    />
+        <result property="operationActionViolation"    column="operation_action_violation"    />
+        <result property="fatigueViolation"    column="fatigue_violation"    />
+        <result property="driveActionViolation"    column="drive_action_violation"    />
+        <result property="vehicleActionViolation"    column="vehicle_action_violation"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="confirm"    column="confirm"    />
+        <result property="cancelReason"    column="cancel_reason"    />
+        <result property="appeal"    column="appeal"    />
+        <result property="orderNumber"    column="order_number"    />
+        <result property="violationSource"    column="violation_source"    />
+        <result property="violationTime"    column="violation_time"    />
+        <result property="violationRemark"    column="violation_remark"    />
+        <result property="scan"    column="scan"    />
+        <result property="dataSource"    column="data_source"    />
+        <result property="penaltyOrg"    column="penalty_org"    />
+    </resultMap>
+	
+	<sql id="selectPersonViolationVo">
+        select guid, order_number,ent_id, ent_name,violation_source,violation_time, violation_remark,person_id, person_name, person_phone, punish_person_name, punish_status, punish_type, punish_type_value,punish_data_id, confirm,appeal,scan,punish_time, punish_remark, cancel_reason, create_time,data_source,penalty_org from person_violation
+    </sql>
+	
+    <select id="selectPersonViolationList" parameterType="PersonViolationEntity" resultMap="PersonViolationResult">
+        <include refid="selectPersonViolationVo"/>
+        <where>  
+            <if test="guid != null  and guid != '' "> and guid = #{guid}</if>
+             <if test="entId != null  and entId != '' "> and ent_id = #{entId}</if>
+             <if test="entName != null  and entName != '' "> and ent_name = #{entName}</if>
+             <if test="personId != null  and personId != '' "> and person_id = #{personId}</if>
+             <if test="personName != null  and personName != '' "> and person_name = #{personName}</if>
+             <if test="personPhone != null  and personPhone != '' "> and person_phone = #{personPhone}</if>
+             <if test="punishPersonName != null  and punishPersonName != '' "> and punish_person_name = #{punishPersonName}</if>
+             <if test="punishStatus != null "> and punish_status = #{punishStatus}</if>
+             <if test="punishType != null "> and punish_type = #{punishType}</if>
+             <if test="punishTypeValue != null  and punishTypeValue != '' "> and punish_type_value = #{punishTypeValue}</if>
+             <if test="punishTime != null "> and punish_time = #{punishTime}</if>
+             <if test="punishRemark != null  and punishRemark != '' "> and punish_remark = #{punishRemark}</if>
+             <if test="parkViolation != null "> and park_violation = #{parkViolation}</if>
+             <if test="businessViolation != null "> and business_violation = #{businessViolation}</if>
+             <if test="speedViolation != null "> and speed_violation = #{speedViolation}</if>
+             <if test="operationActionViolation != null "> and operation_action_violation = #{operationActionViolation}</if>
+             <if test="fatigueViolation != null "> and fatigue_violation = #{fatigueViolation}</if>
+             <if test="driveActionViolation != null "> and drive_action_violation = #{driveActionViolation}</if>
+             <if test="vehicleActionViolation != null "> and vehicle_action_violation = #{vehicleActionViolation}</if>
+             <if test="createTime != null "> and create_time = #{createTime}</if>
+             <if test="updateTime != null "> and update_time = #{updateTime}</if>
+             <if test="confirm != null "> and confirm = #{confirm}</if>
+             <if test="cancelReason != null "> and cancel_reason = #{cancelReason}</if>
+             <if test="dataSource != null "> and data_source = #{dataSource}</if>
+        </where>
+        order by create_time desc
+    </select>
+    
+    <select id="selectPersonViolationById" parameterType="String" resultMap="PersonViolationResult">
+        <include refid="selectPersonViolationVo"/>
+        where guid = #{guid}
+    </select>
+        
+    <insert id="insertPersonViolation" parameterType="PersonViolationEntity">
+        insert into person_violation
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="guid != null  and guid != ''  ">guid,</if>
+			<if test="entId != null  and entId != ''  ">ent_id,</if>
+			<if test="entName != null  and entName != ''  ">ent_name,</if>
+			<if test="personId != null  and personId != ''  ">person_id,</if>
+			<if test="personName != null  and personName != ''  ">person_name,</if>
+			<if test="personPhone != null  and personPhone != ''  ">person_phone,</if>
+			<if test="punishPersonName != null  and punishPersonName != ''  ">punish_person_name,</if>
+			<if test="punishStatus != null  ">punish_status,</if>
+			<if test="punishType != null  ">punish_type,</if>
+			<if test="punishTypeValue != null  and punishTypeValue != ''  ">punish_type_value,</if>
+            <if test="punishDataId != null  and punishDataId != ''  ">punish_data_id,</if>
+            <if test="punishTime != null  ">punish_time,</if>
+			<if test="punishRemark != null  and punishRemark != ''  ">punish_remark,</if>
+			<if test="parkViolation != null  ">park_violation,</if>
+			<if test="businessViolation != null  ">business_violation,</if>
+			<if test="speedViolation != null  ">speed_violation,</if>
+			<if test="operationActionViolation != null  ">operation_action_violation,</if>
+			<if test="fatigueViolation != null  ">fatigue_violation,</if>
+			<if test="driveActionViolation != null  ">drive_action_violation,</if>
+			<if test="vehicleActionViolation != null  ">vehicle_action_violation,</if>
+			<if test="createTime != null  ">create_time,</if>
+            <if test="updateTime != null  ">update_time,</if>
+            <if test="confirm != null  ">confirm,</if>
+            <if test="appeal != null  ">appeal,</if>
+            <if test="scan != null  ">scan,</if>
+            <if test="orderNumber != null  ">order_number,</if>
+            <if test="violationSource != null  ">violation_source,</if>
+            <if test="violationTime != null  ">violation_time,</if>
+            <if test="violationRemark != null  ">violation_remark,</if>
+            <if test="dataSource != null  ">data_source,</if>
+            <if test="penaltyOrg != null  ">penalty_org,</if>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="guid != null  and guid != ''  ">#{guid},</if>
+			<if test="entId != null  and entId != ''  ">#{entId},</if>
+			<if test="entName != null  and entName != ''  ">#{entName},</if>
+			<if test="personId != null  and personId != ''  ">#{personId},</if>
+			<if test="personName != null  and personName != ''  ">#{personName},</if>
+			<if test="personPhone != null  and personPhone != ''  ">#{personPhone},</if>
+			<if test="punishPersonName != null  and punishPersonName != ''  ">#{punishPersonName},</if>
+			<if test="punishStatus != null  ">#{punishStatus},</if>
+			<if test="punishType != null  ">#{punishType},</if>
+			<if test="punishTypeValue != null  and punishTypeValue != ''  ">#{punishTypeValue},</if>
+            <if test="punishDataId != null  and punishDataId != ''  ">#{punishDataId},</if>
+            <if test="punishTime != null  ">#{punishTime},</if>
+			<if test="punishRemark != null  and punishRemark != ''  ">#{punishRemark},</if>
+			<if test="parkViolation != null  ">#{parkViolation},</if>
+			<if test="businessViolation != null  ">#{businessViolation},</if>
+			<if test="speedViolation != null  ">#{speedViolation},</if>
+			<if test="operationActionViolation != null  ">#{operationActionViolation},</if>
+			<if test="fatigueViolation != null  ">#{fatigueViolation},</if>
+			<if test="driveActionViolation != null  ">#{driveActionViolation},</if>
+			<if test="vehicleActionViolation != null  ">#{vehicleActionViolation},</if>
+			<if test="createTime != null  ">#{createTime},</if>
+            <if test="updateTime != null  ">#{updateTime},</if>
+            <if test="confirm != null  ">#{confirm},</if>
+            <if test="appeal != null  ">#{appeal},</if>
+            <if test="scan != null  ">#{scan},</if>
+            <if test="orderNumber != null  ">#{orderNumber},</if>
+            <if test="violationSource != null  ">#{violationSource},</if>
+            <if test="violationTime != null  ">#{violationTime},</if>
+            <if test="violationRemark != null  ">#{violationRemark},</if>
+            <if test="dataSource != null  ">#{dataSource},</if>
+            <if test="penaltyOrg != null  ">#{penaltyOrg},</if>
+
+        </trim>
+    </insert>
+	 
+    <update id="updatePersonViolation" parameterType="PersonViolationEntity">
+        update person_violation
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="entId != null  and entId != ''  ">ent_id = #{entId},</if>
+            <if test="entName != null  and entName != ''  ">ent_name = #{entName},</if>
+            <if test="personId != null  and personId != ''  ">person_id = #{personId},</if>
+            <if test="personName != null  and personName != ''  ">person_name = #{personName},</if>
+            <if test="personPhone != null  and personPhone != ''  ">person_phone = #{personPhone},</if>
+            <if test="punishPersonName != null  and punishPersonName != ''  ">punish_person_name = #{punishPersonName},</if>
+            <if test="punishStatus != null  ">punish_status = #{punishStatus},</if>
+            <if test="punishType != null  ">punish_type = #{punishType},</if>
+            <if test="punishTypeValue != null  and punishTypeValue != ''  ">punish_type_value = #{punishTypeValue},</if>
+            <if test="punishDataId != null  and punishDataId != ''  ">punish_data_id = #{punishDataId},</if>
+            <if test="punishTime != null  ">punish_time = #{punishTime},</if>
+            <if test="punishRemark != null  and punishRemark != ''  ">punish_remark = #{punishRemark},</if>
+            <if test="parkViolation != null  ">park_violation = #{parkViolation},</if>
+            <if test="businessViolation != null  ">business_violation = #{businessViolation},</if>
+            <if test="speedViolation != null  ">speed_violation = #{speedViolation},</if>
+            <if test="operationActionViolation != null  ">operation_action_violation = #{operationActionViolation},</if>
+            <if test="fatigueViolation != null  ">fatigue_violation = #{fatigueViolation},</if>
+            <if test="driveActionViolation != null  ">drive_action_violation = #{driveActionViolation},</if>
+            <if test="vehicleActionViolation != null  ">vehicle_action_violation = #{vehicleActionViolation},</if>
+            <if test="createTime != null  ">create_time = #{createTime},</if>
+            <if test="updateTime != null  ">update_time = #{updateTime},</if>
+            <if test="confirm != null  ">confirm = #{confirm},</if>
+            <if test="cancelReason != null  ">cancel_reason = #{cancelReason},</if>
+            <if test="appeal != null  ">appeal = #{appeal},</if>
+            <if test="scan != null  ">scan = #{scan},</if>
+            <if test="orderNumber != null  ">order_number = #{orderNumber},</if>
+            <if test="violationSource != null  ">violation_source = #{violationSource},</if>
+            <if test="violationTime != null  ">violation_time = #{violationTime},</if>
+            <if test="violationRemark != null  ">violation_remark = #{violationRemark},</if>
+            <if test="dataSource != null  ">data_source = #{dataSource},</if>
+            <if test="penaltyOrg != null  ">penalty_org = #{penaltyOrg},</if>
+
+        </trim>
+        where guid = #{guid}
+    </update>
+
+	<delete id="deletePersonViolationById" parameterType="String">
+        delete from person_violation where guid = #{guid}
+    </delete>
+	
+    <delete id="deletePersonViolationByIds" parameterType="String">
+        delete from person_violation where guid in 
+        <foreach item="guid" collection="array" open="(" separator="," close=")">
+            #{guid}
+        </foreach>
+    </delete>
+    
+</mapper>

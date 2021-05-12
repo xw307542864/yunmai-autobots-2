@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.logibeat.cloud.persistent.dao.NewFriendLogDao">
+  <resultMap id="BaseResultMap" type="com.logibeat.cloud.persistent.entity.NewFriendLogEntity">
+    <id column="NewFriendGUID" jdbcType="VARCHAR" property="newFriendGUID" />
+    <result column="YYYYMMDD" jdbcType="INTEGER" property="yyyymmdd" />
+    <result column="IsEnt" jdbcType="TINYINT" property="isEnt" />
+    <result column="EntID" jdbcType="VARCHAR" property="entID" />
+    <result column="ObjectID" jdbcType="VARCHAR" property="objectID" />
+    <result column="IsFriendEnt" jdbcType="TINYINT" property="isFriendEnt" />
+    <result column="FriendObjectID" jdbcType="VARCHAR" property="friendObjectID" />
+    <result column="InvitePersonID" jdbcType="VARCHAR" property="invitePersonID" />
+    <result column="InviteType" jdbcType="INTEGER" property="inviteType" />
+    <result column="InviteState" jdbcType="INTEGER" property="inviteState" />
+    <result column="Remark" jdbcType="VARCHAR" property="remark" />
+    <result column="IsHandle" jdbcType="TINYINT" property="isHandle" />
+    <result column="HandlePersonID" jdbcType="VARCHAR" property="handlePersonID" />
+    <result column="IsDelete" jdbcType="TINYINT" property="isDelete" />
+    <result column="AddTime" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="EditTime" jdbcType="TIMESTAMP" property="editTime" />
+    <result column="IsRead" jdbcType="TINYINT" property="isRead" />
+    <result column="contentPrex" jdbcType="VARCHAR" property="contentPrex" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    NewFriendGUID, YYYYMMDD, IsEnt, EntID, ObjectID, IsFriendEnt, FriendObjectID, InvitePersonID, 
+    InviteType, InviteState, Remark, IsHandle, HandlePersonID, IsDelete, AddTime, EditTime, 
+    IsRead, contentPrex
+  </sql>
+  <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from im_newfriendlog
+    where NewFriendGUID = #{newFriendGUID,jdbcType=VARCHAR}
+  </select>
+  <update id="delete" parameterType="java.lang.String">
+    update im_newfriendlog set isdelete = 1
+    where NewFriendGUID = #{newFriendGUID,jdbcType=VARCHAR}
+  </update>
+  <insert id="insert" parameterType="com.logibeat.cloud.persistent.entity.NewFriendLogEntity">
+    insert into im_newfriendlog
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="newFriendGUID != null">
+        NewFriendGUID,
+      </if>
+      <if test="yyyymmdd != null">
+        YYYYMMDD,
+      </if>
+      <if test="isEnt != null">
+        IsEnt,
+      </if>
+      <if test="entID != null">
+        EntID,
+      </if>
+      <if test="objectID != null">
+        ObjectID,
+      </if>
+      <if test="isFriendEnt != null">
+        IsFriendEnt,
+      </if>
+      <if test="friendObjectID != null">
+        FriendObjectID,
+      </if>
+      <if test="invitePersonID != null">
+        InvitePersonID,
+      </if>
+      <if test="inviteType != null">
+        InviteType,
+      </if>
+      <if test="inviteState != null">
+        InviteState,
+      </if>
+      <if test="remark != null">
+        Remark,
+      </if>
+      <if test="isHandle != null">
+        IsHandle,
+      </if>
+      <if test="handlePersonID != null">
+        HandlePersonID,
+      </if>
+      <if test="isDelete != null">
+        IsDelete,
+      </if>
+      <if test="addTime != null">
+        AddTime,
+      </if>
+      <if test="editTime != null">
+        EditTime,
+      </if>
+      <if test="isRead != null">
+        IsRead,
+      </if>
+      <if test="contentPrex != null">
+        contentPrex,
+      </if>
+    </trim>
+    <trim prefix="values " suffix=")" suffixOverrides=",">
+      <if test="newFriendGUID != null">
+        #{newFriendGUID,jdbcType=VARCHAR},
+      </if>
+      <if test="yyyymmdd != null">
+        #{yYYYMMDD,jdbcType=INTEGER},
+      </if>
+      <if test="isEnt != null">
+        #{isEnt,jdbcType=TINYINT},
+      </if>
+      <if test="entID != null">
+        #{entID,jdbcType=VARCHAR},
+      </if>
+      <if test="objectID != null">
+        #{objectID,jdbcType=VARCHAR},
+      </if>
+      <if test="isFriendEnt != null">
+        #{isFriendEnt,jdbcType=TINYINT},
+      </if>
+      <if test="friendObjectID != null">
+        #{friendObjectID,jdbcType=VARCHAR},
+      </if>
+      <if test="invitePersonID != null">
+        #{invitePersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="inviteType != null">
+        #{inviteType,jdbcType=INTEGER},
+      </if>
+      <if test="inviteState != null">
+        #{inviteState,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isHandle != null">
+        #{isHandle,jdbcType=TINYINT},
+      </if>
+      <if test="handlePersonID != null">
+        #{handlePersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null">
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isRead != null">
+        #{isRead,jdbcType=TINYINT},
+      </if>
+      <if test="contentPrex != null">
+        #{contentPrex,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.logibeat.cloud.persistent.entity.NewFriendLogEntity">
+    update im_newfriendlog
+    <trim prefix="SET" suffixOverrides=",">
+      <if test="yyyymmdd != null">
+        YYYYMMDD = #{yyyymmdd,jdbcType=INTEGER},
+      </if>
+      <if test="isEnt != null">
+          IsEnt = #{isEnt,jdbcType=TINYINT},
+      </if>
+      <if test="entID != null">
+          EntID = #{entID,jdbcType=VARCHAR},
+      </if>
+      <if test="objectID != null">
+          ObjectID = #{objectID,jdbcType=VARCHAR},
+      </if>
+      <if test="isFriendEnt != null">
+          IsFriendEnt = #{isFriendEnt,jdbcType=TINYINT},
+      </if>
+      <if test="friendObjectID != null">
+          FriendObjectID = #{friendObjectID,jdbcType=VARCHAR},
+      </if>
+      <if test="invitePersonID != null">
+          InvitePersonID = #{invitePersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="inviteType != null">
+          InviteType = #{inviteType,jdbcType=INTEGER},
+      </if>
+      <if test="inviteState != null">
+          InviteState = #{inviteState,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+          Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isHandle != null">
+          IsHandle = #{isHandle,jdbcType=TINYINT},
+      </if>
+      <if test="handlePersonID != null">
+          HandlePersonID = #{handlePersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+          IsDelete = #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="addTime != null">
+          AddTime = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null">
+          EditTime = #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isRead != null">
+          IsRead = #{isRead,jdbcType=TINYINT},
+      </if>
+      <if test="contentPrex != null">
+          contentPrex = #{contentPrex,jdbcType=VARCHAR}
+      </if>
+    </trim>
+    where NewFriendGUID = #{newFriendGUID,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getNewCount" resultType="java.lang.Integer">
+    select count(*)
+    from im_newfriendlog
+    where objectId = #{personId} and  isdelete =0 and inviteState = 6
+  </select>
+
+  <select id="getNewFriend" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM im_newfriendlog
+    WHERE ObjectId = #{personId} AND IsDelete = 0 ORDER BY IsHandle ASC,AddTime DESC
+  </select>
+
+  <select id="getNewEntityById" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from im_newfriendlog
+    where FriendObjectId = #{friendObjectId} and objectId = #{objectId} and isdelete=0 and inviteState = 6
+  </select>
+
+  <update id="updateNewFriendForDriver" >
+    update im_newfriendlog
+    set InviteState = #{inviteState}, Remark = #{remark}, IsHandle = 1, HandlePersonID = #{handlePersonID}
+    WHERE ((ObjectID = #{objectID} AND FriendObjectID = #{friendObjectID}) OR (ObjectID = #{friendObjectID} AND FriendObjectID = #{objectID}))
+    AND (IsHandle=0 OR IsHandle IS NULL) AND IsDelete = 0
+  </update>
+
+  <select id="getNewFriendForDriver" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM im_newfriendlog
+    WHERE ObjectId= #{objectId} AND FriendObjectID = #{friendObjectId}
+    AND isDelete = 0 AND (IsHandle =0 OR IsHandle IS NULL )
+  </select>
+
+  <select id="getNewFriendForCarToEnt" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM im_newfriendlog
+    WHERE ObjectId= #{entId} AND FriendObjectID = #{personId}
+    AND isDelete = 0 AND (IsHandle =0 OR IsHandle IS NULL )
+  </select>
+
+  <select id="getNewFriendByStatusAndType" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from im_newfriendlog
+    where ObjectID = #{objectId} and FriendObjectID = #{friendObjectId}
+    <if test="inviteType == null">
+      and InviteType = #{inviteType}
+    </if>
+    <if test="inviteType == null">
+      and InviteState = #{InviteStatus}
+    </if>
+  </select>
+  <select id="getNewFriendCar"  resultMap="BaseResultMap">
+        select * from im_newfriendlog
+        where friendObjectId=#{friendObjectId}
+        and objectId=#{objectId}
+        and remark = #{carId}
+        and  IsDelete = 0
+    </select>
+
+</mapper>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.logibeat.cloud.persistent.dao.ImUserDao">
+  <resultMap id="BaseResultMap" type="com.logibeat.cloud.persistent.entity.ImUserEntity">
+    <id column="guid" jdbcType="VARCHAR" property="guid" />
+    <result column="person_id" jdbcType="VARCHAR" property="personId" />
+    <result column="im_id" jdbcType="VARCHAR" property="imId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="portraitUrl" jdbcType="VARCHAR" property="portraitUrl" />
+    <result column="im_token" jdbcType="VARCHAR" property="imToken" />
+    <result column="is_delete" jdbcType="INTEGER" property="isDelete" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="edit_time" jdbcType="TIMESTAMP" property="editTime" />
+    <result column="ent_id" jdbcType="VARBINARY" property="entId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    guid, person_id, im_id, name, portraitUrl, im_token, is_delete, add_time, edit_time, 
+    ent_id
+  </sql>
+  <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from im_user
+    where guid = #{guid,jdbcType=VARCHAR}
+  </select>
+  <delete id="delete" parameterType="java.lang.String">
+    delete from im_user
+    where guid = #{guid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.logibeat.cloud.persistent.entity.ImUserEntity">
+    insert into im_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        guid,
+      </if>
+      <if test="personId != null">
+        person_id,
+      </if>
+      <if test="imId != null">
+        im_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="portraitUrl != null">
+        portraitUrl,
+      </if>
+      <if test="imToken != null">
+        im_token,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="editTime != null">
+        edit_time,
+      </if>
+      <if test="entId != null">
+        ent_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        #{guid,jdbcType=VARCHAR},
+      </if>
+      <if test="personId != null">
+        #{personId,jdbcType=VARCHAR},
+      </if>
+      <if test="imId != null">
+        #{imId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="portraitUrl != null">
+        #{portraitUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="imToken != null">
+        #{imToken,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null">
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="entId != null">
+        #{entId,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.logibeat.cloud.persistent.entity.ImUserEntity">
+    update im_user
+    <trim prefix="SET" suffixOverrides=",">
+      <if test="personId != null">
+        person_id = #{personId,jdbcType=VARCHAR},
+      </if>
+      <if test="imId != null">
+          im_id = #{imId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+          name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="portraitUrl != null">
+          portraitUrl = #{portraitUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="imToken != null">
+          im_token = #{imToken,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+          is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+          add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null">
+          edit_time = #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="entId != null">
+          ent_id = #{entId,jdbcType=VARBINARY}
+      </if>
+    </trim>
+    where guid = #{guid,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getByPersonId" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM im_user WHERE person_id = #{personId}
+  </select>
+
+
+  <select id="getByType" resultMap="BaseResultMap">
+
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM im_user WHERE platform_id=#{platformId} and type=#{type}
+  </select>
+
+
+
+  <select id="getByEnt" resultType="com.logibeat.cloud.persistent.entity.ImUserEntity">
+        SELECT * FROM im_user WHERE ent_id=#{entId}  and is_delete = 0 limit 1
+    </select>
+</mapper>

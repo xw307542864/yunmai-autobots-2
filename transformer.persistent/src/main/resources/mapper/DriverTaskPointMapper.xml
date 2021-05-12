@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.logibeat.cloud.persistent.dao.DriverTaskPointDao">
+    
+    <resultMap type="DriverTaskPointEntity" id="DriverTaskPointResult">
+        <result property="guid"    column="guid"    />
+        <result property="taskId"    column="task_id"    />
+        <result property="sort"    column="sort"    />
+        <result property="type"    column="type"    />
+        <result property="netWorkId"    column="net_work_id"    />
+        <result property="netWorkCode"    column="net_work_code"    />
+        <result property="name"    column="name"    />
+        <result property="address"    column="address"    />
+        <result property="cityCode"    column="city_code"    />
+        <result property="cityName"    column="city_name"    />
+        <result property="lat"    column="lat"    />
+        <result property="lng"    column="lng"    />
+        <result property="orderType"    column="order_type"    />
+        <result property="orderGuid"    column="order_guid"    />
+        <result property="status"    column="status"    />
+        <result property="statusValue"    column="status_value"    />
+        <result property="contact"    column="contact"    />
+        <result property="contactMobile"    column="contact_mobile"    />
+        <result property="planDepartTime"    column="plan_depart_time"    />
+        <result property="planArriveTime"    column="plan_arrive_time"    />
+        <result property="actualStartTime"    column="actual_start_time"    />
+        <result property="actualWorkTime"    column="actual_work_time"    />
+        <result property="actualDepartTime"    column="actual_depart_time"    />
+        <result property="actualArriveTime"    column="actual_arrive_time"    />
+        <result property="actualFinishTime"    column="actual_finish_time"    />
+        <result property="actualLat"    column="actual_lat"    />
+        <result property="actualLng"    column="actual_lng"    />
+        <result property="actualRuningDuration"    column="actual_runing_duration"    />
+        <result property="actualRuningMileage"    column="actual_runing_mileage"    />
+        <result property="startPoint"    column="start_point"    />
+        <result property="endPoint"    column="end_point"    />
+        <result property="sign"    column="sign"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="delete"    column="delete"    />
+    </resultMap>
+	
+	<sql id="selectDriverTaskPointVo">
+        select guid, task_id, sort, `type`, net_work_id, net_work_code, name, address, city_code, city_name, lat, lng, order_type, order_guid, status, status_value, `work`,contact, contact_mobile, plan_depart_time, plan_arrive_time,actual_start_time,actual_work_time, actual_depart_time, actual_arrive_time, actual_finish_time,actual_runing_duration, actual_runing_mileage,actual_lat, actual_lng, start_point, end_point, sign, create_time, `delete` from driver_task_point
+    </sql>
+	
+    <select id="selectDriverTaskPointList" parameterType="DriverTaskPointEntity" resultMap="DriverTaskPointResult">
+        <include refid="selectDriverTaskPointVo"/>
+        <where>  
+            <if test="guid != null  and guid != '' "> and guid = #{guid}</if>
+             <if test="taskId != null  and taskId != '' "> and task_id = #{taskId}</if>
+             <if test="type != null "> and `type` = #{type}</if>
+             <if test="sign != null "> and `sign` = #{sign}</if>
+            and `delete` = 0
+         </where>
+         order by sort
+    </select>
+    
+    <select id="selectDriverTaskPointById" parameterType="String" resultMap="DriverTaskPointResult">
+        <include refid="selectDriverTaskPointVo"/>
+        where guid = #{guid}
+    </select>
+        
+    <insert id="insertDriverTaskPoint" parameterType="DriverTaskPointEntity">
+        insert into driver_task_point
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="guid != null  and guid != ''  ">guid,</if>
+			<if test="taskId != null  and taskId != ''  ">task_id,</if>
+			<if test="sort != null  ">sort,</if>
+			<if test="type != null  ">`type`,</if>
+			<if test="netWorkId != null  and netWorkId != ''  ">net_work_id,</if>
+			<if test="netWorkCode != null  and netWorkCode != ''  ">net_work_code,</if>
+			<if test="name != null  and name != ''  ">name,</if>
+			<if test="address != null  and address != ''  ">address,</if>
+			<if test="cityCode != null  and cityCode != ''  ">city_code,</if>
+			<if test="cityName != null  and cityName != ''  ">city_name,</if>
+			<if test="lat != null  ">lat,</if>
+			<if test="lng != null  ">lng,</if>
+			<if test="orderType != null  ">order_type,</if>
+			<if test="orderGuid != null  and orderGuid != ''  ">order_guid,</if>
+			<if test="status != null  ">status,</if>
+			<if test="statusValue != null  and statusValue != ''  ">status_value,</if>
+            <if test="work != null  and work != ''  ">`work`,</if>
+            <if test="contact != null  and contact != ''  ">contact,</if>
+			<if test="contactMobile != null  and contactMobile != ''  ">contact_mobile,</if>
+			<if test="planDepartTime != null  ">plan_depart_time,</if>
+			<if test="planArriveTime != null  ">plan_arrive_time,</if>
+			<if test="actualDepartTime != null  ">actual_depart_time,</if>
+			<if test="actualArriveTime != null  ">actual_arrive_time,</if>
+            <if test="actualFinishTime != null  ">actual_finish_time,</if>
+            <if test="actualLat != null  ">actual_lat,</if>
+			<if test="actualLng != null  ">actual_lng,</if>
+			<if test="startPoint != null  ">start_point,</if>
+			<if test="endPoint != null  ">end_point,</if>
+			<if test="sign != null  ">sign,</if>
+			<if test="createTime != null  ">create_time,</if>
+			<if test="delete != null  ">`delete`,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="guid != null  and guid != ''  ">#{guid},</if>
+			<if test="taskId != null  and taskId != ''  ">#{taskId},</if>
+			<if test="sort != null  ">#{sort},</if>
+			<if test="type != null  ">#{type},</if>
+			<if test="netWorkId != null  and netWorkId != ''  ">#{netWorkId},</if>
+			<if test="netWorkCode != null  and netWorkCode != ''  ">#{netWorkCode},</if>
+			<if test="name != null  and name != ''  ">#{name},</if>
+			<if test="address != null  and address != ''  ">#{address},</if>
+			<if test="cityCode != null  and cityCode != ''  ">#{cityCode},</if>
+			<if test="cityName != null  and cityName != ''  ">#{cityName},</if>
+			<if test="lat != null  ">#{lat},</if>
+			<if test="lng != null  ">#{lng},</if>
+			<if test="orderType != null  ">#{orderType},</if>
+			<if test="orderGuid != null  and orderGuid != ''  ">#{orderGuid},</if>
+			<if test="status != null  ">#{status},</if>
+			<if test="statusValue != null  and statusValue != ''  ">#{statusValue},</if>
+            <if test="work != null  and work != ''  ">#{work},</if>
+            <if test="contact != null  and contact != ''  ">#{contact},</if>
+			<if test="contactMobile != null  and contactMobile != ''  ">#{contactMobile},</if>
+			<if test="planDepartTime != null  ">#{planDepartTime},</if>
+			<if test="planArriveTime != null  ">#{planArriveTime},</if>
+			<if test="actualDepartTime != null  ">#{actualDepartTime},</if>
+			<if test="actualArriveTime != null  ">#{actualArriveTime},</if>
+            <if test="actualFinishTime != null  ">#{actualFinishTime},</if>
+            <if test="actualLat != null  ">#{actualLat},</if>
+			<if test="actualLng != null  ">#{actualLng},</if>
+			<if test="startPoint != null  ">#{startPoint},</if>
+			<if test="endPoint != null  ">#{endPoint},</if>
+			<if test="sign != null  ">#{sign},</if>
+			<if test="createTime != null  ">#{createTime},</if>
+			<if test="delete != null  ">#{delete},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateDriverTaskPoint" parameterType="DriverTaskPointEntity">
+        update driver_task_point
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="taskId != null  and taskId != ''  ">task_id = #{taskId},</if>
+            <if test="sort != null  ">sort = #{sort},</if>
+            <if test="type != null  ">`type` = #{type},</if>
+            <if test="work != null  ">`work` = #{work},</if>
+            <if test="netWorkId != null  and netWorkId != ''  ">net_work_id = #{netWorkId},</if>
+            <if test="netWorkCode != null  and netWorkCode != ''  ">net_work_code = #{netWorkCode},</if>
+            <if test="name != null  and name != ''  ">name = #{name},</if>
+            <if test="address != null  and address != ''  ">address = #{address},</if>
+            <if test="cityCode != null  and cityCode != ''  ">city_code = #{cityCode},</if>
+            <if test="cityName != null  and cityName != ''  ">city_name = #{cityName},</if>
+            <if test="lat != null  ">lat = #{lat},</if>
+            <if test="lng != null  ">lng = #{lng},</if>
+            <if test="orderType != null  ">order_type = #{orderType},</if>
+            <if test="orderGuid != null  and orderGuid != ''  ">order_guid = #{orderGuid},</if>
+            <if test="status != null  ">status = #{status},</if>
+            <if test="statusValue != null  and statusValue != ''  ">status_value = #{statusValue},</if>
+            <if test="contact != null  and contact != ''  ">contact = #{contact},</if>
+            <if test="contactMobile != null  and contactMobile != ''  ">contact_mobile = #{contactMobile},</if>
+            <if test="planDepartTime != null  ">plan_depart_time = #{planDepartTime},</if>
+            <if test="planArriveTime != null  ">plan_arrive_time = #{planArriveTime},</if>
+            <if test="actualStartTime != null  ">actual_start_time = #{actualStartTime},</if>
+            <if test="actualWorkTime != null  ">actual_work_time = #{actualWorkTime},</if>
+            <if test="actualDepartTime != null  ">actual_depart_time = #{actualDepartTime},</if>
+            <if test="actualArriveTime != null  ">actual_arrive_time = #{actualArriveTime},</if>
+            <if test="actualFinishTime != null  ">actual_finish_time = #{actualFinishTime},</if>
+            <if test="actualLat != null  ">actual_lat = #{actualLat},</if>
+            <if test="actualLng != null  ">actual_lng = #{actualLng},</if>
+            <if test="actualRuningDuration != null  ">actual_runing_duration = #{actualRuningDuration},</if>
+            <if test="actualRuningMileage != null  ">actual_runing_mileage = #{actualRuningMileage},</if>
+            <if test="startPoint != null  ">start_point = #{startPoint},</if>
+            <if test="endPoint != null  ">end_point = #{endPoint},</if>
+            <if test="sign != null  ">sign = #{sign},</if>
+            <if test="createTime != null  ">create_time = #{createTime},</if>
+            <if test="delete != null  ">`delete` = #{delete},</if>
+        </trim>
+        where guid = #{guid}
+    </update>
+
+	<delete id="deleteDriverTaskPointById" parameterType="String">
+        delete from driver_task_point where guid = #{guid}
+    </delete>
+
+
+    <delete id="deleteByTaskId" parameterType="String">
+
+         delete from driver_task_point where task_id = #{taskId}
+
+    </delete>
+	
+    <delete id="deleteDriverTaskPointByIds" parameterType="String">
+        delete from driver_task_point where guid in 
+        <foreach item="guid" collection="array" open="(" separator="," close=")">
+            #{guid}
+        </foreach>
+    </delete>
+
+
+    <select id="finishUnloadCount" resultType="java.lang.Long">
+         SELECT COUNT(1) FROM driver_task_point WHERE task_id = #{taskId}
+         and order_guid = #{relationId}
+         and guid != #{currentPontId}
+         and status  in(1006,1007)
+         and type = 2
+         and `delete` = 0
+    </select>
+
+
+    <select id="finishPointByRelationId" resultType="java.lang.Long">
+        SELECT COUNT(1) FROM driver_task_point WHERE
+        task_id = #{taskId}
+         and order_guid = #{relationId}
+         and guid != #{currentPontId}
+         and actual_arrive_time is   null
+         and `delete` = 0
+    </select>
+
+
+    <select id="arrivePointByRelationId" resultType="java.lang.Long">
+        SELECT COUNT(1) FROM driver_task_point WHERE
+         task_id = #{taskId}
+         and order_guid = #{relationId}
+         and actual_arrive_time is  not  null
+         and `delete` = 0
+    </select>
+
+
+
+    <select id="getPointListByRelationId" resultMap="DriverTaskPointResult">
+        <include refid="selectDriverTaskPointVo"/>
+        where
+        order_guid = #{relationId}
+        and `delete` = 0
+        order by sort
+    </select>
+
+
+
+    <select id="arriveList" resultMap="DriverTaskPointResult">
+        <include refid="selectDriverTaskPointVo"/> WHERE
+         task_id = #{taskId}
+        and status in(1003,1004,1005,1008,1009,1010)
+        and `delete` = 0
+    </select>
+
+
+    <select id="getPointBySort" resultMap="DriverTaskPointResult">
+        <include refid="selectDriverTaskPointVo"/>
+        where task_id = #{taskId} and sort = #{sort}
+        and `delete` = 0
+    </select>
+
+
+    <update id="sign" parameterType="String">
+        update driver_task_point set sign = 1 where order_guid = #{consignOrderId}
+    </update>
+
+
+
+    <select id="getFirstPoint" resultMap="DriverTaskPointResult">
+        <include refid="selectDriverTaskPointVo"/>
+        where task_id = #{taskId} and start_point = 1 and `delete` = 0
+    </select>
+
+
+
+    <select id="excetedPointList" resultMap="DriverTaskPointResult">
+        <include refid="selectDriverTaskPointVo"/>
+        where task_id = #{taskId} and actual_start_time is not  null  and `delete` = 0
+    </select>
+
+
+
+    <select id="waitSignCount" resultType="java.lang.Long">
+       SELECT COUNT(1) FROM driver_task_point WHERE
+         task_id = #{taskId}
+         and sign = 0
+         and actual_arrive_time is  not  null
+         and `delete` = 0
+    </select>
+
+
+    <select id="waitSignList" parameterType="String" resultMap="DriverTaskPointResult">
+       SELECT * FROM driver_task_point WHERE
+         task_id = #{taskId}
+         and sign = 0
+         and actual_arrive_time is  not  null
+         and `delete` = 0
+    </select>
+
+
+
+</mapper>

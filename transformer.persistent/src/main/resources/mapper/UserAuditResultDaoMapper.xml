@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.logibeat.cloud.persistent.dao.UserAuditResultDao">
+  <resultMap id="BaseResultMap" type="com.logibeat.cloud.persistent.entity.UserAuditResultEntity">
+    <id column="guid" jdbcType="VARCHAR" property="guid" />
+    <result column="objectId" jdbcType="VARCHAR" property="objectId" />
+    <result column="objectType" jdbcType="INTEGER" property="objectType" />
+    <result column="auditResult" jdbcType="INTEGER" property="auditResult" />
+    <result column="applyPersonName" jdbcType="VARCHAR" property="applyPersonName" />
+    <result column="applyPersonId" jdbcType="VARCHAR" property="applyPersonId" />
+    <result column="applyTime" jdbcType="TIMESTAMP" property="applyTime" />
+    <result column="auditPersonName" jdbcType="VARCHAR" property="auditPersonName" />
+    <result column="auditPersonId" jdbcType="VARCHAR" property="auditPersonId" />
+    <result column="auditTime" jdbcType="TIMESTAMP" property="auditTime" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="source" jdbcType="INTEGER" property="source" />
+    <result column="isAudit" jdbcType="INTEGER" property="isAudit" />
+    <result column="auditStatus" jdbcType="INTEGER" property="auditStatus" />
+    <result column="applyPersonSocialLic" jdbcType="VARCHAR" property="applyPersonSocialLic" />
+    <result column="applyPersonPhone" jdbcType="VARCHAR" property="applyPersonPhone" />
+    <result column="enterpriseName" jdbcType="VARCHAR" property="enterpriseName" />
+  </resultMap>
+  <delete id="delete" parameterType="java.lang.String">
+    delete from user_audit_result
+    where guid = #{guid,jdbcType=VARCHAR}
+  </delete>
+
+  <delete id="deleteByAudit">
+     delete from user_audit_result
+    where audit_id = #{auditId,jdbcType=VARCHAR}
+  </delete>
+
+
+  <insert id="merge" parameterType="com.logibeat.cloud.persistent.entity.UserAuditResultEntity">
+    insert into user_audit_result (guid, objectId, objectType,
+      auditResult, applyPersonName, applyPersonId,
+      applyTime, auditPersonName, auditPersonId,
+      auditTime, type, source,
+      isAudit, auditStatus, applyPersonSocialLic,
+      applyPersonPhone, enterpriseName,audit_info,audit_id,audit_log_id)
+    values (#{guid,jdbcType=VARCHAR}, #{objectId,jdbcType=VARCHAR}, #{objectType,jdbcType=INTEGER},
+      #{auditResult,jdbcType=INTEGER}, #{applyPersonName,jdbcType=VARCHAR}, #{applyPersonId,jdbcType=VARCHAR},
+      #{applyTime,jdbcType=TIMESTAMP}, #{auditPersonName,jdbcType=VARCHAR}, #{auditPersonId,jdbcType=VARCHAR},
+      #{auditTime,jdbcType=TIMESTAMP}, #{type,jdbcType=INTEGER}, #{source,jdbcType=INTEGER},
+      #{isAudit,jdbcType=INTEGER}, #{auditStatus,jdbcType=INTEGER}, #{applyPersonSocialLic,jdbcType=VARCHAR},
+      #{applyPersonPhone,jdbcType=VARCHAR}, #{enterpriseName,jdbcType=VARCHAR},#{auditInfo},#{auditId},#{auditLogId})
+  </insert>
+  <update id="update" parameterType="com.logibeat.cloud.persistent.entity.UserAuditResultEntity">
+    update user_audit_result
+    set objectId = #{objectId,jdbcType=VARCHAR},
+      objectType = #{objectType,jdbcType=INTEGER},
+      auditResult = #{auditResult,jdbcType=INTEGER},
+      applyPersonName = #{applyPersonName,jdbcType=VARCHAR},
+      applyPersonId = #{applyPersonId,jdbcType=VARCHAR},
+      auditPersonName = #{auditPersonName,jdbcType=VARCHAR},
+      auditPersonId = #{auditPersonId,jdbcType=VARCHAR},
+      auditTime = #{auditTime,jdbcType=TIMESTAMP},
+      type = #{type,jdbcType=INTEGER},
+      source = #{source,jdbcType=INTEGER},
+      isAudit = #{isAudit,jdbcType=INTEGER},
+      auditStatus = #{auditStatus,jdbcType=INTEGER},
+      applyPersonSocialLic = #{applyPersonSocialLic,jdbcType=VARCHAR},
+      applyPersonPhone = #{applyPersonPhone,jdbcType=VARCHAR},
+      enterpriseName = #{enterpriseName,jdbcType=VARCHAR},
+      audit_info = #{auditInfo},
+      audit_id = #{auditId},
+      audit_log_id = #{auditLogId}
+    where guid = #{guid,jdbcType=VARCHAR}
+  </update>
+  <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select guid, objectId, objectType, auditResult, applyPersonName, applyPersonId, applyTime,
+    auditPersonName, auditPersonId, auditTime, type, source, isAudit, auditStatus, applyPersonSocialLic,
+    applyPersonPhone, enterpriseName
+    from user_audit_result
+    where guid = #{guid,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select guid, objectId, objectType, auditResult, applyPersonName, applyPersonId, applyTime,
+    auditPersonName, auditPersonId, auditTime, type, source, isAudit, auditStatus, applyPersonSocialLic,
+    applyPersonPhone, enterpriseName
+    from user_audit_result
+  </select>
+  <select id="getUserAuditInfo" resultMap="BaseResultMap">
+    SELECT * from user_audit_result where objectId =#{objectId} and objectType =#{objectType} and auditStatus=1
+  </select>
+
+  <select id="getByAudit" resultMap="BaseResultMap">
+    SELECT * from user_audit_result where audit_id = #{auditId}
+    limit 1
+
+  </select>
+</mapper>

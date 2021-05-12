@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.logibeat.cloud.persistent.dao.EventSpaceLogDao">
+  <resultMap id="BaseResultMap" type="com.logibeat.cloud.persistent.entity.EventSpaceLogEntity">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="event_type" jdbcType="VARCHAR" property="eventType" />
+    <result column="event_id" jdbcType="VARCHAR" property="eventId" />
+    <result column="event_remark" jdbcType="VARCHAR" property="eventRemark" />
+    <result column="event_remark1" jdbcType="VARCHAR" property="eventRemark1" />
+    <result column="event_remark2" jdbcType="VARCHAR" property="eventRemark2" />
+    <result column="tag" jdbcType="VARCHAR" property="tag" />
+    <result column="is_success" jdbcType="VARCHAR" property="isSuccess" />
+    <result column="create_time" jdbcType="VARCHAR" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, event_type, event_id, event_remark, event_remark1, event_remark2, tag, is_success, 
+    create_time
+  </sql>
+  <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from event_space_log
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="delete" parameterType="java.lang.String">
+    delete from event_space_log
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.logibeat.cloud.persistent.entity.EventSpaceLogEntity">
+    insert into event_space_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="eventType != null">
+        event_type,
+      </if>
+      <if test="eventId != null">
+        event_id,
+      </if>
+      <if test="eventRemark != null">
+        event_remark,
+      </if>
+      <if test="eventRemark1 != null">
+        event_remark1,
+      </if>
+      <if test="eventRemark2 != null">
+        event_remark2,
+      </if>
+      <if test="tag != null">
+        tag,
+      </if>
+      <if test="isSuccess != null">
+        is_success,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="eventType != null">
+        #{eventType,jdbcType=VARCHAR},
+      </if>
+      <if test="eventId != null">
+        #{eventId,jdbcType=VARCHAR},
+      </if>
+      <if test="eventRemark != null">
+        #{eventRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="eventRemark1 != null">
+        #{eventRemark1,jdbcType=VARCHAR},
+      </if>
+      <if test="eventRemark2 != null">
+        #{eventRemark2,jdbcType=VARCHAR},
+      </if>
+      <if test="tag != null">
+        #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="isSuccess != null">
+        #{isSuccess,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.logibeat.cloud.persistent.entity.EventSpaceLogEntity">
+    update event_space_log
+    <trim prefix="SET" suffixOverrides=",">
+      <if test="eventType != null">
+        event_type = #{eventType,jdbcType=VARCHAR},
+      </if>
+      <if test="eventId != null">
+          event_id = #{eventId,jdbcType=VARCHAR},
+      </if>
+      <if test="eventRemark != null">
+          event_remark = #{eventRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="eventRemark1 != null">
+          event_remark1 = #{eventRemark1,jdbcType=VARCHAR},
+      </if>
+      <if test="eventRemark2 != null">
+          event_remark2 = #{eventRemark2,jdbcType=VARCHAR},
+      </if>
+      <if test="tag != null">
+          tag = #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="isSuccess != null">
+          is_success = #{isSuccess,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+          create_time = #{createTime,jdbcType=VARCHAR}
+      </if>
+    </trim>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getEntity" resultMap="BaseResultMap">
+   select
+   <include refid="Base_Column_List" />
+   from event_space_log
+   where event_id = #{eventId} and event_remark = #{eventRemark}
+   order by create_time desc
+  </select>
+</mapper>

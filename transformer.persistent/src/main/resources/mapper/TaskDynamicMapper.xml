@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.logibeat.cloud.persistent.dao.TaskDynamicDao">
+  <resultMap id="BaseResultMap" type="com.logibeat.cloud.persistent.entity.TaskDynamicEntity">
+    <id column="guid" jdbcType="VARCHAR" property="guid" />
+    <result column="carId" jdbcType="VARCHAR" property="carId" />
+    <result column="personId" jdbcType="VARCHAR" property="personId" />
+    <result column="ordersCid" jdbcType="VARCHAR" property="ordersCid" />
+    <result column="areaGuid" jdbcType="VARCHAR" property="areaGuid" />
+    <result column="entId" jdbcType="VARCHAR" property="entId" />
+    <result column="imgaddress" jdbcType="VARCHAR" property="imgaddress" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="dynamictime" jdbcType="TIMESTAMP" property="dynamictime" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="lng" jdbcType="DOUBLE" property="lng" />
+    <result column="lat" jdbcType="DOUBLE" property="lat" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="action" jdbcType="INTEGER" property="action" />
+    <result column="likesNum" jdbcType="INTEGER" property="likesNum" />
+    <result column="messagesNum" jdbcType="INTEGER" property="messagesNum" />
+    <result column="readsNum" jdbcType="INTEGER" property="readsNum" />
+    <result column="isDelete" jdbcType="TINYINT" property="isDelete" />
+    <result column="deletetime" jdbcType="TIMESTAMP" property="deletetime" />
+    <result column="isRead" jdbcType="TINYINT" property="isRead" />
+    <result column="isAtPoint" jdbcType="TINYINT" property="isAtPoint" />
+    <result column="actionName" jdbcType="VARCHAR" property="actionName" />
+    <result column="dynamicSource" jdbcType="TINYINT" property="dynamicSource" />
+    <result column="dyswitch" jdbcType="TINYINT" property="dyswitch" />
+    <result column="entPrex" jdbcType="VARCHAR" property="entPrex" />
+    <result column="orderPrex" jdbcType="VARCHAR" property="orderPrex" />
+    <result column="carPlateNumber" jdbcType="VARCHAR" property="carPlateNumber" />
+    <result column="driverMobile" jdbcType="VARCHAR" property="driverMobile" />
+    <result column="driverName" jdbcType="VARCHAR" property="driverName" />
+    <result column="carOrTaskMessage" jdbcType="VARCHAR" property="carOrTaskMessage" />
+    <result column="upFilePrex" jdbcType="VARCHAR" property="upFilePrex" />
+    <result column="picUrls" jdbcType="LONGVARCHAR" property="picUrls" />
+    <result column="orgId" jdbcType="LONGVARCHAR" property="orgId" />
+    <result column="voiceInfo" jdbcType="LONGVARCHAR" property="voiceInfo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    guid, carId, personId, ordersCid, areaGuid, entId, imgaddress, content, dynamictime, 
+    address, remark, lng, lat, type, action, likesNum, messagesNum, readsNum, isDelete, 
+    deletetime, isRead, isAtPoint, actionName, dynamicSource, dyswitch, entPrex, orderPrex, 
+    carPlateNumber, driverMobile, driverName, carOrTaskMessage, upFilePrex, picUrls,orgId,voiceInfo
+  </sql>
+  <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from task_dynamic
+    where guid = #{guid,jdbcType=VARCHAR}
+  </select>
+  <delete id="delete" parameterType="java.lang.String">
+    delete from task_dynamic
+    where guid = #{guid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.logibeat.cloud.persistent.entity.TaskDynamicEntity">
+    insert into task_dynamic
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        guid,
+      </if>
+      <if test="carId != null">
+        carId,
+      </if>
+      <if test="personId != null">
+        personId,
+      </if>
+      <if test="ordersCid != null">
+        ordersCid,
+      </if>
+      <if test="areaGuid != null">
+        areaGuid,
+      </if>
+      <if test="entId != null">
+        entId,
+      </if>
+      <if test="imgaddress != null">
+        imgaddress,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="dynamictime != null">
+        dynamictime,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="lng != null">
+        lng,
+      </if>
+      <if test="lat != null">
+        lat,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="action != null">
+        action,
+      </if>
+      <if test="likesNum != null">
+        likesNum,
+      </if>
+      <if test="messagesNum != null">
+        messagesNum,
+      </if>
+      <if test="readsNum != null">
+        readsNum,
+      </if>
+      <if test="isDelete != null">
+        isDelete,
+      </if>
+      <if test="deletetime != null">
+        deletetime,
+      </if>
+      <if test="isRead != null">
+        isRead,
+      </if>
+      <if test="isAtPoint != null">
+        isAtPoint,
+      </if>
+      <if test="actionName != null">
+        actionName,
+      </if>
+      <if test="dynamicSource != null">
+        dynamicSource,
+      </if>
+      <if test="dyswitch != null">
+        dyswitch,
+      </if>
+      <if test="entPrex != null">
+        entPrex,
+      </if>
+      <if test="orderPrex != null">
+        orderPrex,
+      </if>
+      <if test="carPlateNumber != null">
+        carPlateNumber,
+      </if>
+      <if test="driverMobile != null">
+        driverMobile,
+      </if>
+      <if test="driverName != null">
+        driverName,
+      </if>
+      <if test="carOrTaskMessage != null">
+        carOrTaskMessage,
+      </if>
+      <if test="upFilePrex != null">
+        upFilePrex,
+      </if>
+      <if test="picUrls != null">
+        picUrls,
+      </if>
+      <if test="orgId != null">
+        orgId,
+      </if>
+      <if test="voiceInfo != null">
+        voiceInfo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        #{guid,jdbcType=VARCHAR},
+      </if>
+      <if test="carId != null">
+        #{carId,jdbcType=VARCHAR},
+      </if>
+      <if test="personId != null">
+        #{personId,jdbcType=VARCHAR},
+      </if>
+      <if test="ordersCid != null">
+        #{ordersCid,jdbcType=VARCHAR},
+      </if>
+      <if test="areaGuid != null">
+        #{areaGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="entId != null">
+        #{entId,jdbcType=VARCHAR},
+      </if>
+      <if test="imgaddress != null">
+        #{imgaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="dynamictime != null">
+        #{dynamictime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="lng != null">
+        #{lng,jdbcType=DOUBLE},
+      </if>
+      <if test="lat != null">
+        #{lat,jdbcType=DOUBLE},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="action != null">
+        #{action,jdbcType=INTEGER},
+      </if>
+      <if test="likesNum != null">
+        #{likesNum,jdbcType=INTEGER},
+      </if>
+      <if test="messagesNum != null">
+        #{messagesNum,jdbcType=INTEGER},
+      </if>
+      <if test="readsNum != null">
+        #{readsNum,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="deletetime != null">
+        #{deletetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isRead != null">
+        #{isRead,jdbcType=TINYINT},
+      </if>
+      <if test="isAtPoint != null">
+        #{isAtPoint,jdbcType=TINYINT},
+      </if>
+      <if test="actionName != null">
+        #{actionName,jdbcType=VARCHAR},
+      </if>
+      <if test="dynamicSource != null">
+        #{dynamicSource,jdbcType=TINYINT},
+      </if>
+      <if test="dyswitch != null">
+        #{dyswitch,jdbcType=TINYINT},
+      </if>
+      <if test="entPrex != null">
+        #{entPrex,jdbcType=VARCHAR},
+      </if>
+      <if test="orderPrex != null">
+        #{orderPrex,jdbcType=VARCHAR},
+      </if>
+      <if test="carPlateNumber != null">
+        #{carPlateNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="driverMobile != null">
+        #{driverMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="driverName != null">
+        #{driverName,jdbcType=VARCHAR},
+      </if>
+      <if test="carOrTaskMessage != null">
+        #{carOrTaskMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="upFilePrex != null">
+        #{upFilePrex,jdbcType=VARCHAR},
+      </if>
+      <if test="picUrls != null">
+        #{picUrls,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="orgId != null">
+        #{orgId,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="voiceInfo != null">
+        #{voiceInfo,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.logibeat.cloud.persistent.entity.TaskDynamicEntity">
+    update task_dynamic
+    <trim prefix="SET" suffixOverrides=",">
+      <if test="carId != null">
+        carId = #{carId,jdbcType=VARCHAR},
+      </if>
+      <if test="personId != null">
+          personId = #{personId,jdbcType=VARCHAR},
+      </if>
+      <if test="ordersCid != null">
+          ordersCid = #{ordersCid,jdbcType=VARCHAR},
+      </if>
+      <if test="areaGuid != null">
+          areaGuid = #{areaGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="entId != null">
+          entId = #{entId,jdbcType=VARCHAR},
+      </if>
+      <if test="imgaddress != null">
+          imgaddress = #{imgaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+          content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="dynamictime != null">
+          dynamictime = #{dynamictime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="address != null">
+          address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+          remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="lng != null">
+          lng = #{lng,jdbcType=DOUBLE},
+      </if>
+      <if test="lat != null">
+          lat = #{lat,jdbcType=DOUBLE},
+      </if>
+      <if test="type != null">
+          type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="action != null">
+          action = #{action,jdbcType=INTEGER},
+      </if>
+      <if test="likesNum != null">
+          likesNum = #{likesNum,jdbcType=INTEGER},
+      </if>
+      <if test="messagesNum != null">
+          messagesNum = #{messagesNum,jdbcType=INTEGER},
+      </if>
+      <if test="readsNum != null">
+          readsNum = #{readsNum,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null">
+          isDelete = #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="deletetime != null">
+          deletetime = #{deletetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isRead != null">
+          isRead = #{isRead,jdbcType=TINYINT},
+      </if>
+      <if test="isAtPoint != null">
+          isAtPoint = #{isAtPoint,jdbcType=TINYINT},
+      </if>
+      <if test="actionName != null">
+          actionName = #{actionName,jdbcType=VARCHAR},
+      </if>
+      <if test="dynamicSource != null">
+          dynamicSource = #{dynamicSource,jdbcType=TINYINT},
+      </if>
+      <if test="dyswitch != null">
+          dyswitch = #{dyswitch,jdbcType=TINYINT},
+      </if>
+      <if test="entPrex != null">
+          entPrex = #{entPrex,jdbcType=VARCHAR},
+      </if>
+      <if test="orderPrex != null">
+          orderPrex = #{orderPrex,jdbcType=VARCHAR},
+      </if>
+      <if test="carPlateNumber != null">
+          carPlateNumber = #{carPlateNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="driverMobile != null">
+          driverMobile = #{driverMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="driverName != null">
+          driverName = #{driverName,jdbcType=VARCHAR},
+      </if>
+      <if test="carOrTaskMessage != null">
+          carOrTaskMessage = #{carOrTaskMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="upFilePrex != null">
+          upFilePrex = #{upFilePrex,jdbcType=VARCHAR},
+      </if>
+      <if test="picUrls != null">
+          picUrls = #{picUrls,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="orgId != null">
+        orgId = #{orgId,jdbcType=LONGVARCHAR}
+      </if>
+      <if test="voiceInfo != null">
+        voiceInfo = #{orgId,jdbcType=LONGVARCHAR}
+      </if>
+    </trim>
+    where guid = #{guid,jdbcType=VARCHAR}
+  </update>
+
+  <select id="findByOrderAsDynamic" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from task_dynamic where isdelete=0 and ordersCid = #{ordersCid,jdbcType=VARCHAR}
+    order by dynamicTime
+  </select>
+
+  <select id="getRunDynamicList" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM task_dynamic
+	WHERE ordersCid = #{ordersCid} AND isDelete =0
+	ORDER BY dynamictime desc
+    <if test="allOrLast == 2">
+      LIMIT 0,1
+    </if>
+  </select>
+
+  <select id="getTaskDynamicList" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM task_dynamic
+	WHERE ordersCid = #{ordersCid} AND isDelete =0
+    <if test="action > 0">
+      AND action = #{action}
+    </if>
+    ORDER BY dynamictime ASC
+  </select>
+
+  <select id="getDynamicListByAreaGUid" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM task_dynamic WHERE ordersCid = #{ordersCid} AND isDelete = 0 And areaGuid = #{ordersAreaGUID}
+    <if test="action > 0 ">
+      AND action = #{action}
+    </if>
+    ORDER BY dynamictime ASC
+  </select>
+</mapper>

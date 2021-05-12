@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.logibeat.cloud.persistent.dao.DriverInterestLabelDao">
+    <resultMap id="DriverInterestLabelMap" type="com.logibeat.cloud.persistent.entity.DriverInterestLabelEntity">
+        <result column="guid" property="guid"/>
+        <result column="base_user_id" property="baseUserId"/>
+        <result column="interest_label" property="interestLabel"/>
+        <result column="create_time" property="createTime"/>
+        <result column="modify_time" property="modifyTime"/>
+        
+    </resultMap>
+
+    <sql id="table">
+        driver_interest_label
+    </sql>
+
+    <sql id="columns">
+        guid, base_user_id, interest_label, create_time, modify_time
+    </sql>
+
+    <sql id="values">
+        #{guid}, #{baseUserId}, #{interestLabel}, #{createTime}, #{modifyTime}
+    </sql>
+
+    <insert id="insert" parameterType="com.logibeat.cloud.persistent.entity.DriverInterestLabelEntity">
+        INSERT INTO
+        <include refid="table"/>
+        (<include refid="columns"/>)
+        VALUES
+        (<include refid="values"/>)
+    </insert>
+
+    <select id="findById" parameterType="string" resultMap="DriverInterestLabelMap" >
+        SELECT <include refid="columns" />
+        FROM <include refid="table" />
+        WHERE guid = #{guid}
+    </select>
+
+    <select id="findByUserId" parameterType="string" resultMap="DriverInterestLabelMap" >
+        SELECT <include refid="columns" />
+        FROM <include refid="table" />
+        WHERE base_user_id = #{baseUserId}
+    </select>
+
+    <update id="update" parameterType="com.logibeat.cloud.persistent.entity.DriverInterestLabelEntity">
+        UPDATE
+        <include refid="table"/>
+        <set>
+            <if test="guid != null">guid = #{guid},</if>
+            <if test="baseUserId != null">base_user_id = #{baseUserId},</if>
+            <if test="interestLabel != null">interest_label = #{interestLabel},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="modifyTime != null">modify_time = #{modifyTime},</if>
+            
+        </set>
+        WHERE guid = #{guid}
+    </update>
+
+    <delete id="delete" parameterType="string">
+        DELETE FROM <include refid="table"/>
+        WHERE guid = #{guid}
+    </delete>
+
+    <select id="count" parameterType="com.logibeat.cloud.persistent.entity.DriverInterestLabelEntity" resultType="long">
+        SELECT COUNT(guid)
+        FROM
+        <include refid="table"/>
+        <where>
+            <include refid="criteria"/>
+        </where>
+    </select>
+
+    <select id="paging" parameterType="com.logibeat.cloud.persistent.entity.DriverInterestLabelEntity" resultMap="DriverInterestLabelMap">
+        SELECT
+        <include refid="columns"/>
+        FROM
+        <include refid="table"/>
+        <where>
+            <include refid="criteria"/>
+        </where>
+        LIMIT #{offset}, #{limit}
+    </select>
+
+    <sql id="criteria">
+        <if test="guid != null"> and guid = #{guid}</if>
+        <if test="baseUserId != null"> and base_user_id = #{baseUserId}</if>
+        <if test="interestLabel != null"> and interest_label = #{interestLabel}</if>
+        <if test="createTime != null"> and create_time = #{createTime}</if>
+        <if test="modifyTime != null"> and modify_time = #{modifyTime}</if>
+        
+    </sql>
+</mapper>

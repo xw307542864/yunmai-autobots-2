@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.logibeat.cloud.persistent.dao.EnterpriseCooperateEntDao">
+  <resultMap id="BaseResultMap" type="com.logibeat.cloud.persistent.entity.EnterpriseCooperateEntEntity">
+    <id column="GUID" jdbcType="VARCHAR" property="guid" />
+    <result column="CoopGUID" jdbcType="VARCHAR" property="coopGUID" />
+    <result column="EntID" jdbcType="VARCHAR" property="entID" />
+    <result column="CoopEntID" jdbcType="VARCHAR" property="coopEntID" />
+    <result column="CoopType" jdbcType="INTEGER" property="coopType" />
+    <result column="IsCoopGoods" jdbcType="TINYINT" property="isCoopGoods" />
+    <result column="Remark" jdbcType="VARCHAR" property="remark" />
+    <result column="StartTime" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="EndTime" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="AddTime" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="addPersonId" jdbcType="VARCHAR" property="addPersonId" />
+    <result column="IsUsual" jdbcType="TINYINT" property="isUsual" />
+    <result column="IsInvite" jdbcType="TINYINT" property="isInvite" />
+    <result column="InviteType" jdbcType="INTEGER" property="inviteType" />
+    <result column="InviteState" jdbcType="INTEGER" property="inviteState" />
+    <result column="IsHandle" jdbcType="TINYINT" property="isHandle" />
+    <result column="HandleTime" jdbcType="TIMESTAMP" property="handleTime" />
+    <result column="HandleRemark" jdbcType="VARCHAR" property="handleRemark" />
+    <result column="HandlePersonID" jdbcType="VARCHAR" property="handlePersonID" />
+    <result column="Contact" jdbcType="VARCHAR" property="contact" />
+    <result column="IsFriend" jdbcType="TINYINT" property="isFriend" />
+    <result column="IsStarMark" jdbcType="TINYINT" property="isStarMark" />
+    <result column="Address" jdbcType="VARCHAR" property="address" />
+    <result column="EditTime" jdbcType="TIMESTAMP" property="editTime" />
+    <result column="EditPersonID" jdbcType="VARCHAR" property="editPersonID" />
+    <result column="IsDelete" jdbcType="TINYINT" property="isDelete" />
+    <result column="contactId" jdbcType="VARCHAR" property="contactId" />
+    <result column="labelDictId" jdbcType="VARCHAR" property="labelDictId" />
+    <result column="labelDictName" jdbcType="VARCHAR" property="labelDictName" />
+    <result column="starLevelDictId" jdbcType="VARCHAR" property="starLevelDictId" />
+    <result column="starLevelName" jdbcType="VARCHAR" property="starLevelName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GUID, CoopGUID, EntID, CoopEntID, CoopType, IsCoopGoods, Remark, StartTime, EndTime, 
+    AddTime, addPersonId, IsUsual, IsInvite, InviteType, InviteState, IsHandle, HandleTime, 
+    HandleRemark, HandlePersonID, Contact, IsFriend, IsStarMark, Address, EditTime, EditPersonID, 
+    IsDelete, contactId, labelDictId, labelDictName, starLevelDictId, starLevelName
+  </sql>
+  <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ent_cooperatent
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </select>
+  <delete id="delete" parameterType="java.lang.String">
+    delete from ent_cooperatent
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.logibeat.cloud.persistent.entity.EnterpriseCooperateEntEntity">
+    insert into ent_cooperatent
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        GUID,
+      </if>
+      <if test="coopGUID != null">
+        CoopGUID,
+      </if>
+      <if test="entID != null">
+        EntID,
+      </if>
+      <if test="coopEntID != null">
+        CoopEntID,
+      </if>
+      <if test="coopType != null">
+        CoopType,
+      </if>
+      <if test="isCoopGoods != null">
+        IsCoopGoods,
+      </if>
+      <if test="remark != null">
+        Remark,
+      </if>
+      <if test="startTime != null">
+        StartTime,
+      </if>
+      <if test="endTime != null">
+        EndTime,
+      </if>
+      <if test="addTime != null">
+        AddTime,
+      </if>
+      <if test="addPersonId != null">
+        addPersonId,
+      </if>
+      <if test="isUsual != null">
+        IsUsual,
+      </if>
+      <if test="isInvite != null">
+        IsInvite,
+      </if>
+      <if test="inviteType != null">
+        InviteType,
+      </if>
+      <if test="inviteState != null">
+        InviteState,
+      </if>
+      <if test="isHandle != null">
+        IsHandle,
+      </if>
+      <if test="handleTime != null">
+        HandleTime,
+      </if>
+      <if test="handleRemark != null">
+        HandleRemark,
+      </if>
+      <if test="handlePersonID != null">
+        HandlePersonID,
+      </if>
+      <if test="contact != null">
+        Contact,
+      </if>
+      <if test="isFriend != null">
+        IsFriend,
+      </if>
+      <if test="isStarMark != null">
+        IsStarMark,
+      </if>
+      <if test="address != null">
+        Address,
+      </if>
+      <if test="editTime != null">
+        EditTime,
+      </if>
+      <if test="editPersonID != null">
+        EditPersonID,
+      </if>
+      <if test="isDelete != null">
+        IsDelete,
+      </if>
+      <if test="contactId != null">
+        contactId,
+      </if>
+      <if test="labelDictId != null">
+        labelDictId,
+      </if>
+      <if test="labelDictName != null">
+        labelDictName,
+      </if>
+      <if test="starLevelDictId != null">
+        starLevelDictId,
+      </if>
+      <if test="starLevelName != null">
+        starLevelName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        #{guid,jdbcType=VARCHAR},
+      </if>
+      <if test="coopGUID != null">
+        #{coopGUID,jdbcType=VARCHAR},
+      </if>
+      <if test="entID != null">
+        #{entID,jdbcType=VARCHAR},
+      </if>
+      <if test="coopEntID != null">
+        #{coopEntID,jdbcType=VARCHAR},
+      </if>
+      <if test="coopType != null">
+        #{coopType,jdbcType=INTEGER},
+      </if>
+      <if test="isCoopGoods != null">
+        #{isCoopGoods,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addPersonId != null">
+        #{addPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="isUsual != null">
+        #{isUsual,jdbcType=TINYINT},
+      </if>
+      <if test="isInvite != null">
+        #{isInvite,jdbcType=TINYINT},
+      </if>
+      <if test="inviteType != null">
+        #{inviteType,jdbcType=INTEGER},
+      </if>
+      <if test="inviteState != null">
+        #{inviteState,jdbcType=INTEGER},
+      </if>
+      <if test="isHandle != null">
+        #{isHandle,jdbcType=TINYINT},
+      </if>
+      <if test="handleTime != null">
+        #{handleTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="handleRemark != null">
+        #{handleRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="handlePersonID != null">
+        #{handlePersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null">
+        #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="isFriend != null">
+        #{isFriend,jdbcType=TINYINT},
+      </if>
+      <if test="isStarMark != null">
+        #{isStarMark,jdbcType=TINYINT},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="editTime != null">
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editPersonID != null">
+        #{editPersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="contactId != null">
+        #{contactId,jdbcType=VARCHAR},
+      </if>
+      <if test="labelDictId != null">
+        #{labelDictId,jdbcType=VARCHAR},
+      </if>
+      <if test="labelDictName != null">
+        #{labelDictName,jdbcType=VARCHAR},
+      </if>
+      <if test="starLevelDictId != null">
+        #{starLevelDictId,jdbcType=VARCHAR},
+      </if>
+      <if test="starLevelName != null">
+        #{starLevelName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.logibeat.cloud.persistent.entity.EnterpriseCooperateEntEntity">
+    update ent_cooperatent
+    <trim prefix="SET" suffixOverrides=",">
+      <if test="coopGUID != null">
+        CoopGUID = #{coopGUID,jdbcType=VARCHAR},
+      </if>
+      <if test="entID != null">
+          EntID = #{entID,jdbcType=VARCHAR},
+      </if>
+      <if test="coopEntID != null">
+          CoopEntID = #{coopEntID,jdbcType=VARCHAR},
+      </if>
+      <if test="coopType != null">
+          CoopType = #{coopType,jdbcType=INTEGER},
+      </if>
+      <if test="isCoopGoods != null">
+          IsCoopGoods = #{isCoopGoods,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null">
+          Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+          StartTime = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+          EndTime = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addTime != null">
+          AddTime = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addPersonId != null">
+          addPersonId = #{addPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="isUsual != null">
+          IsUsual = #{isUsual,jdbcType=TINYINT},
+      </if>
+      <if test="isInvite != null">
+          IsInvite = #{isInvite,jdbcType=TINYINT},
+      </if>
+      <if test="inviteType != null">
+          InviteType = #{inviteType,jdbcType=INTEGER},
+      </if>
+      <if test="inviteState != null">
+          InviteState = #{inviteState,jdbcType=INTEGER},
+      </if>
+      <if test="isHandle != null">
+          IsHandle = #{isHandle,jdbcType=TINYINT},
+      </if>
+      <if test="handleTime != null">
+          HandleTime = #{handleTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="handleRemark != null">
+          HandleRemark = #{handleRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="handlePersonID != null">
+          HandlePersonID = #{handlePersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null">
+          Contact = #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="isFriend != null">
+          IsFriend = #{isFriend,jdbcType=TINYINT},
+      </if>
+      <if test="isStarMark != null">
+          IsStarMark = #{isStarMark,jdbcType=TINYINT},
+      </if>
+      <if test="address != null">
+          Address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="editTime != null">
+          EditTime = #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editPersonID != null">
+          EditPersonID = #{editPersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+          IsDelete = #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="contactId != null">
+          contactId = #{contactId,jdbcType=VARCHAR},
+      </if>
+      <if test="labelDictId != null">
+          labelDictId = #{labelDictId,jdbcType=VARCHAR},
+      </if>
+      <if test="labelDictName != null">
+          labelDictName = #{labelDictName,jdbcType=VARCHAR},
+      </if>
+      <if test="starLevelDictId != null">
+          starLevelDictId = #{starLevelDictId,jdbcType=VARCHAR},
+      </if>
+      <if test="starLevelName != null">
+          starLevelName = #{starLevelName,jdbcType=VARCHAR}
+      </if>
+    </trim>
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </update>
+</mapper>

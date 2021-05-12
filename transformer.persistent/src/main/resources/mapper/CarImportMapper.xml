@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.logibeat.cloud.persistent.dao.CarImportDao">
+  <resultMap id="BaseResultMap" type="com.logibeat.cloud.persistent.entity.CarImportEntity">
+    <id column="carId" jdbcType="VARCHAR" property="carId" />
+    <result column="entId" jdbcType="VARCHAR" property="entId" />
+    <result column="srcEntId" jdbcType="INTEGER" property="srcEntId" />
+    <result column="srcEntName" jdbcType="VARCHAR" property="srcEntName" />
+    <result column="targetEntName" jdbcType="VARCHAR" property="targetEntName" />
+    <result column="addTime" jdbcType="TIMESTAMP" property="addTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    carId, entId, srcEntId, srcEntName, targetEntName, addTime
+  </sql>
+  <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from car_import
+    where carId = #{carId,jdbcType=VARCHAR}
+  </select>
+  <delete id="delete" parameterType="java.lang.String">
+    delete from car_import
+    where carId = #{carId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.logibeat.cloud.persistent.entity.CarImportEntity">
+    insert into car_import
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="carId != null">
+        carId,
+      </if>
+      <if test="entId != null">
+        entId,
+      </if>
+      <if test="srcEntId != null">
+        srcEntId,
+      </if>
+      <if test="srcEntName != null">
+        srcEntName,
+      </if>
+      <if test="targetEntName != null">
+        targetEntName,
+      </if>
+      <if test="addTime != null">
+        addTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="carId != null">
+        #{carId,jdbcType=VARCHAR},
+      </if>
+      <if test="entId != null">
+        #{entId,jdbcType=VARCHAR},
+      </if>
+      <if test="srcEntId != null">
+        #{srcEntId,jdbcType=INTEGER},
+      </if>
+      <if test="srcEntName != null">
+        #{srcEntName,jdbcType=VARCHAR},
+      </if>
+      <if test="targetEntName != null">
+        #{targetEntName,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.logibeat.cloud.persistent.entity.CarImportEntity">
+    update car_import
+    <trim prefix="SET" suffixOverrides=",">
+      <if test="entId != null">
+        entId = #{entId,jdbcType=VARCHAR},
+      </if>
+      <if test="srcEntId != null">
+          srcEntId = #{srcEntId,jdbcType=INTEGER},
+      </if>
+      <if test="srcEntName != null">
+          srcEntName = #{srcEntName,jdbcType=VARCHAR},
+      </if>
+      <if test="targetEntName != null">
+          targetEntName = #{targetEntName,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+          addTime = #{addTime,jdbcType=TIMESTAMP}
+      </if>
+    </trim>
+    where carId = #{carId,jdbcType=VARCHAR}
+  </update>
+</mapper>

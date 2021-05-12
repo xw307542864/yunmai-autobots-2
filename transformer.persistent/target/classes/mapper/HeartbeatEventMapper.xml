@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.logibeat.cloud.persistent.dao.HeartbeatEventDao">
+  <resultMap id="BaseResultMap" type="com.logibeat.cloud.persistent.entity.HeartbeatEventEntity">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="task_id" jdbcType="VARCHAR" property="taskId" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="key_word" jdbcType="VARCHAR" property="keyWord" />
+    <result column="source" jdbcType="INTEGER" property="source" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="interval_second" jdbcType="INTEGER" property="intervalSecond" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="exception_num" jdbcType="INTEGER" property="exceptionNum" />
+    <result column="callback_num" jdbcType="INTEGER" property="callbackNum" />
+    <result column="exception_id" jdbcType="VARCHAR" property="exceptionId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, task_id, type, key_word, source, start_time, end_time, interval_second, add_time, 
+    exception_num, callback_num, exception_id
+  </sql>
+  <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_heartbeat_event
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="delete" parameterType="java.lang.String">
+    delete from sys_heartbeat_event
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.logibeat.cloud.persistent.entity.HeartbeatEventEntity">
+    insert into sys_heartbeat_event
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="taskId != null">
+        task_id,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="keyWord != null">
+        key_word,
+      </if>
+      <if test="source != null">
+        source,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="intervalSecond != null">
+        interval_second,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="exceptionNum != null">
+        exception_num,
+      </if>
+      <if test="callbackNum != null">
+        callback_num,
+      </if>
+      <if test="exceptionId != null">
+        exception_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="taskId != null">
+        #{taskId,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="keyWord != null">
+        #{keyWord,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null">
+        #{source,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="intervalSecond != null">
+        #{intervalSecond,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="exceptionNum != null">
+        #{exceptionNum,jdbcType=INTEGER},
+      </if>
+      <if test="callbackNum != null">
+        #{callbackNum,jdbcType=INTEGER},
+      </if>
+      <if test="exceptionId != null">
+        #{exceptionId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.logibeat.cloud.persistent.entity.HeartbeatEventEntity">
+    update sys_heartbeat_event
+    <trim prefix="SET" suffixOverrides=",">
+      <if test="taskId != null">
+        task_id = #{taskId,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+          type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="keyWord != null">
+          key_word = #{keyWord,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null">
+          source = #{source,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null">
+          start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+          end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="intervalSecond != null">
+          interval_second = #{intervalSecond,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+          add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="exceptionNum != null">
+          exception_num = #{exceptionNum,jdbcType=INTEGER},
+      </if>
+      <if test="callbackNum != null">
+          callback_num = #{callbackNum,jdbcType=INTEGER},
+      </if>
+      <if test="exceptionId != null">
+          exception_id = #{exceptionId,jdbcType=VARCHAR}
+      </if>
+    </trim>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getEventList" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM sys_heartbeat_event
+    where type = #{type} AND task_id = #{taskId}
+  </select>
+</mapper>

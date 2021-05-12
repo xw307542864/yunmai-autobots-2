@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.logibeat.cloud.persistent.dao.EntClassLineDao">
+  <resultMap id="BaseResultMap" type="com.logibeat.cloud.persistent.entity.EntClassLineEntity">
+    <id column="guid" jdbcType="VARCHAR" property="guid" />
+    <result column="ent_id" jdbcType="VARCHAR" property="entId" />
+    <result column="line_name" jdbcType="VARCHAR" property="lineName" />
+    <result column="line_name_pinyin" jdbcType="VARCHAR" property="lineNamePinyin" />
+    <result column="start_network_id" jdbcType="VARCHAR" property="startNetworkId" />
+    <result column="end_network_id" jdbcType="VARCHAR" property="endNetworkId" />
+    <result column="network_count" jdbcType="INTEGER" property="networkCount" />
+    <result column="expects_mileage" jdbcType="DOUBLE" property="expectsMileage" />
+    <result column="duration" jdbcType="INTEGER" property="duration" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="add_person_id" jdbcType="VARCHAR" property="addPersonId" />
+    <result column="edit_time" jdbcType="TIMESTAMP" property="editTime" />
+    <result column="edit_person_id" jdbcType="VARCHAR" property="editPersonId" />
+    <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
+    <result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime" />
+    <result column="line_type" jdbcType="INTEGER" property="lineType" />
+    <result column="is_display" jdbcType="TINYINT" property="isDisplay" />
+    <result column="service_guids" jdbcType="LONGVARCHAR" property="serviceGuids" />
+    <result column="transport_type_guids" jdbcType="LONGVARCHAR" property="transportTypeGuids" />
+    <result column="start_netword_guids" jdbcType="LONGVARCHAR" property="startNetwordGuids" />
+    <result column="end_netword_guids" jdbcType="LONGVARCHAR" property="endNetwordGuids" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    guid, ent_id, line_name, line_name_pinyin, start_network_id, end_network_id, network_count, 
+    expects_mileage, duration, add_time, add_person_id, edit_time, edit_person_id, is_delete, 
+    delete_time, line_type, is_display, service_guids, transport_type_guids, start_netword_guids, 
+    end_netword_guids
+  </sql>
+  <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ent_classline
+    where guid = #{guid,jdbcType=VARCHAR}
+  </select>
+  <delete id="delete" parameterType="java.lang.String">
+    delete from ent_classline
+    where guid = #{guid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.logibeat.cloud.persistent.entity.EntClassLineEntity">
+    insert into ent_classline
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        guid,
+      </if>
+      <if test="entId != null">
+        ent_id,
+      </if>
+      <if test="lineName != null">
+        line_name,
+      </if>
+      <if test="lineNamePinyin != null">
+        line_name_pinyin,
+      </if>
+      <if test="startNetworkId != null">
+        start_network_id,
+      </if>
+      <if test="endNetworkId != null">
+        end_network_id,
+      </if>
+      <if test="networkCount != null">
+        network_count,
+      </if>
+      <if test="expectsMileage != null">
+        expects_mileage,
+      </if>
+      <if test="duration != null">
+        duration,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="addPersonId != null">
+        add_person_id,
+      </if>
+      <if test="editTime != null">
+        edit_time,
+      </if>
+      <if test="editPersonId != null">
+        edit_person_id,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+      <if test="deleteTime != null">
+        delete_time,
+      </if>
+      <if test="lineType != null">
+        line_type,
+      </if>
+      <if test="isDisplay != null">
+        is_display,
+      </if>
+      <if test="serviceGuids != null">
+        service_guids,
+      </if>
+      <if test="transportTypeGuids != null">
+        transport_type_guids,
+      </if>
+      <if test="startNetwordGuids != null">
+        start_netword_guids,
+      </if>
+      <if test="endNetwordGuids != null">
+        end_netword_guids,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        #{guid,jdbcType=VARCHAR},
+      </if>
+      <if test="entId != null">
+        #{entId,jdbcType=VARCHAR},
+      </if>
+      <if test="lineName != null">
+        #{lineName,jdbcType=VARCHAR},
+      </if>
+      <if test="lineNamePinyin != null">
+        #{lineNamePinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="startNetworkId != null">
+        #{startNetworkId,jdbcType=VARCHAR},
+      </if>
+      <if test="endNetworkId != null">
+        #{endNetworkId,jdbcType=VARCHAR},
+      </if>
+      <if test="networkCount != null">
+        #{networkCount,jdbcType=INTEGER},
+      </if>
+      <if test="expectsMileage != null">
+        #{expectsMileage,jdbcType=DOUBLE},
+      </if>
+      <if test="duration != null">
+        #{duration,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addPersonId != null">
+        #{addPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="editTime != null">
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editPersonId != null">
+        #{editPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="deleteTime != null">
+        #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lineType != null">
+        #{lineType,jdbcType=INTEGER},
+      </if>
+      <if test="isDisplay != null">
+        #{isDisplay,jdbcType=TINYINT},
+      </if>
+      <if test="serviceGuids != null">
+        #{serviceGuids,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="transportTypeGuids != null">
+        #{transportTypeGuids,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="startNetwordGuids != null">
+        #{startNetwordGuids,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="endNetwordGuids != null">
+        #{endNetwordGuids,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.logibeat.cloud.persistent.entity.EntClassLineEntity">
+    update ent_classline
+    <trim prefix="SET" suffixOverrides=",">
+      <if test="entId != null">
+        ent_id = #{entId,jdbcType=VARCHAR},
+      </if>
+      <if test="lineName != null">
+          line_name = #{lineName,jdbcType=VARCHAR},
+      </if>
+      <if test="lineNamePinyin != null">
+          line_name_pinyin = #{lineNamePinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="startNetworkId != null">
+          start_network_id = #{startNetworkId,jdbcType=VARCHAR},
+      </if>
+      <if test="endNetworkId != null">
+          end_network_id = #{endNetworkId,jdbcType=VARCHAR},
+      </if>
+      <if test="networkCount != null">
+          network_count = #{networkCount,jdbcType=INTEGER},
+      </if>
+      <if test="expectsMileage != null">
+          expects_mileage = #{expectsMileage,jdbcType=DOUBLE},
+      </if>
+      <if test="duration != null">
+          duration = #{duration,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+          add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addPersonId != null">
+          add_person_id = #{addPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="editTime != null">
+          edit_time = #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editPersonId != null">
+          edit_person_id = #{editPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+          is_delete = #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="deleteTime != null">
+          delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lineType != null">
+          line_type = #{lineType,jdbcType=INTEGER},
+      </if>
+      <if test="isDisplay != null">
+          is_display = #{isDisplay,jdbcType=TINYINT},
+      </if>
+      <if test="serviceGuids != null">
+          service_guids = #{serviceGuids,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="transportTypeGuids != null">
+          transport_type_guids = #{transportTypeGuids,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="startNetwordGuids != null">
+          start_netword_guids = #{startNetwordGuids,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="endNetwordGuids != null">
+          end_netword_guids = #{endNetwordGuids,jdbcType=LONGVARCHAR}
+      </if>
+    </trim>
+    where guid = #{guid,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getHistoryLine" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM ent_classline WHERE is_delete = 0 and line_type = 1 AND add_person_id = #{personId}
+    <if test="entId != null">
+      AND ent_id = #{entId}
+    </if>
+    order by add_time desc
+  </select>
+</mapper>

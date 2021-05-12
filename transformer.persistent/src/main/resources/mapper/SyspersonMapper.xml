@@ -1,0 +1,789 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.logibeat.cloud.persistent.dao.SyspersonDao">
+  <resultMap id="BaseResultMap" type="com.logibeat.cloud.persistent.entity.SystemPersonEntity">
+    <id column="PersonID" jdbcType="VARCHAR" property="personID" />
+    <result column="Id" jdbcType="VARCHAR" property="id" />
+    <result column="LoginName" jdbcType="VARCHAR" property="loginName" />
+    <result column="MyName" jdbcType="VARCHAR" property="myName" />
+    <result column="Password" jdbcType="VARCHAR" property="password" />
+    <result column="SurePassword" jdbcType="VARCHAR" property="surePassword" />
+    <result column="Sex" jdbcType="VARCHAR" property="sex" />
+    <result column="SysDepartmentId" jdbcType="VARCHAR" property="sysDepartmentId" />
+    <result column="Position" jdbcType="VARCHAR" property="position" />
+    <result column="MobilePhoneNumber" jdbcType="VARCHAR" property="mobilePhoneNumber" />
+    <result column="PhoneNumber" jdbcType="VARCHAR" property="phoneNumber" />
+    <result column="Province" jdbcType="VARCHAR" property="province" />
+    <result column="City" jdbcType="VARCHAR" property="city" />
+    <result column="Village" jdbcType="VARCHAR" property="village" />
+    <result column="Address" jdbcType="VARCHAR" property="address" />
+    <result column="EmailAddress" jdbcType="VARCHAR" property="emailAddress" />
+    <result column="Remark" jdbcType="VARCHAR" property="remark" />
+    <result column="State" jdbcType="VARCHAR" property="state" />
+    <result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="CreatePerson" jdbcType="VARCHAR" property="createPerson" />
+    <result column="UpdateTime" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="LogonNum" jdbcType="INTEGER" property="logonNum" />
+    <result column="LogonTime" jdbcType="TIMESTAMP" property="logonTime" />
+    <result column="LogonIP" jdbcType="VARCHAR" property="logonIP" />
+    <result column="LastLogonTime" jdbcType="TIMESTAMP" property="lastLogonTime" />
+    <result column="LastLogonIP" jdbcType="VARCHAR" property="lastLogonIP" />
+    <result column="PageStyle" jdbcType="VARCHAR" property="pageStyle" />
+    <result column="UpdatePerson" jdbcType="VARCHAR" property="updatePerson" />
+    <result column="HDpic" jdbcType="VARCHAR" property="hDpic" />
+    <result column="NiChen" jdbcType="VARCHAR" property="niChen" />
+    <result column="RegionCode" jdbcType="INTEGER" property="regionCode" />
+    <result column="QRFileGUID" jdbcType="VARCHAR" property="qRFileGUID" />
+    <result column="RegTypeDictGUID" jdbcType="VARCHAR" property="regTypeDictGUID" />
+    <result column="InviterPersonID" jdbcType="VARCHAR" property="inviterPersonID" />
+    <result column="PersonState" jdbcType="INTEGER" property="personState" />
+    <result column="PwdErrNum" jdbcType="INTEGER" property="pwdErrNum" />
+    <result column="UnLockTime" jdbcType="TIMESTAMP" property="unLockTime" />
+    <result column="IsIM" jdbcType="TINYINT" property="isim" />
+    <result column="IsEntChildAdmin" jdbcType="TINYINT" property="isEntChildAdmin" />
+    <result column="ChildAdminType" jdbcType="INTEGER" property="childAdminType" />
+    <result column="ChildAdminEntID" jdbcType="BIGINT" property="childAdminEntID" />
+    <result column="PersonType" jdbcType="INTEGER" property="personType" />
+    <result column="IsDelete" jdbcType="TINYINT" property="isDelete" />
+    <result column="IsSynchIm" jdbcType="TINYINT" property="isSynchIm" />
+    <result column="WeChat" jdbcType="VARCHAR" property="weChat" />
+    <result column="DriverAuditStatus" jdbcType="INTEGER" property="driverAuditStatus" />
+    <result column="DriverAuditTime" jdbcType="TIMESTAMP" property="driverAuditTime" />
+    <result column="DrivingLic" jdbcType="VARCHAR" property="drivingLic" />
+    <result column="DrivingLicDate" jdbcType="TIMESTAMP" property="drivingLicDate" />
+    <result column="DrivingLicType" jdbcType="VARCHAR" property="drivingLicType" />
+    <result column="DrivingRange" jdbcType="DOUBLE" property="drivingRange" />
+    <result column="Email" jdbcType="VARCHAR" property="email" />
+    <result column="EntID" jdbcType="VARCHAR" property="entID" />
+    <result column="Initial" jdbcType="VARCHAR" property="initial" />
+    <result column="IsCheckFriend" jdbcType="TINYINT" property="isCheckFriend" />
+    <result column="IsDriver" jdbcType="TINYINT" property="isDriver" />
+    <result column="isReg" jdbcType="TINYINT" property="isReg" />
+    <result column="IsShareGpsToCoopEnt" jdbcType="TINYINT" property="isShareGpsToCoopEnt" />
+    <result column="IsShareGpsToMyEnt" jdbcType="TINYINT" property="isShareGpsToMyEnt" />
+    <result column="QQ" jdbcType="VARCHAR" property="qq" />
+    <result column="RefreshDrivingRangeTime" jdbcType="TIMESTAMP" property="refreshDrivingRangeTime" />
+    <result column="SocialLic" jdbcType="VARCHAR" property="socialLic" />
+    <result column="Impwd" jdbcType="VARCHAR" property="impwd" />
+    <result column="imId" jdbcType="VARCHAR" property="imid" />
+    <result column="lastEntId" jdbcType="VARCHAR" property="lastEntId" />
+    <result column="is_disable" jdbcType="TINYINT" property="isDisable" />
+    <result column="logitalkId" jdbcType="VARCHAR" property="logitalkId" />
+    <result column="usualCity" jdbcType="VARCHAR" property="usualCity" />
+    <result column="audit_status" jdbcType="INTEGER" property="auditStatus" />
+    <result column="verified_status" jdbcType="INTEGER" property="verifiedStatus" />
+    <result column="birthDay" jdbcType="DATE" property="birthDay" />
+    <result column="Version" jdbcType="BINARY" property="version" />
+
+  </resultMap>
+  <sql id="Base_Column_List">
+    PersonID, Id, LoginName, MyName, Password, SurePassword, Sex, SysDepartmentId, Position, 
+    MobilePhoneNumber, PhoneNumber, Province, City, Village, Address, EmailAddress, Remark, 
+    State, CreateTime, CreatePerson, UpdateTime, LogonNum, LogonTime, LogonIP, LastLogonTime, 
+    LastLogonIP, PageStyle, UpdatePerson, HDpic, NiChen, RegionCode, QRFileGUID, RegTypeDictGUID, 
+    InviterPersonID, PersonState, PwdErrNum, UnLockTime, IsIM, IsEntChildAdmin, ChildAdminType, 
+    ChildAdminEntID, PersonType, IsDelete, IsSynchIm, WeChat, DriverAuditStatus, DriverAuditTime, 
+    DrivingLic, DrivingLicDate, DrivingLicType, DrivingRange, Email, EntID, Initial, 
+    IsCheckFriend, IsDriver, isReg, IsShareGpsToCoopEnt, IsShareGpsToMyEnt, QQ, RefreshDrivingRangeTime, 
+    SocialLic, Impwd, imId, lastEntId, is_disable, logitalkId, usualCity, audit_status, 
+    verified_status, birthDay, Version
+  </sql>
+  <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sysperson
+    where PersonID = #{personID,jdbcType=VARCHAR}
+  </select>
+  <delete id="delete" parameterType="java.lang.String">
+    delete from sysperson
+    where PersonID = #{personID,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.logibeat.cloud.persistent.entity.SystemPersonEntity">
+    insert into sysperson
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="personID != null">
+        PersonID,
+      </if>
+      <if test="id != null">
+        Id,
+      </if>
+      <if test="loginName != null">
+        LoginName,
+      </if>
+      <if test="myName != null">
+        MyName,
+      </if>
+      <if test="password != null">
+        Password,
+      </if>
+      <if test="surePassword != null">
+        SurePassword,
+      </if>
+      <if test="sex != null">
+        Sex,
+      </if>
+      <if test="sysDepartmentId != null">
+        SysDepartmentId,
+      </if>
+      <if test="position != null">
+        Position,
+      </if>
+      <if test="mobilePhoneNumber != null">
+        MobilePhoneNumber,
+      </if>
+      <if test="phoneNumber != null">
+        PhoneNumber,
+      </if>
+      <if test="province != null">
+        Province,
+      </if>
+      <if test="city != null">
+        City,
+      </if>
+      <if test="village != null">
+        Village,
+      </if>
+      <if test="address != null">
+        Address,
+      </if>
+      <if test="emailAddress != null">
+        EmailAddress,
+      </if>
+      <if test="remark != null">
+        Remark,
+      </if>
+      <if test="state != null">
+        State,
+      </if>
+      <if test="createTime != null">
+        CreateTime,
+      </if>
+      <if test="createPerson != null">
+        CreatePerson,
+      </if>
+      <if test="updateTime != null">
+        UpdateTime,
+      </if>
+      <if test="logonNum != null">
+        LogonNum,
+      </if>
+      <if test="logonTime != null">
+        LogonTime,
+      </if>
+      <if test="logonIP != null">
+        LogonIP,
+      </if>
+      <if test="lastLogonTime != null">
+        LastLogonTime,
+      </if>
+      <if test="lastLogonIP != null">
+        LastLogonIP,
+      </if>
+      <if test="pageStyle != null">
+        PageStyle,
+      </if>
+      <if test="updatePerson != null">
+        UpdatePerson,
+      </if>
+      <if test="hDpic != null">
+        HDpic,
+      </if>
+      <if test="niChen != null">
+        NiChen,
+      </if>
+      <if test="regionCode != null">
+        RegionCode,
+      </if>
+      <if test="qRFileGUID != null">
+        QRFileGUID,
+      </if>
+      <if test="regTypeDictGUID != null">
+        RegTypeDictGUID,
+      </if>
+      <if test="inviterPersonID != null">
+        InviterPersonID,
+      </if>
+      <if test="personState != null">
+        PersonState,
+      </if>
+      <if test="pwdErrNum != null">
+        PwdErrNum,
+      </if>
+      <if test="unLockTime != null">
+        UnLockTime,
+      </if>
+      <if test="isim != null">
+        IsIM,
+      </if>
+      <if test="isEntChildAdmin != null">
+        IsEntChildAdmin,
+      </if>
+      <if test="childAdminType != null">
+        ChildAdminType,
+      </if>
+      <if test="childAdminEntID != null">
+        ChildAdminEntID,
+      </if>
+      <if test="personType != null">
+        PersonType,
+      </if>
+      <if test="isDelete != null">
+        IsDelete,
+      </if>
+      <if test="isSynchIm != null">
+        IsSynchIm,
+      </if>
+      <if test="weChat != null">
+        WeChat,
+      </if>
+      <if test="driverAuditStatus != null">
+        DriverAuditStatus,
+      </if>
+      <if test="driverAuditTime != null">
+        DriverAuditTime,
+      </if>
+      <if test="drivingLic != null">
+        DrivingLic,
+      </if>
+      <if test="drivingLicDate != null">
+        DrivingLicDate,
+      </if>
+      <if test="drivingLicType != null">
+        DrivingLicType,
+      </if>
+      <if test="drivingRange != null">
+        DrivingRange,
+      </if>
+      <if test="email != null">
+        Email,
+      </if>
+      <if test="entID != null">
+        EntID,
+      </if>
+      <if test="initial != null">
+        Initial,
+      </if>
+      <if test="isCheckFriend != null">
+        IsCheckFriend,
+      </if>
+      <if test="isDriver != null">
+        IsDriver,
+      </if>
+      <if test="isReg != null">
+        isReg,
+      </if>
+      <if test="isShareGpsToCoopEnt != null">
+        IsShareGpsToCoopEnt,
+      </if>
+      <if test="isShareGpsToMyEnt != null">
+        IsShareGpsToMyEnt,
+      </if>
+      <if test="qq != null">
+        QQ,
+      </if>
+      <if test="refreshDrivingRangeTime != null">
+        RefreshDrivingRangeTime,
+      </if>
+      <if test="socialLic != null">
+        SocialLic,
+      </if>
+      <if test="impwd != null">
+        Impwd,
+      </if>
+      <if test="imid != null">
+        imId,
+      </if>
+      <if test="lastEntId != null">
+        lastEntId,
+      </if>
+      <if test="isDisable != null">
+        is_disable,
+      </if>
+      <if test="logitalkId != null">
+        logitalkId,
+      </if>
+      <if test="usualCity != null">
+        usualCity,
+      </if>
+      <if test="auditStatus != null">
+        audit_status,
+      </if>
+      <if test="verifiedStatus != null">
+        verified_status,
+      </if>
+      <if test="birthDay != null">
+        birthDay,
+      </if>
+      <if test="version != null">
+        Version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="personID != null">
+        #{personID,jdbcType=VARCHAR},
+      </if>
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="loginName != null">
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="myName != null">
+        #{myName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="surePassword != null">
+        #{surePassword,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="sysDepartmentId != null">
+        #{sysDepartmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilePhoneNumber != null">
+        #{mobilePhoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null">
+        #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="village != null">
+        #{village,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="emailAddress != null">
+        #{emailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createPerson != null">
+        #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logonNum != null">
+        #{logonNum,jdbcType=INTEGER},
+      </if>
+      <if test="logonTime != null">
+        #{logonTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logonIP != null">
+        #{logonIP,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLogonTime != null">
+        #{lastLogonTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLogonIP != null">
+        #{lastLogonIP,jdbcType=VARCHAR},
+      </if>
+      <if test="pageStyle != null">
+        #{pageStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="updatePerson != null">
+        #{updatePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="hDpic != null">
+        #{hDpic,jdbcType=VARCHAR},
+      </if>
+      <if test="niChen != null">
+        #{niChen,jdbcType=VARCHAR},
+      </if>
+      <if test="regionCode != null">
+        #{regionCode,jdbcType=INTEGER},
+      </if>
+      <if test="qRFileGUID != null">
+        #{qRFileGUID,jdbcType=VARCHAR},
+      </if>
+      <if test="regTypeDictGUID != null">
+        #{regTypeDictGUID,jdbcType=VARCHAR},
+      </if>
+      <if test="inviterPersonID != null">
+        #{inviterPersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="personState != null">
+        #{personState,jdbcType=INTEGER},
+      </if>
+      <if test="pwdErrNum != null">
+        #{pwdErrNum,jdbcType=INTEGER},
+      </if>
+      <if test="unLockTime != null">
+        #{unLockTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isim != null">
+        #{isim,jdbcType=TINYINT},
+      </if>
+      <if test="isEntChildAdmin != null">
+        #{isEntChildAdmin,jdbcType=TINYINT},
+      </if>
+      <if test="childAdminType != null">
+        #{childAdminType,jdbcType=INTEGER},
+      </if>
+      <if test="childAdminEntID != null">
+        #{childAdminEntID,jdbcType=BIGINT},
+      </if>
+      <if test="personType != null">
+        #{personType,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="isSynchIm != null">
+        #{isSynchIm,jdbcType=TINYINT},
+      </if>
+      <if test="weChat != null">
+        #{weChat,jdbcType=VARCHAR},
+      </if>
+      <if test="driverAuditStatus != null">
+        #{driverAuditStatus,jdbcType=INTEGER},
+      </if>
+      <if test="driverAuditTime != null">
+        #{driverAuditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="drivingLic != null">
+        #{drivingLic,jdbcType=VARCHAR},
+      </if>
+      <if test="drivingLicDate != null">
+        #{drivingLicDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="drivingLicType != null">
+        #{drivingLicType,jdbcType=VARCHAR},
+      </if>
+      <if test="drivingRange != null">
+        #{drivingRange,jdbcType=DOUBLE},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="entID != null">
+        #{entID,jdbcType=VARCHAR},
+      </if>
+      <if test="initial != null">
+        #{initial,jdbcType=VARCHAR},
+      </if>
+      <if test="isCheckFriend != null">
+        #{isCheckFriend,jdbcType=TINYINT},
+      </if>
+      <if test="isDriver != null">
+        #{isDriver,jdbcType=TINYINT},
+      </if>
+      <if test="isReg != null">
+        #{isReg,jdbcType=TINYINT},
+      </if>
+      <if test="isShareGpsToCoopEnt != null">
+        #{isShareGpsToCoopEnt,jdbcType=TINYINT},
+      </if>
+      <if test="isShareGpsToMyEnt != null">
+        #{isShareGpsToMyEnt,jdbcType=TINYINT},
+      </if>
+      <if test="qq != null">
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="refreshDrivingRangeTime != null">
+        #{refreshDrivingRangeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="socialLic != null">
+        #{socialLic,jdbcType=VARCHAR},
+      </if>
+      <if test="impwd != null">
+        #{impwd,jdbcType=VARCHAR},
+      </if>
+      <if test="imid != null">
+        #{imid,jdbcType=VARCHAR},
+      </if>
+      <if test="lastEntId != null">
+        #{lastEntId,jdbcType=VARCHAR},
+      </if>
+      <if test="isDisable != null">
+        #{isDisable,jdbcType=TINYINT},
+      </if>
+      <if test="logitalkId != null">
+        #{logitalkId,jdbcType=VARCHAR},
+      </if>
+      <if test="usualCity != null">
+        #{usualCity,jdbcType=VARCHAR},
+      </if>
+      <if test="auditStatus != null">
+        #{auditStatus,jdbcType=INTEGER},
+      </if>
+      <if test="verifiedStatus != null">
+        #{verifiedStatus,jdbcType=INTEGER},
+      </if>
+      <if test="birthDay != null">
+        #{birthDay,jdbcType=DATE},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=BINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.logibeat.cloud.persistent.entity.SystemPersonEntity">
+    update sysperson
+    <trim prefix="SET" suffixOverrides=",">
+      <if test="id != null">
+        Id = #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="loginName != null">
+          LoginName = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="myName != null">
+          MyName = #{myName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+          Password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="surePassword != null">
+          SurePassword = #{surePassword,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+          Sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="sysDepartmentId != null">
+          SysDepartmentId = #{sysDepartmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+          Position = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilePhoneNumber != null">
+          MobilePhoneNumber = #{mobilePhoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null">
+          PhoneNumber = #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+          Province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+          City = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="village != null">
+          Village = #{village,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+          Address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="emailAddress != null">
+          EmailAddress = #{emailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+          Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+          State = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+          CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createPerson != null">
+          CreatePerson = #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+          UpdateTime = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logonNum != null">
+          LogonNum = #{logonNum,jdbcType=INTEGER},
+      </if>
+      <if test="logonTime != null">
+          LogonTime = #{logonTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logonIP != null">
+          LogonIP = #{logonIP,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLogonTime != null">
+          LastLogonTime = #{lastLogonTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLogonIP != null">
+          LastLogonIP = #{lastLogonIP,jdbcType=VARCHAR},
+      </if>
+      <if test="pageStyle != null">
+          PageStyle = #{pageStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="updatePerson != null">
+          UpdatePerson = #{updatePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="hDpic != null">
+          HDpic = #{hDpic,jdbcType=VARCHAR},
+      </if>
+      <if test="niChen != null">
+          NiChen = #{niChen,jdbcType=VARCHAR},
+      </if>
+      <if test="regionCode != null">
+          RegionCode = #{regionCode,jdbcType=INTEGER},
+      </if>
+      <if test="qRFileGUID != null">
+          QRFileGUID = #{qRFileGUID,jdbcType=VARCHAR},
+      </if>
+      <if test="regTypeDictGUID != null">
+          RegTypeDictGUID = #{regTypeDictGUID,jdbcType=VARCHAR},
+      </if>
+      <if test="inviterPersonID != null">
+          InviterPersonID = #{inviterPersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="personState != null">
+          PersonState = #{personState,jdbcType=INTEGER},
+      </if>
+      <if test="pwdErrNum != null">
+          PwdErrNum = #{pwdErrNum,jdbcType=INTEGER},
+      </if>
+      <if test="unLockTime != null">
+          UnLockTime = #{unLockTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isim != null">
+          IsIM = #{isim,jdbcType=TINYINT},
+      </if>
+      <if test="isEntChildAdmin != null">
+          IsEntChildAdmin = #{isEntChildAdmin,jdbcType=TINYINT},
+      </if>
+      <if test="childAdminType != null">
+          ChildAdminType = #{childAdminType,jdbcType=INTEGER},
+      </if>
+      <if test="childAdminEntID != null">
+          ChildAdminEntID = #{childAdminEntID,jdbcType=BIGINT},
+      </if>
+      <if test="personType != null">
+          PersonType = #{personType,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null">
+          IsDelete = #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="isSynchIm != null">
+          IsSynchIm = #{isSynchIm,jdbcType=TINYINT},
+      </if>
+      <if test="weChat != null">
+          WeChat = #{weChat,jdbcType=VARCHAR},
+      </if>
+      <if test="driverAuditStatus != null">
+          DriverAuditStatus = #{driverAuditStatus,jdbcType=INTEGER},
+      </if>
+      <if test="driverAuditTime != null">
+          DriverAuditTime = #{driverAuditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="drivingLic != null">
+          DrivingLic = #{drivingLic,jdbcType=VARCHAR},
+      </if>
+      <if test="drivingLicDate != null">
+          DrivingLicDate = #{drivingLicDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="drivingLicType != null">
+          DrivingLicType = #{drivingLicType,jdbcType=VARCHAR},
+      </if>
+      <if test="drivingRange != null">
+          DrivingRange = #{drivingRange,jdbcType=DOUBLE},
+      </if>
+      <if test="email != null">
+          Email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="entID != null">
+          EntID = #{entID,jdbcType=VARCHAR},
+      </if>
+      <if test="initial != null">
+          Initial = #{initial,jdbcType=VARCHAR},
+      </if>
+      <if test="isCheckFriend != null">
+          IsCheckFriend = #{isCheckFriend,jdbcType=TINYINT},
+      </if>
+      <if test="isDriver != null">
+          IsDriver = #{isDriver,jdbcType=TINYINT},
+      </if>
+      <if test="isReg != null">
+          isReg = #{isReg,jdbcType=TINYINT},
+      </if>
+      <if test="isShareGpsToCoopEnt != null">
+          IsShareGpsToCoopEnt = #{isShareGpsToCoopEnt,jdbcType=TINYINT},
+      </if>
+      <if test="isShareGpsToMyEnt != null">
+          IsShareGpsToMyEnt = #{isShareGpsToMyEnt,jdbcType=TINYINT},
+      </if>
+      <if test="qq != null">
+          QQ = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="refreshDrivingRangeTime != null">
+          RefreshDrivingRangeTime = #{refreshDrivingRangeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="socialLic != null">
+          SocialLic = #{socialLic,jdbcType=VARCHAR},
+      </if>
+      <if test="impwd != null">
+          Impwd = #{impwd,jdbcType=VARCHAR},
+      </if>
+      <if test="imid != null">
+          imId = #{imid,jdbcType=VARCHAR},
+      </if>
+      <if test="lastEntId != null">
+          lastEntId = #{lastEntId,jdbcType=VARCHAR},
+      </if>
+      <if test="isDisable != null">
+          is_disable = #{isDisable,jdbcType=TINYINT},
+      </if>
+      <if test="logitalkId != null">
+          logitalkId = #{logitalkId,jdbcType=VARCHAR},
+      </if>
+      <if test="usualCity != null">
+          usualCity = #{usualCity,jdbcType=VARCHAR},
+      </if>
+      <if test="auditStatus != null">
+          audit_status = #{auditStatus,jdbcType=INTEGER},
+      </if>
+      <if test="verifiedStatus != null">
+          verified_status = #{verifiedStatus,jdbcType=INTEGER},
+      </if>
+      <if test="birthDay != null">
+          birthDay = #{birthDay,jdbcType=DATE},
+      </if>
+      <if test="version != null">
+          Version = #{version,jdbcType=BINARY}
+      </if>
+    </trim>
+    where PersonID = #{personID,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getSearchList" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM sysperson
+    WHERE AND PersonType = 3 AND isDelete = 0 AND PersonID != #{personId}
+    AND MyName LIKE concat(concat('%',#{keyWord}),'%')
+    OR MobilePhoneNumber LIKE concat(concat('%',#{keyWord}),'%')
+    LIMIT 10
+  </select>
+
+  <select id="getChildPersonList" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM sysperson  WHERE ChildAdminEntID = #{entId} AND IsEntChildAdmin = 1
+  </select>
+
+  <select id="getEntityByMobile" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM sysperson  WHERE isDelete = 0 and loginName = #{mobile}
+  </select>
+
+  <select id="getEntityByImId" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM sysperson  WHERE isDelete = 0 and imId = #{imId}
+  </select>
+
+
+</mapper>

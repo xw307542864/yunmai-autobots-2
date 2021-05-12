@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.logibeat.cloud.persistent.dao.NetworkDao">
+  <resultMap id="BaseResultMap" type="com.logibeat.cloud.persistent.entity.NetworkEntity">
+    <id column="guid" jdbcType="VARCHAR" property="guid" />
+    <result column="entid" jdbcType="VARCHAR" property="entid" />
+    <result column="networkCode" jdbcType="VARCHAR" property="networkCode" />
+    <result column="networkName" jdbcType="VARCHAR" property="networkName" />
+    <result column="networkNamePinyin" jdbcType="VARCHAR" property="networkNamePinyin" />
+    <result column="networkNamePinyinHead" jdbcType="VARCHAR" property="networkNamePinyinHead" />
+    <result column="networkContactUser" jdbcType="VARCHAR" property="networkContactUser" />
+    <result column="networkContactPhone" jdbcType="VARCHAR" property="networkContactPhone" />
+    <result column="networkAddress" jdbcType="VARCHAR" property="networkAddress" />
+    <result column="networkAreainfo" jdbcType="VARCHAR" property="networkAreainfo" />
+    <result column="Lng" jdbcType="DOUBLE" property="lng" />
+    <result column="lat" jdbcType="DOUBLE" property="lat" />
+    <result column="Remark" jdbcType="VARCHAR" property="remark" />
+    <result column="AddTime" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="EditTime" jdbcType="TIMESTAMP" property="editTime" />
+    <result column="EditPersonID" jdbcType="BIGINT" property="editPersonID" />
+    <result column="IsDelete" jdbcType="TINYINT" property="isDelete" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="regionCode" jdbcType="VARCHAR" property="regionCode" />
+    <result column="ownNetworkId" jdbcType="VARCHAR" property="ownNetworkId" />
+    <result column="ownEntId" jdbcType="VARCHAR" property="ownEntId" />
+    <result column="ownType" jdbcType="VARCHAR" property="ownType" />
+    <result column="muck_quantities" jdbcType="DOUBLE" property="muckQuantities" />
+    <result column="muck_complement" jdbcType="DOUBLE" property="muckComplement" />
+    <result column="muck_taskPerson_ID" jdbcType="VARCHAR" property="muckTaskPersonID" />
+    <result column="muck_isNeed_Signer" jdbcType="TINYINT" property="muckIsNeedSigner" />
+    <result column="muck_state" jdbcType="TINYINT" property="muckState" />
+    <result column="networkRange" jdbcType="INTEGER" property="networkRange" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="district" jdbcType="VARCHAR" property="district" />
+    <result column="is_open" jdbcType="INTEGER" property="isOpen" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    guid, entid, networkCode, networkName, networkNamePinyin, networkNamePinyinHead, 
+    networkContactUser, networkContactPhone, networkAddress, networkAreainfo, Lng, lat, 
+    Remark, AddTime, EditTime, EditPersonID, IsDelete, type, regionCode, ownNetworkId, 
+    ownEntId, ownType, muck_quantities, muck_complement, muck_taskPerson_ID, muck_isNeed_Signer, 
+    muck_state, networkRange, province, city, district, is_open
+  </sql>
+  <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ent_network
+    where guid = #{guid,jdbcType=VARCHAR}
+  </select>
+  <delete id="delete" parameterType="java.lang.String">
+    delete from ent_network
+    where guid = #{guid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.logibeat.cloud.persistent.entity.NetworkEntity">
+    insert into ent_network
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        guid,
+      </if>
+      <if test="entid != null">
+        entid,
+      </if>
+      <if test="networkCode != null">
+        networkCode,
+      </if>
+      <if test="networkName != null">
+        networkName,
+      </if>
+      <if test="networkNamePinyin != null">
+        networkNamePinyin,
+      </if>
+      <if test="networkNamePinyinHead != null">
+        networkNamePinyinHead,
+      </if>
+      <if test="networkContactUser != null">
+        networkContactUser,
+      </if>
+      <if test="networkContactPhone != null">
+        networkContactPhone,
+      </if>
+      <if test="networkAddress != null">
+        networkAddress,
+      </if>
+      <if test="networkAreainfo != null">
+        networkAreainfo,
+      </if>
+      <if test="lng != null">
+        Lng,
+      </if>
+      <if test="lat != null">
+        lat,
+      </if>
+      <if test="remark != null">
+        Remark,
+      </if>
+      <if test="addTime != null">
+        AddTime,
+      </if>
+      <if test="editTime != null">
+        EditTime,
+      </if>
+      <if test="editPersonID != null">
+        EditPersonID,
+      </if>
+      <if test="isDelete != null">
+        IsDelete,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="regionCode != null">
+        regionCode,
+      </if>
+      <if test="ownNetworkId != null">
+        ownNetworkId,
+      </if>
+      <if test="ownEntId != null">
+        ownEntId,
+      </if>
+      <if test="ownType != null">
+        ownType,
+      </if>
+      <if test="muckQuantities != null">
+        muck_quantities,
+      </if>
+      <if test="muckComplement != null">
+        muck_complement,
+      </if>
+      <if test="muckTaskPersonID != null">
+        muck_taskPerson_ID,
+      </if>
+      <if test="muckIsNeedSigner != null">
+        muck_isNeed_Signer,
+      </if>
+      <if test="muckState != null">
+        muck_state,
+      </if>
+      <if test="networkRange != null">
+        networkRange,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="district != null">
+        district,
+      </if>
+      <if test="isOpen != null">
+        is_open,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        #{guid,jdbcType=VARCHAR},
+      </if>
+      <if test="entid != null">
+        #{entid,jdbcType=VARCHAR},
+      </if>
+      <if test="networkCode != null">
+        #{networkCode,jdbcType=VARCHAR},
+      </if>
+      <if test="networkName != null">
+        #{networkName,jdbcType=VARCHAR},
+      </if>
+      <if test="networkNamePinyin != null">
+        #{networkNamePinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="networkNamePinyinHead != null">
+        #{networkNamePinyinHead,jdbcType=VARCHAR},
+      </if>
+      <if test="networkContactUser != null">
+        #{networkContactUser,jdbcType=VARCHAR},
+      </if>
+      <if test="networkContactPhone != null">
+        #{networkContactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="networkAddress != null">
+        #{networkAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="networkAreainfo != null">
+        #{networkAreainfo,jdbcType=VARCHAR},
+      </if>
+      <if test="lng != null">
+        #{lng,jdbcType=DOUBLE},
+      </if>
+      <if test="lat != null">
+        #{lat,jdbcType=DOUBLE},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null">
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editPersonID != null">
+        #{editPersonID,jdbcType=BIGINT},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="regionCode != null">
+        #{regionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ownNetworkId != null">
+        #{ownNetworkId,jdbcType=VARCHAR},
+      </if>
+      <if test="ownEntId != null">
+        #{ownEntId,jdbcType=VARCHAR},
+      </if>
+      <if test="ownType != null">
+        #{ownType,jdbcType=VARCHAR},
+      </if>
+      <if test="muckQuantities != null">
+        #{muckQuantities,jdbcType=DOUBLE},
+      </if>
+      <if test="muckComplement != null">
+        #{muckComplement,jdbcType=DOUBLE},
+      </if>
+      <if test="muckTaskPersonID != null">
+        #{muckTaskPersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="muckIsNeedSigner != null">
+        #{muckIsNeedSigner,jdbcType=TINYINT},
+      </if>
+      <if test="muckState != null">
+        #{muckState,jdbcType=TINYINT},
+      </if>
+      <if test="networkRange != null">
+        #{networkRange,jdbcType=INTEGER},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null">
+        #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="isOpen != null">
+        #{isOpen,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.logibeat.cloud.persistent.entity.NetworkEntity">
+    update ent_network
+    <trim prefix="SET" suffixOverrides=",">
+      <if test="entid != null">
+        entid = #{entid,jdbcType=VARCHAR},
+      </if>
+      <if test="networkCode != null">
+          networkCode = #{networkCode,jdbcType=VARCHAR},
+      </if>
+      <if test="networkName != null">
+          networkName = #{networkName,jdbcType=VARCHAR},
+      </if>
+      <if test="networkNamePinyin != null">
+          networkNamePinyin = #{networkNamePinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="networkNamePinyinHead != null">
+          networkNamePinyinHead = #{networkNamePinyinHead,jdbcType=VARCHAR},
+      </if>
+      <if test="networkContactUser != null">
+          networkContactUser = #{networkContactUser,jdbcType=VARCHAR},
+      </if>
+      <if test="networkContactPhone != null">
+          networkContactPhone = #{networkContactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="networkAddress != null">
+          networkAddress = #{networkAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="networkAreainfo != null">
+          networkAreainfo = #{networkAreainfo,jdbcType=VARCHAR},
+      </if>
+      <if test="lng != null">
+          Lng = #{lng,jdbcType=DOUBLE},
+      </if>
+      <if test="lat != null">
+          lat = #{lat,jdbcType=DOUBLE},
+      </if>
+      <if test="remark != null">
+          Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+          AddTime = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null">
+          EditTime = #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editPersonID != null">
+          EditPersonID = #{editPersonID,jdbcType=BIGINT},
+      </if>
+      <if test="isDelete != null">
+          IsDelete = #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="type != null">
+          type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="regionCode != null">
+          regionCode = #{regionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ownNetworkId != null">
+          ownNetworkId = #{ownNetworkId,jdbcType=VARCHAR},
+      </if>
+      <if test="ownEntId != null">
+          ownEntId = #{ownEntId,jdbcType=VARCHAR},
+      </if>
+      <if test="ownType != null">
+          ownType = #{ownType,jdbcType=VARCHAR},
+      </if>
+      <if test="muckQuantities != null">
+          muck_quantities = #{muckQuantities,jdbcType=DOUBLE},
+      </if>
+      <if test="muckComplement != null">
+          muck_complement = #{muckComplement,jdbcType=DOUBLE},
+      </if>
+      <if test="muckTaskPersonID != null">
+          muck_taskPerson_ID = #{muckTaskPersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="muckIsNeedSigner != null">
+          muck_isNeed_Signer = #{muckIsNeedSigner,jdbcType=TINYINT},
+      </if>
+      <if test="muckState != null">
+          muck_state = #{muckState,jdbcType=TINYINT},
+      </if>
+      <if test="networkRange != null">
+          networkRange = #{networkRange,jdbcType=INTEGER},
+      </if>
+      <if test="province != null">
+          province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+          city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null">
+          district = #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="isOpen != null">
+          is_open = #{isOpen,jdbcType=INTEGER}
+      </if>
+    </trim>
+    where guid = #{guid,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getEntityByType" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ent_network
+    where IsDelete = 0 and type = #{type} and entid = #{entId}
+    <if test="networkNameLike != null">
+      and (
+        networkName like concat('%',#{networkNameLike},'%')
+        or networkNamePinyin like concat('%',lower(#{networkNameLike}),'%')
+        or networkNamePinyinHead like concat('%',lower(#{networkNameLike}),'%')
+      )
+    </if>
+    order by networkNamePinyinHead asc
+  </select>
+</mapper>

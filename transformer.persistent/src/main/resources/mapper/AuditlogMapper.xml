@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.logibeat.cloud.persistent.dao.AuditlogDao">
+    <insert id="merge" parameterType="com.logibeat.cloud.persistent.entity.AuditLogEntity">
+        INSERT INTO bs_auditlog
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="guid != null and guid != ''">guid,</if>
+            <if test="entId != null and entId != ''">entId,</if>
+            <if test="objectId != null and objectId != ''">objectId,</if>
+            <if test="applyPersonId != null and applyPersonId != ''">applyPersonID,</if>
+            <if test="auditType != null">auditType,</if>
+            <if test="content != null and content != ''">content,</if>
+            <if test="remark != null and remark != ''">remark,</if>
+            <if test="addTime != null ">addTime,</if>
+            <if test="editTime != null ">editTime,</if>
+            <if test="auditStatus != null ">auditStatus,</if>
+            <if test="auditTime != null ">auditTime,</if>
+            <if test="auditPersonId != null and auditPersonId != ''">auditPersonId,</if>
+            <if test="isDelete != null ">isDelete,</if>
+            <if test="deleteTime != null ">deleteTime,</if>
+            <if test="auditInfo != null and auditInfo != ''">audit_info,</if>
+            <if test="auditEventModel != null ">audit_event_model,</if>
+            <if test="auditEventType != null ">audit_event_Type,</if>
+            <if test="failMessage != null and failMessage != ''">fail_message,</if>
+            <if test="auditSource != null ">audit_source,</if>
+            <if test="submitType != null ">submit_type,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="guid != null and guid != ''">#{guid},</if>
+            <if test="entId != null and entId != ''">#{entId},</if>
+            <if test="objectId != null and objectId != ''">#{objectId},</if>
+            <if test="applyPersonId != null and applyPersonId != ''">#{applyPersonId},</if>
+            <if test="auditType != null">#{auditType},</if>
+            <if test="content != null and content != ''">#{content},</if>
+            <if test="remark != null and remark != ''">#{remark},</if>
+            <if test="addTime != null ">#{addTime},</if>
+            <if test="editTime != null ">#{editTime},</if>
+            <if test="auditStatus != null ">#{auditStatus},</if>
+            <if test="auditTime != null ">#{auditTime},</if>
+            <if test="auditPersonId != null and auditPersonId != ''">#{auditPersonId},</if>
+            <if test="isDelete != null ">#{isDelete},</if>
+            <if test="deleteTime != null ">#{deleteTime},</if>
+            <if test="auditInfo != null and auditInfo != ''">#{auditInfo},</if>
+            <if test="auditEventModel != null ">#{auditEventModel},</if>
+            <if test="auditEventType != null ">#{auditEventType},</if>
+            <if test="failMessage != null and failMessage != ''">#{failMessage},</if>
+            <if test="auditSource != null ">#{auditSource},</if>
+            <if test="submitType != null ">#{submitType},</if>
+        </trim>
+    </insert>
+    <update id="delete" parameterType="com.logibeat.cloud.persistent.entity.AuditLogEntity">
+        UPDATE bs_auditlog
+        <set>
+            <if test="entId != null and entId != ''">entId = #{entId},</if>
+            <if test="objectId != null and objectId != ''">objectId = #{objectId},</if>
+            <if test="applyPersonId != null and applyPersonId != ''">applyPersonID = #{applyPersonId},</if>
+            <if test="auditType != null">auditType = #{auditType},</if>
+            <if test="content != null and content != ''">content = #{content},</if>
+            <if test="remark != null and remark != ''">remark = #{remark},</if>
+            <if test="addTime != null ">addTime = #{addTime},</if>
+            <if test="editTime != null ">editTime = #{editTime},</if>
+            <if test="auditStatus != null ">auditStatus = #{auditStatus},</if>
+            <if test="auditTime != null ">auditTime = #{auditTime},</if>
+            <if test="auditPersonId != null and auditPersonId != ''">auditPersonId = #{auditPersonId},</if>
+            <if test="isDelete != null ">isDelete = #{isDelete},</if>
+            <if test="deleteTime != null ">deleteTime = #{deleteTime},</if>
+            <if test="auditInfo != null and auditInfo != ''">audit_info = #{auditInfo},</if>
+            <if test="auditEventModel != null ">audit_event_model = #{auditEventModel},</if>
+            <if test="auditEventType != null ">audit_event_Type = #{auditEventType},</if>
+            <if test="failMessage != null and failMessage != ''">fail_message = #{failMessage},</if>
+            <if test="auditSource != null ">audit_source = #{auditSource},</if>
+            <if test="submitType != null ">submit_type = #{submitType},</if>
+        </set>
+        WHERE guid = #{guid}
+    </update>
+    <select id="getAuditByEntIdPersonId"  resultType="com.logibeat.cloud.persistent.entity.AuditLogEntity">
+        select * from bs_auditlog
+        where isDelete = 0 and entId =#{entId} and auditType =#{auditType} AND
+        applyPersonID= #{baseUserId}
+        limit 1
+    </select>
+	<select id="getEnterPriseAuditLog"  resultType="com.logibeat.cloud.persistent.entity.AuditLogEntity">
+        select * from bs_auditlog where isDelete = 0 and objectId = #{objectId}
+	    and audit_Event_Type = #{auditEventType} order by addtime desc
+        limit 1
+    </select>
+
+
+    <select id="getSuccessCount" resultType="java.lang.Long">
+        SELECT COUNT(1) FROM bs_auditlog  where isDelete = 0 and applyPersonID= #{personId} AND  auditType =#{auditType}
+        and auditStatus = 2
+    </select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>

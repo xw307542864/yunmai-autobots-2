@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.logibeat.cloud.persistent.dao.PersonViolationAppealDao">
+    
+    <resultMap type="PersonViolationAppealEntity" id="PersonViolationAppealResult">
+        <result property="guid"    column="guid"    />
+        <result property="violationId"    column="violation_id"    />
+        <result property="content"    column="content"    />
+        <result property="picUrls"    column="picUrls"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="status"    column="status"    />
+        <result property="refuseReason"    column="refuse_reason"    />
+    </resultMap>
+	
+	<sql id="selectPersonViolationAppealVo">
+        select guid, violation_id, content, picUrls, create_time,status,refuse_reason from person_violation_appeal
+    </sql>
+	
+    <select id="selectPersonViolationAppealList" parameterType="PersonViolationAppealEntity" resultMap="PersonViolationAppealResult">
+        <include refid="selectPersonViolationAppealVo"/>
+        <where>  
+            <if test="guid != null  and guid != '' "> and guid = #{guid}</if>
+             <if test="violationId != null  and violationId != '' "> and violation_id = #{violationId}</if>
+             <if test="content != null  and content != '' "> and content = #{content}</if>
+             <if test="picUrls != null  and picUrls != '' "> and picUrls = #{picUrls}</if>
+             <if test="createTime != null "> and create_time = #{createTime}</if>
+         </where>
+         order by create_time desc
+    </select>
+    
+    <select id="selectPersonViolationAppealById" parameterType="String" resultMap="PersonViolationAppealResult">
+        <include refid="selectPersonViolationAppealVo"/>
+        where guid = #{guid}
+    </select>
+        
+    <insert id="insertPersonViolationAppeal" parameterType="PersonViolationAppealEntity">
+        insert into person_violation_appeal
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="guid != null  and guid != ''  ">guid,</if>
+			<if test="violationId != null  and violationId != ''  ">violation_id,</if>
+			<if test="content != null  and content != ''  ">content,</if>
+			<if test="picUrls != null  and picUrls != ''  ">picUrls,</if>
+			<if test="createTime != null  ">create_time,</if>
+            <if test="status != null  ">status,</if>
+            <if test="refuseReason != null  ">refuse_reason,</if>
+
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="guid != null  and guid != ''  ">#{guid},</if>
+			<if test="violationId != null  and violationId != ''  ">#{violationId},</if>
+			<if test="content != null  and content != ''  ">#{content},</if>
+			<if test="picUrls != null  and picUrls != ''  ">#{picUrls},</if>
+			<if test="createTime != null  ">#{createTime},</if>
+            <if test="status != null  ">#{status},</if>
+            <if test="refuseReason != null  ">#{refuseReason},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updatePersonViolationAppeal" parameterType="PersonViolationAppealEntity">
+        update person_violation_appeal
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="violationId != null  and violationId != ''  ">violation_id = #{violationId},</if>
+            <if test="content != null  and content != ''  ">content = #{content},</if>
+            <if test="picUrls != null  and picUrls != ''  ">picUrls = #{picUrls},</if>
+            <if test="createTime != null  ">create_time = #{createTime},</if>
+            <if test="status != null  ">status = #{status},</if>
+            <if test="refuseReason != null  ">refuse_reason = #{refuseReason},</if>
+        </trim>
+        where guid = #{guid}
+    </update>
+
+	<delete id="deletePersonViolationAppealById" parameterType="String">
+        delete from person_violation_appeal where guid = #{guid}
+    </delete>
+	
+    <delete id="deletePersonViolationAppealByIds" parameterType="String">
+        delete from person_violation_appeal where guid in 
+        <foreach item="guid" collection="array" open="(" separator="," close=")">
+            #{guid}
+        </foreach>
+    </delete>
+    
+</mapper>

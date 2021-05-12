@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.logibeat.cloud.persistent.dao.TrafficAdviseDao">
+    
+    <resultMap type="TrafficAdviseEntity" id="TrafficAdviseResult">
+        <result property="guid"    column="guid"    />
+        <result property="entId"    column="ent_id"    />
+        <result property="entName"    column="ent_name"    />
+        <result property="personId"    column="person_id"    />
+        <result property="status"    column="status"    />
+        <result property="beginTime"    column="begin_time"    />
+        <result property="endTime"    column="end_time"    />
+        <result property="duration"    column="duration"    />
+        <result property="intervalTime"    column="interval_time"    />
+        <result property="useTime"    column="use_time"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="finishTime"    column="finish_time"    />
+        <result property="lng"    column="lng"    />
+        <result property="lat"    column="lat"    />
+        <result property="receiptPic"    column="receipt_pic"    />
+        <result property="receiptTime"    column="receipt_time"    />
+        <result property="relationInfo"    column="relation_info"    />
+        <result property="relationSafeCode"    column="relation_safe_code"    />
+        <result property="scope"    column="scope"    />
+        <result property="address"    column="address"    />
+        <result property="placeName"    column="place_name"    />
+        <result property="isDel"    column="is_del"    />
+    </resultMap>
+	
+	<sql id="selectTrafficAdviseVo">
+        select guid, ent_id, ent_name, person_id, status, begin_time, end_time, duration, interval_time, use_time, 
+        create_time, update_time, finish_time, lng, lat, receipt_pic, receipt_time, relation_info, relation_safe_code,
+        scope,address,place_name,is_del from traffic_advise
+    </sql>
+	
+    <select id="selectTrafficAdviseList" parameterType="TrafficAdviseEntity" resultMap="TrafficAdviseResult">
+        <include refid="selectTrafficAdviseVo"/>
+        <where>  
+            <if test="guid != null  and guid != '' "> and guid = #{guid}</if>
+             <if test="entId != null  and entId != '' "> and ent_id = #{entId}</if>
+             <if test="entName != null  and entName != '' "> and ent_name = #{entName}</if>
+             <if test="personId != null  and personId != '' "> and person_id = #{personId}</if>
+             <if test="status != null "> and status = #{status}</if>
+             <if test="beginTime != null "> and begin_time = #{beginTime}</if>
+             <if test="endTime != null "> and end_time = #{endTime}</if>
+             <if test="duration != null "> and duration = #{duration}</if>
+             <if test="intervalTime != null "> and interval_time = #{intervalTime}</if>
+             <if test="useTime != null "> and use_time = #{useTime}</if>
+             <if test="createTime != null "> and create_time = #{createTime}</if>
+             <if test="updateTime != null "> and update_time = #{updateTime}</if>
+             <if test="finishTime != null "> and finish_time = #{finishTime}</if>
+             <if test="lng != null "> and lng = #{lng}</if>
+             <if test="lat != null "> and lat = #{lat}</if>
+             <if test="receiptPic != null  and receiptPic != '' "> and receipt_pic = #{receiptPic}</if>
+             <if test="receiptTime != null "> and receipt_time = #{receiptTime}</if>
+             <if test="relationInfo != null  and relationInfo != '' "> and relation_info = #{relationInfo}</if>
+             <if test="relationSafeCode != null "> and relation_safe_code = #{relationSafeCode}</if>
+             <if test="isDel != null "> and is_del = #{isDel}</if>
+         </where>
+         order by create_time desc 
+    </select>
+    
+    <select id="selectTrafficAdviseById" parameterType="String" resultMap="TrafficAdviseResult">
+        <include refid="selectTrafficAdviseVo"/>
+        where guid = #{guid}
+    </select>
+        
+    <insert id="insertTrafficAdvise" parameterType="TrafficAdviseEntity">
+        insert into traffic_advise
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="guid != null  and guid != ''  ">guid,</if>
+			<if test="entId != null  and entId != ''  ">ent_id,</if>
+			<if test="entName != null  and entName != ''  ">ent_name,</if>
+			<if test="personId != null  and personId != ''  ">person_id,</if>
+			<if test="status != null  ">status,</if>
+			<if test="beginTime != null  ">begin_time,</if>
+			<if test="endTime != null  ">end_time,</if>
+			<if test="duration != null  ">duration,</if>
+			<if test="intervalTime != null  ">interval_time,</if>
+			<if test="useTime != null  ">use_time,</if>
+			<if test="createTime != null  ">create_time,</if>
+			<if test="updateTime != null  ">update_time,</if>
+			<if test="finishTime != null  ">finish_time,</if>
+			<if test="lng != null  ">lng,</if>
+			<if test="lat != null  ">lat,</if>
+			<if test="receiptPic != null  and receiptPic != ''  ">receipt_pic,</if>
+			<if test="receiptTime != null  ">receipt_time,</if>
+			<if test="relationInfo != null  and relationInfo != ''  ">relation_info,</if>
+			<if test="relationSafeCode != null  ">relation_safe_code,</if>
+			<if test="scope != null  ">scope,</if>
+			<if test="address != null  and address != ''  ">address,</if>
+			<if test="placeName != null  and placeName != ''  ">place_name,</if>
+			<if test="isDel != null  ">is_del,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="guid != null  and guid != ''  ">#{guid},</if>
+			<if test="entId != null  and entId != ''  ">#{entId},</if>
+			<if test="entName != null  and entName != ''  ">#{entName},</if>
+			<if test="personId != null  and personId != ''  ">#{personId},</if>
+			<if test="status != null  ">#{status},</if>
+			<if test="beginTime != null  ">#{beginTime},</if>
+			<if test="endTime != null  ">#{endTime},</if>
+			<if test="duration != null  ">#{duration},</if>
+			<if test="intervalTime != null  ">#{intervalTime},</if>
+			<if test="useTime != null  ">#{useTime},</if>
+			<if test="createTime != null  ">#{createTime},</if>
+			<if test="updateTime != null  ">#{updateTime},</if>
+			<if test="finishTime != null  ">#{finishTime},</if>
+			<if test="lng != null  ">#{lng},</if>
+			<if test="lat != null  ">#{lat},</if>
+			<if test="receiptPic != null  and receiptPic != ''  ">#{receiptPic},</if>
+			<if test="receiptTime != null  ">#{receiptTime},</if>
+			<if test="relationInfo != null  and relationInfo != ''  ">#{relationInfo},</if>
+			<if test="relationSafeCode != null  ">#{relationSafeCode},</if>
+			<if test="scope != null  ">#{scope},</if>
+			<if test="address != null  and address != ''  ">#{address},</if>
+			<if test="placeName != null  and placeName != ''  ">#{placeName},</if>
+			<if test="isDel != null  ">#{isDel},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateTrafficAdvise" parameterType="TrafficAdviseEntity">
+        update traffic_advise
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="entId != null  and entId != ''  ">ent_id = #{entId},</if>
+            <if test="entName != null  and entName != ''  ">ent_name = #{entName},</if>
+            <if test="personId != null  and personId != ''  ">person_id = #{personId},</if>
+            <if test="status != null  ">status = #{status},</if>
+            <if test="beginTime != null  ">begin_time = #{beginTime},</if>
+            <if test="endTime != null  ">end_time = #{endTime},</if>
+            <if test="duration != null  ">duration = #{duration},</if>
+            <if test="intervalTime != null  ">interval_time = #{intervalTime},</if>
+            <if test="useTime != null  ">use_time = #{useTime},</if>
+            <if test="createTime != null  ">create_time = #{createTime},</if>
+            <if test="updateTime != null  ">update_time = #{updateTime},</if>
+            <if test="finishTime != null  ">finish_time = #{finishTime},</if>
+            <if test="lng != null  ">lng = #{lng},</if>
+            <if test="lat != null  ">lat = #{lat},</if>
+            <if test="receiptPic != null  and receiptPic != ''  ">receipt_pic = #{receiptPic},</if>
+            <if test="receiptTime != null  ">receipt_time = #{receiptTime},</if>
+            <if test="relationInfo != null  and relationInfo != ''  ">relation_info = #{relationInfo},</if>
+            <if test="relationSafeCode != null  ">relation_safe_code = #{relationSafeCode},</if>
+            <if test="scope != null  ">scope = #{scope},</if>
+            <if test="address != null  and address != ''  ">address = #{address},</if>
+            <if test="placeName != null  and placeName != ''  ">place_name = #{placeName},</if>
+            <if test="isDel != null  ">is_del = #{isDel},</if>
+        </trim>
+        where guid = #{guid}
+    </update>
+
+	<delete id="deleteTrafficAdviseById" parameterType="String">
+        delete from traffic_advise where guid = #{guid}
+    </delete>
+    
+    <update id="updateByRelationInfo" parameterType="String">
+        update traffic_advise set is_del=1 where relation_info = #{relationInfo}
+    </update>
+	
+    <delete id="deleteTrafficAdviseByIds" parameterType="String">
+        delete from traffic_advise where guid in 
+        <foreach item="guid" collection="array" open="(" separator="," close=")">
+            #{guid}
+        </foreach>
+    </delete>
+    
+    <select id="getAdviseNum" parameterType="String" resultType="Integer">
+    select count(*) from traffic_advise where person_id = #{personId} and status in (0,1,3) and relation_safe_code=1 and is_del=0
+    </select>
+    
+    <select id="queryExpireData" resultMap="TrafficAdviseResult">
+        <![CDATA[ select * from traffic_advise where status not in (4,5) and is_del=0 and end_time<=NOW() ]]> 
+    </select>
+    
+    <select id="queryExecuteData" resultMap="TrafficAdviseResult">
+        select * from traffic_advise where status=1 and is_del=0 
+    </select>
+    
+</mapper>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.logibeat.cloud.persistent.dao.EntStarSoftDao">
+
+<resultMap id="BaseResultMap" type="com.logibeat.cloud.persistent.entity.EntStarSoftEntity" >
+    <id column="guid" property="guid" jdbcType="VARCHAR" />
+    <result column="ent_id" property="entId" jdbcType="VARCHAR" />
+    <result column="ent_name" property="entName" jdbcType="VARCHAR" />
+    <result column="starsoft_id" property="starsoftId" jdbcType="VARCHAR" />
+    <result column="change_status" property="changeStatus" jdbcType="INTEGER" />
+    <result column="driver_gps" property="driverGps" jdbcType="INTEGER" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+  </resultMap>
+
+    <select id="getByStar"  resultMap="BaseResultMap">
+         select * from ent_starsoft where ent_id = #{entId}
+    	limit 1
+    </select>
+
+
+    <select id="getBySoft" resultMap="BaseResultMap">
+         select * from ent_starsoft where starsoft_id = #{starsoftId}
+    	limit 1
+    </select>
+
+</mapper>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.logibeat.cloud.persistent.dao.TrafficAdviseClockLogDao">
+    
+    <resultMap type="TrafficAdviseClockLogEntity" id="TrafficAdviseClockLogResult">
+        <result property="guid"    column="guid"    />
+        <result property="adviseId"    column="advise_id"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="lng"    column="lng"    />
+        <result property="lat"    column="lat"    />
+        <result property="picUrl"    column="pic_url"    />
+        <result property="address"    column="address"    />
+        <result property="placeName"    column="place_name"    />
+    </resultMap>
+	
+	<sql id="selectTrafficAdviseClockLogVo">
+        select guid, advise_id, create_time, lng, lat, pic_url,address,place_name from traffic_advise_clock_log
+    </sql>
+	
+    <select id="selectTrafficAdviseClockLogList" parameterType="TrafficAdviseClockLogEntity" resultMap="TrafficAdviseClockLogResult">
+        <include refid="selectTrafficAdviseClockLogVo"/>
+        <where>  
+            <if test="guid != null  and guid != '' "> and guid = #{guid}</if>
+             <if test="adviseId != null  and adviseId != '' "> and advise_id = #{adviseId}</if>
+             <if test="createTime != null "> and create_time = #{createTime}</if>
+             <if test="lng != null "> and lng = #{lng}</if>
+             <if test="lat != null "> and lat = #{lat}</if>
+             <if test="picUrl != null  and picUrl != '' "> and pic_url = #{picUrl}</if>
+             <if test="curDate != null  and curDate != '' "> <![CDATA[and DATE_FORMAT(create_time, '%Y-%m-%d')=#{curDate}]]> </if>
+         </where>
+         order by create_time desc
+    </select>
+    
+    <select id="selectTrafficAdviseClockLogById" parameterType="String" resultMap="TrafficAdviseClockLogResult">
+        <include refid="selectTrafficAdviseClockLogVo"/>
+        where guid = #{guid}
+    </select>
+        
+    <insert id="insertTrafficAdviseClockLog" parameterType="TrafficAdviseClockLogEntity">
+        insert into traffic_advise_clock_log
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="guid != null  and guid != ''  ">guid,</if>
+			<if test="adviseId != null  and adviseId != ''  ">advise_id,</if>
+			<if test="createTime != null  ">create_time,</if>
+			<if test="lng != null  ">lng,</if>
+			<if test="lat != null  ">lat,</if>
+			<if test="picUrl != null  and picUrl != ''  ">pic_url,</if>
+			<if test="address != null  and address != ''  ">address,</if>
+			<if test="placeName != null  and placeName != ''  ">place_name,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="guid != null  and guid != ''  ">#{guid},</if>
+			<if test="adviseId != null  and adviseId != ''  ">#{adviseId},</if>
+			<if test="createTime != null  ">#{createTime},</if>
+			<if test="lng != null  ">#{lng},</if>
+			<if test="lat != null  ">#{lat},</if>
+			<if test="picUrl != null  and picUrl != ''  ">#{picUrl},</if>
+			<if test="address != null  and address != ''  ">#{address},</if>
+			<if test="placeName != null  and placeName != ''  ">#{placeName},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateTrafficAdviseClockLog" parameterType="TrafficAdviseClockLogEntity">
+        update traffic_advise_clock_log
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="adviseId != null  and adviseId != ''  ">advise_id = #{adviseId},</if>
+            <if test="createTime != null  ">create_time = #{createTime},</if>
+            <if test="lng != null  ">lng = #{lng},</if>
+            <if test="lat != null  ">lat = #{lat},</if>
+            <if test="picUrl != null  and picUrl != ''  ">pic_url = #{picUrl},</if>
+            <if test="address != null  and address != ''  ">address = #{address},</if>
+            <if test="placeName != null  and placeName != ''  ">place_name = #{placeName},</if>
+        </trim>
+        where guid = #{guid}
+    </update>
+
+	<delete id="deleteTrafficAdviseClockLogById" parameterType="String">
+        delete from traffic_advise_clock_log where guid = #{guid}
+    </delete>
+	
+    <delete id="deleteTrafficAdviseClockLogByIds" parameterType="String">
+        delete from traffic_advise_clock_log where guid in 
+        <foreach item="guid" collection="array" open="(" separator="," close=")">
+            #{guid}
+        </foreach>
+    </delete>
+    
+    <select id="selectByAdviseId" parameterType="String" resultMap="TrafficAdviseClockLogResult">
+        <include refid="selectTrafficAdviseClockLogVo"/>
+        where 1=1
+    </select>
+    
+</mapper>

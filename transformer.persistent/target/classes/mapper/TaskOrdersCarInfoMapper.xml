@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.logibeat.cloud.persistent.dao.TaskOrdersCarInfoDao">
+  <resultMap id="BaseResultMap" type="com.logibeat.cloud.persistent.entity.TaskOrdersCarInfoEntity">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="ordercar_guid" jdbcType="VARCHAR" property="ordercarGuid" />
+    <result column="consign_num" jdbcType="INTEGER" property="consignNum" />
+    <result column="goods_spec" jdbcType="VARCHAR" property="goodsSpec" />
+    <result column="total_freight" jdbcType="DECIMAL" property="totalFreight" />
+    <result column="pay_freight" jdbcType="DECIMAL" property="payFreight" />
+    <result column="topay_freight" jdbcType="DECIMAL" property="topayFreight" />
+    <result column="payback_freight" jdbcType="DECIMAL" property="paybackFreight" />
+    <result column="monthly_freight" jdbcType="DECIMAL" property="monthlyFreight" />
+    <result column="freight" jdbcType="DECIMAL" property="freight" />
+    <result column="pay_fare" jdbcType="DECIMAL" property="payFare" />
+    <result column="topay_fare" jdbcType="DECIMAL" property="topayFare" />
+    <result column="payback_fare" jdbcType="DECIMAL" property="paybackFare" />
+    <result column="monthly_fare" jdbcType="DECIMAL" property="monthlyFare" />
+    <result column="originat_network_id" jdbcType="VARCHAR" property="originatNetworkId" />
+    <result column="originat_network_name" jdbcType="VARCHAR" property="originatNetworkName" />
+    <result column="originat_city" jdbcType="VARCHAR" property="originatCity" />
+    <result column="originat_city_code" jdbcType="VARCHAR" property="originatCityCode" />
+    <result column="originat_address" jdbcType="VARCHAR" property="originatAddress" />
+    <result column="originat_contact" jdbcType="VARCHAR" property="originatContact" />
+    <result column="originat_phone" jdbcType="VARCHAR" property="originatPhone" />
+    <result column="originat_lat" jdbcType="DOUBLE" property="originatLat" />
+    <result column="originat_lng" jdbcType="DOUBLE" property="originatLng" />
+    <result column="destination_network_id" jdbcType="VARCHAR" property="destinationNetworkId" />
+    <result column="destination_network_name" jdbcType="VARCHAR" property="destinationNetworkName" />
+    <result column="destination_city" jdbcType="VARCHAR" property="destinationCity" />
+    <result column="destination_city_code" jdbcType="VARCHAR" property="destinationCityCode" />
+    <result column="destination_address" jdbcType="VARCHAR" property="destinationAddress" />
+    <result column="destination_contact" jdbcType="VARCHAR" property="destinationContact" />
+    <result column="destination_phone" jdbcType="VARCHAR" property="destinationPhone" />
+    <result column="destination_lat" jdbcType="DOUBLE" property="destinationLat" />
+    <result column="destination_lng" jdbcType="DOUBLE" property="destinationLng" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_person_id" jdbcType="VARCHAR" property="createPersonId" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_person_id" jdbcType="VARCHAR" property="updatePersonId" />
+    <result column="entrust_ent_id" jdbcType="VARCHAR" property="entrustEntId" />
+    <result column="entrust_ent_name" jdbcType="VARCHAR" property="entrustEntName" />
+    <result column="coop_ent_id" jdbcType="VARCHAR" property="coopEntId" />
+    <result column="out_destination_id" jdbcType="VARCHAR" property="outDestinationId" />
+
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, ordercar_guid, consign_num, goods_spec, total_freight, pay_freight, topay_freight, 
+    payback_freight, monthly_freight, freight, pay_fare, topay_fare, payback_fare, monthly_fare, 
+    originat_network_id, originat_network_name, originat_city, originat_city_code, originat_address, 
+    originat_contact, originat_phone, originat_lat, originat_lng, destination_network_id, 
+    destination_network_name, destination_city, destination_city_code, destination_address, 
+    destination_contact, destination_phone, destination_lat, destination_lng, create_time, 
+    create_person_id, update_time, update_person_id, entrust_ent_id, entrust_ent_name, 
+    coop_ent_id,out_destination_id
+  </sql>
+  <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from task_orderscar_info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="delete" parameterType="java.lang.String">
+    delete from task_orderscar_info
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.logibeat.cloud.persistent.entity.TaskOrdersCarInfoEntity">
+    insert into task_orderscar_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="ordercarGuid != null">
+        ordercar_guid,
+      </if>
+      <if test="consignNum != null">
+        consign_num,
+      </if>
+      <if test="goodsSpec != null">
+        goods_spec,
+      </if>
+      <if test="totalFreight != null">
+        total_freight,
+      </if>
+      <if test="payFreight != null">
+        pay_freight,
+      </if>
+      <if test="topayFreight != null">
+        topay_freight,
+      </if>
+      <if test="paybackFreight != null">
+        payback_freight,
+      </if>
+      <if test="monthlyFreight != null">
+        monthly_freight,
+      </if>
+      <if test="freight != null">
+        freight,
+      </if>
+      <if test="payFare != null">
+        pay_fare,
+      </if>
+      <if test="topayFare != null">
+        topay_fare,
+      </if>
+      <if test="paybackFare != null">
+        payback_fare,
+      </if>
+      <if test="monthlyFare != null">
+        monthly_fare,
+      </if>
+      <if test="originatNetworkId != null">
+        originat_network_id,
+      </if>
+      <if test="originatNetworkName != null">
+        originat_network_name,
+      </if>
+      <if test="originatCity != null">
+        originat_city,
+      </if>
+      <if test="originatCityCode != null">
+        originat_city_code,
+      </if>
+      <if test="originatAddress != null">
+        originat_address,
+      </if>
+      <if test="originatContact != null">
+        originat_contact,
+      </if>
+      <if test="originatPhone != null">
+        originat_phone,
+      </if>
+      <if test="originatLat != null">
+        originat_lat,
+      </if>
+      <if test="originatLng != null">
+        originat_lng,
+      </if>
+      <if test="destinationNetworkId != null">
+        destination_network_id,
+      </if>
+      <if test="destinationNetworkName != null">
+        destination_network_name,
+      </if>
+      <if test="destinationCity != null">
+        destination_city,
+      </if>
+      <if test="destinationCityCode != null">
+        destination_city_code,
+      </if>
+      <if test="destinationAddress != null">
+        destination_address,
+      </if>
+      <if test="destinationContact != null">
+        destination_contact,
+      </if>
+      <if test="destinationPhone != null">
+        destination_phone,
+      </if>
+      <if test="destinationLat != null">
+        destination_lat,
+      </if>
+      <if test="destinationLng != null">
+        destination_lng,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createPersonId != null">
+        create_person_id,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updatePersonId != null">
+        update_person_id,
+      </if>
+      <if test="entrustEntId != null">
+        entrust_ent_id,
+      </if>
+      <if test="entrustEntName != null">
+        entrust_ent_name,
+      </if>
+      <if test="coopEntId != null">
+        coop_ent_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="ordercarGuid != null">
+        #{ordercarGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="consignNum != null">
+        #{consignNum,jdbcType=INTEGER},
+      </if>
+      <if test="goodsSpec != null">
+        #{goodsSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="totalFreight != null">
+        #{totalFreight,jdbcType=DECIMAL},
+      </if>
+      <if test="payFreight != null">
+        #{payFreight,jdbcType=DECIMAL},
+      </if>
+      <if test="topayFreight != null">
+        #{topayFreight,jdbcType=DECIMAL},
+      </if>
+      <if test="paybackFreight != null">
+        #{paybackFreight,jdbcType=DECIMAL},
+      </if>
+      <if test="monthlyFreight != null">
+        #{monthlyFreight,jdbcType=DECIMAL},
+      </if>
+      <if test="freight != null">
+        #{freight,jdbcType=DECIMAL},
+      </if>
+      <if test="payFare != null">
+        #{payFare,jdbcType=DECIMAL},
+      </if>
+      <if test="topayFare != null">
+        #{topayFare,jdbcType=DECIMAL},
+      </if>
+      <if test="paybackFare != null">
+        #{paybackFare,jdbcType=DECIMAL},
+      </if>
+      <if test="monthlyFare != null">
+        #{monthlyFare,jdbcType=DECIMAL},
+      </if>
+      <if test="originatNetworkId != null">
+        #{originatNetworkId,jdbcType=VARCHAR},
+      </if>
+      <if test="originatNetworkName != null">
+        #{originatNetworkName,jdbcType=VARCHAR},
+      </if>
+      <if test="originatCity != null">
+        #{originatCity,jdbcType=VARCHAR},
+      </if>
+      <if test="originatCityCode != null">
+        #{originatCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="originatAddress != null">
+        #{originatAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="originatContact != null">
+        #{originatContact,jdbcType=VARCHAR},
+      </if>
+      <if test="originatPhone != null">
+        #{originatPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="originatLat != null">
+        #{originatLat,jdbcType=DOUBLE},
+      </if>
+      <if test="originatLng != null">
+        #{originatLng,jdbcType=DOUBLE},
+      </if>
+      <if test="destinationNetworkId != null">
+        #{destinationNetworkId,jdbcType=VARCHAR},
+      </if>
+      <if test="destinationNetworkName != null">
+        #{destinationNetworkName,jdbcType=VARCHAR},
+      </if>
+      <if test="destinationCity != null">
+        #{destinationCity,jdbcType=VARCHAR},
+      </if>
+      <if test="destinationCityCode != null">
+        #{destinationCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="destinationAddress != null">
+        #{destinationAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="destinationContact != null">
+        #{destinationContact,jdbcType=VARCHAR},
+      </if>
+      <if test="destinationPhone != null">
+        #{destinationPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="destinationLat != null">
+        #{destinationLat,jdbcType=DOUBLE},
+      </if>
+      <if test="destinationLng != null">
+        #{destinationLng,jdbcType=DOUBLE},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createPersonId != null">
+        #{createPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePersonId != null">
+        #{updatePersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustEntId != null">
+        #{entrustEntId,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustEntName != null">
+        #{entrustEntName,jdbcType=VARCHAR},
+      </if>
+      <if test="coopEntId != null">
+        #{coopEntId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.logibeat.cloud.persistent.entity.TaskOrdersCarInfoEntity">
+    update task_orderscar_info
+    <trim prefix="SET" suffixOverrides=",">
+      <if test="ordercarGuid != null">
+        ordercar_guid = #{ordercarGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="consignNum != null">
+          consign_num = #{consignNum,jdbcType=INTEGER},
+      </if>
+      <if test="goodsSpec != null">
+          goods_spec = #{goodsSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="totalFreight != null">
+          total_freight = #{totalFreight,jdbcType=DECIMAL},
+      </if>
+      <if test="payFreight != null">
+          pay_freight = #{payFreight,jdbcType=DECIMAL},
+      </if>
+      <if test="topayFreight != null">
+          topay_freight = #{topayFreight,jdbcType=DECIMAL},
+      </if>
+      <if test="paybackFreight != null">
+          payback_freight = #{paybackFreight,jdbcType=DECIMAL},
+      </if>
+      <if test="monthlyFreight != null">
+          monthly_freight = #{monthlyFreight,jdbcType=DECIMAL},
+      </if>
+      <if test="freight != null">
+          freight = #{freight,jdbcType=DECIMAL},
+      </if>
+      <if test="payFare != null">
+          pay_fare = #{payFare,jdbcType=DECIMAL},
+      </if>
+      <if test="topayFare != null">
+          topay_fare = #{topayFare,jdbcType=DECIMAL},
+      </if>
+      <if test="paybackFare != null">
+          payback_fare = #{paybackFare,jdbcType=DECIMAL},
+      </if>
+      <if test="monthlyFare != null">
+          monthly_fare = #{monthlyFare,jdbcType=DECIMAL},
+      </if>
+      <if test="originatNetworkId != null">
+          originat_network_id = #{originatNetworkId,jdbcType=VARCHAR},
+      </if>
+      <if test="originatNetworkName != null">
+          originat_network_name = #{originatNetworkName,jdbcType=VARCHAR},
+      </if>
+      <if test="originatCity != null">
+          originat_city = #{originatCity,jdbcType=VARCHAR},
+      </if>
+      <if test="originatCityCode != null">
+          originat_city_code = #{originatCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="originatAddress != null">
+          originat_address = #{originatAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="originatContact != null">
+          originat_contact = #{originatContact,jdbcType=VARCHAR},
+      </if>
+      <if test="originatPhone != null">
+          originat_phone = #{originatPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="originatLat != null">
+          originat_lat = #{originatLat,jdbcType=DOUBLE},
+      </if>
+      <if test="originatLng != null">
+          originat_lng = #{originatLng,jdbcType=DOUBLE},
+      </if>
+      <if test="destinationNetworkId != null">
+          destination_network_id = #{destinationNetworkId,jdbcType=VARCHAR},
+      </if>
+      <if test="destinationNetworkName != null">
+          destination_network_name = #{destinationNetworkName,jdbcType=VARCHAR},
+      </if>
+      <if test="destinationCity != null">
+          destination_city = #{destinationCity,jdbcType=VARCHAR},
+      </if>
+      <if test="destinationCityCode != null">
+          destination_city_code = #{destinationCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="destinationAddress != null">
+          destination_address = #{destinationAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="destinationContact != null">
+          destination_contact = #{destinationContact,jdbcType=VARCHAR},
+      </if>
+      <if test="destinationPhone != null">
+          destination_phone = #{destinationPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="destinationLat != null">
+          destination_lat = #{destinationLat,jdbcType=DOUBLE},
+      </if>
+      <if test="destinationLng != null">
+          destination_lng = #{destinationLng,jdbcType=DOUBLE},
+      </if>
+      <if test="createTime != null">
+          create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createPersonId != null">
+          create_person_id = #{createPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+          update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePersonId != null">
+          update_person_id = #{updatePersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustEntId != null">
+          entrust_ent_id = #{entrustEntId,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustEntName != null">
+          entrust_ent_name = #{entrustEntName,jdbcType=VARCHAR},
+      </if>
+      <if test="coopEntId != null">
+          coop_ent_id = #{coopEntId,jdbcType=VARCHAR}
+      </if>
+    </trim>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getByTaskId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from task_orderscar_info where ordercar_guid = #{taskId}
+  </select>
+</mapper>

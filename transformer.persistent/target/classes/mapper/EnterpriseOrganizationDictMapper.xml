@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.logibeat.cloud.persistent.dao.EnterpriseOrganizationDictDao">
+  <resultMap id="BaseResultMap" type="com.logibeat.cloud.persistent.entity.EnterpriseOrganizationDictEntity">
+    <id column="guid" jdbcType="VARCHAR" property="guid" />
+    <result column="ent_id" jdbcType="VARCHAR" property="entId" />
+    <result column="parent_id" jdbcType="VARCHAR" property="parentId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="org_type_dict_guid" jdbcType="VARCHAR" property="orgTypeDictGuid" />
+    <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="edit_time" jdbcType="TIMESTAMP" property="editTime" />
+    <result column="edit_person_id" jdbcType="VARCHAR" property="editPersonId" />
+    <result column="car_num" jdbcType="INTEGER" property="carNum" />
+    <result column="self_car_num" jdbcType="INTEGER" property="selfCarNum" />
+    <result column="per_num" jdbcType="INTEGER" property="perNum" />
+    <result column="ent_num" jdbcType="INTEGER" property="entNum" />
+    <result column="org_contact_user" jdbcType="VARCHAR" property="orgContactUser" />
+    <result column="org_contact_phone" jdbcType="VARCHAR" property="orgContactPhone" />
+    <result column="org_contact_address" jdbcType="VARCHAR" property="orgContactAddress" />
+    <result column="org_level" jdbcType="INTEGER" property="orgLevel" />
+    <result column="query_char" jdbcType="VARCHAR" property="queryChar" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    guid, ent_id, parent_id, name, org_type_dict_guid, is_delete, add_time, edit_time, 
+    edit_person_id, car_num, self_car_num, per_num, ent_num, org_contact_user, org_contact_phone, 
+    org_contact_address, org_level, query_char
+  </sql>
+  <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ent_organization_dict
+    where guid = #{guid,jdbcType=VARCHAR}
+  </select>
+  <delete id="delete" parameterType="java.lang.String">
+    delete from ent_organization_dict
+    where guid = #{guid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.logibeat.cloud.persistent.entity.EnterpriseOrganizationDictEntity">
+    insert into ent_organization_dict
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        guid,
+      </if>
+      <if test="entId != null">
+        ent_id,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="orgTypeDictGuid != null">
+        org_type_dict_guid,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="editTime != null">
+        edit_time,
+      </if>
+      <if test="editPersonId != null">
+        edit_person_id,
+      </if>
+      <if test="carNum != null">
+        car_num,
+      </if>
+      <if test="selfCarNum != null">
+        self_car_num,
+      </if>
+      <if test="perNum != null">
+        per_num,
+      </if>
+      <if test="entNum != null">
+        ent_num,
+      </if>
+      <if test="orgContactUser != null">
+        org_contact_user,
+      </if>
+      <if test="orgContactPhone != null">
+        org_contact_phone,
+      </if>
+      <if test="orgContactAddress != null">
+        org_contact_address,
+      </if>
+      <if test="orgLevel != null">
+        org_level,
+      </if>
+      <if test="queryChar != null">
+        query_char,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        #{guid,jdbcType=VARCHAR},
+      </if>
+      <if test="entId != null">
+        #{entId,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="orgTypeDictGuid != null">
+        #{orgTypeDictGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null">
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editPersonId != null">
+        #{editPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="carNum != null">
+        #{carNum,jdbcType=INTEGER},
+      </if>
+      <if test="selfCarNum != null">
+        #{selfCarNum,jdbcType=INTEGER},
+      </if>
+      <if test="perNum != null">
+        #{perNum,jdbcType=INTEGER},
+      </if>
+      <if test="entNum != null">
+        #{entNum,jdbcType=INTEGER},
+      </if>
+      <if test="orgContactUser != null">
+        #{orgContactUser,jdbcType=VARCHAR},
+      </if>
+      <if test="orgContactPhone != null">
+        #{orgContactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="orgContactAddress != null">
+        #{orgContactAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="orgLevel != null">
+        #{orgLevel,jdbcType=INTEGER},
+      </if>
+      <if test="queryChar != null">
+        #{queryChar,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.logibeat.cloud.persistent.entity.EnterpriseOrganizationDictEntity">
+    update ent_organization_dict
+    <trim prefix="SET" suffixOverrides=",">
+      <if test="entId != null">
+        ent_id = #{entId,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+          parent_id = #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+          name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="orgTypeDictGuid != null">
+          org_type_dict_guid = #{orgTypeDictGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+          is_delete = #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="addTime != null">
+          add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null">
+          edit_time = #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editPersonId != null">
+          edit_person_id = #{editPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="carNum != null">
+          car_num = #{carNum,jdbcType=INTEGER},
+      </if>
+      <if test="selfCarNum != null">
+          self_car_num = #{selfCarNum,jdbcType=INTEGER},
+      </if>
+      <if test="perNum != null">
+          per_num = #{perNum,jdbcType=INTEGER},
+      </if>
+      <if test="entNum != null">
+          ent_num = #{entNum,jdbcType=INTEGER},
+      </if>
+      <if test="orgContactUser != null">
+          org_contact_user = #{orgContactUser,jdbcType=VARCHAR},
+      </if>
+      <if test="orgContactPhone != null">
+          org_contact_phone = #{orgContactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="orgContactAddress != null">
+          org_contact_address = #{orgContactAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="orgLevel != null">
+          org_level = #{orgLevel,jdbcType=INTEGER},
+      </if>
+      <if test="queryChar != null">
+          query_char = #{queryChar,jdbcType=VARCHAR}
+      </if>
+    </trim>
+    where guid = #{guid,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getEntityListByEntIdAndParentId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ent_organization_dict
+    where is_delete = 0
+    <if test="entId != null">
+      and ent_id = #{entId}
+    </if>
+    <if test="parentId != null">
+      and parent_id = #{parentId}
+    </if>
+  </select>
+</mapper>

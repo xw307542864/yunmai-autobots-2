@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.logibeat.cloud.persistent.dao.TaskOrdersGoodsDao">
+  <resultMap id="BaseResultMap" type="com.logibeat.cloud.persistent.entity.TaskOrdersGoodsEntity">
+    <id column="GUID" jdbcType="VARCHAR" property="guid" />
+    <result column="YYYYMMDD" jdbcType="INTEGER" property="yyyymmdd" />
+    <result column="EntID" jdbcType="VARCHAR" property="entID" />
+    <result column="OrdersCID" jdbcType="VARCHAR" property="ordersCID" />
+    <result column="Name" jdbcType="VARCHAR" property="name" />
+    <result column="GoodsTypeDictGUID" jdbcType="VARCHAR" property="goodsTypeDictGUID" />
+    <result column="Volume" jdbcType="DOUBLE" property="volume" />
+    <result column="Weight" jdbcType="DOUBLE" property="weight" />
+    <result column="AddTime" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="EditTime" jdbcType="TIMESTAMP" property="editTime" />
+    <result column="EditPersonID" jdbcType="VARCHAR" property="editPersonID" />
+    <result column="IsDelete" jdbcType="TINYINT" property="isDelete" />
+    <result column="PackTypeDictGUID" jdbcType="VARCHAR" property="packTypeDictGUID" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="num" jdbcType="INTEGER" property="num" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GUID, YYYYMMDD, EntID, OrdersCID, Name, GoodsTypeDictGUID, Volume, Weight, AddTime, 
+    EditTime, EditPersonID, IsDelete, PackTypeDictGUID, remarks, num
+  </sql>
+  <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from task_ordersgoods
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </select>
+  <delete id="delete" parameterType="java.lang.String">
+    delete from task_ordersgoods
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.logibeat.cloud.persistent.entity.TaskOrdersGoodsEntity">
+    insert into task_ordersgoods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        GUID,
+      </if>
+      <if test="yyyymmdd != null">
+        YYYYMMDD,
+      </if>
+      <if test="entID != null">
+        EntID,
+      </if>
+      <if test="ordersCID != null">
+        OrdersCID,
+      </if>
+      <if test="name != null">
+        Name,
+      </if>
+      <if test="goodsTypeDictGUID != null">
+        GoodsTypeDictGUID,
+      </if>
+      <if test="volume != null">
+        Volume,
+      </if>
+      <if test="weight != null">
+        Weight,
+      </if>
+      <if test="addTime != null">
+        AddTime,
+      </if>
+      <if test="editTime != null">
+        EditTime,
+      </if>
+      <if test="editPersonID != null">
+        EditPersonID,
+      </if>
+      <if test="isDelete != null">
+        IsDelete,
+      </if>
+      <if test="packTypeDictGUID != null">
+        PackTypeDictGUID,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+      <if test="num != null">
+        num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        #{guid,jdbcType=VARCHAR},
+      </if>
+      <if test="yyyymmdd != null">
+        #{yyyymmdd,jdbcType=INTEGER},
+      </if>
+      <if test="entID != null">
+        #{entID,jdbcType=VARCHAR},
+      </if>
+      <if test="ordersCID != null">
+        #{ordersCID,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsTypeDictGUID != null">
+        #{goodsTypeDictGUID,jdbcType=VARCHAR},
+      </if>
+      <if test="volume != null">
+        #{volume,jdbcType=DOUBLE},
+      </if>
+      <if test="weight != null">
+        #{weight,jdbcType=DOUBLE},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null">
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editPersonID != null">
+        #{editPersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="packTypeDictGUID != null">
+        #{packTypeDictGUID,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null">
+        #{num,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.logibeat.cloud.persistent.entity.TaskOrdersGoodsEntity">
+    update task_ordersgoods
+    <trim prefix="SET" suffixOverrides=",">
+      <if test="yyyymmdd != null">
+        YYYYMMDD = #{yyyymmdd,jdbcType=INTEGER},
+      </if>
+      <if test="entID != null">
+          EntID = #{entID,jdbcType=VARCHAR},
+      </if>
+      <if test="ordersCID != null">
+          OrdersCID = #{ordersCID,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+          Name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsTypeDictGUID != null">
+          GoodsTypeDictGUID = #{goodsTypeDictGUID,jdbcType=VARCHAR},
+      </if>
+      <if test="volume != null">
+          Volume = #{volume,jdbcType=DOUBLE},
+      </if>
+      <if test="weight != null">
+          Weight = #{weight,jdbcType=DOUBLE},
+      </if>
+      <if test="addTime != null">
+          AddTime = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null">
+          EditTime = #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editPersonID != null">
+          EditPersonID = #{editPersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+          IsDelete = #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="packTypeDictGUID != null">
+          PackTypeDictGUID = #{packTypeDictGUID,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+          remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null">
+          num = #{num,jdbcType=INTEGER}
+      </if>
+    </trim>
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getEntityByOrdersCid" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from task_ordersgoods
+    where OrdersCID = #{ordersCID}
+  </select>
+
+  <select id="getOrderGoods" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from task_ordersgoods where OrdersCID = #{ordersCID}
+  </select>
+
+  <delete id="deleteGoodsFromOrdersId">
+    DELETE FROM task_ordersgoods where OrdersCID= #{ordersCID}
+  </delete>
+</mapper>

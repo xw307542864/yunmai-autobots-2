@@ -1,0 +1,586 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.logibeat.cloud.persistent.dao.TaskOrdersAreaDao">
+  <resultMap id="BaseResultMap" type="com.logibeat.cloud.persistent.entity.TaskOrdersAreaEntity">
+    <id column="GUID" jdbcType="VARCHAR" property="guid" />
+    <result column="OrdersCID" jdbcType="VARCHAR" property="ordersCID" />
+    <result column="YYYYMMDD" jdbcType="INTEGER" property="yyyymmdd" />
+    <result column="EntID" jdbcType="VARCHAR" property="entID" />
+    <result column="PointLineGUID" jdbcType="VARCHAR" property="pointLineGUID" />
+    <result column="SortNum" jdbcType="INTEGER" property="sortNum" />
+    <result column="PlanArriveTime" jdbcType="TIMESTAMP" property="planArriveTime" />
+    <result column="PlanLeavTime" jdbcType="TIMESTAMP" property="planLeavTime" />
+    <result column="ActualArriveTime" jdbcType="TIMESTAMP" property="actualArriveTime" />
+    <result column="ActualLeavTime" jdbcType="TIMESTAMP" property="actualLeavTime" />
+    <result column="Contact" jdbcType="VARCHAR" property="contact" />
+    <result column="MapType" jdbcType="INTEGER" property="mapType" />
+    <result column="Name" jdbcType="VARCHAR" property="name" />
+    <result column="Portray" jdbcType="VARCHAR" property="portray" />
+    <result column="Production" jdbcType="INTEGER" property="production" />
+    <result column="LngLatType" jdbcType="INTEGER" property="lngLatType" />
+    <result column="RegionCode" jdbcType="INTEGER" property="regionCode" />
+    <result column="Lng" jdbcType="DOUBLE" property="lng" />
+    <result column="Lat" jdbcType="DOUBLE" property="lat" />
+    <result column="Initial" jdbcType="VARCHAR" property="initial" />
+    <result column="MaxLng" jdbcType="INTEGER" property="maxLng" />
+    <result column="MaxLat" jdbcType="INTEGER" property="maxLat" />
+    <result column="MinLng" jdbcType="INTEGER" property="minLng" />
+    <result column="MinLat" jdbcType="INTEGER" property="minLat" />
+    <result column="Address" jdbcType="VARCHAR" property="address" />
+    <result column="LineWidth" jdbcType="INTEGER" property="lineWidth" />
+    <result column="LineColor" jdbcType="VARCHAR" property="lineColor" />
+    <result column="FillAreaColor" jdbcType="VARCHAR" property="fillAreaColor" />
+    <result column="Opacity" jdbcType="INTEGER" property="opacity" />
+    <result column="FontColor" jdbcType="VARCHAR" property="fontColor" />
+    <result column="FontSize" jdbcType="INTEGER" property="fontSize" />
+    <result column="StartPtDis" jdbcType="INTEGER" property="startPtDis" />
+    <result column="NextPointLineDistance" jdbcType="INTEGER" property="nextPointLineDistance" />
+    <result column="NextPointLineTime" jdbcType="INTEGER" property="nextPointLineTime" />
+    <result column="CarDistance" jdbcType="DOUBLE" property="carDistance" />
+    <result column="DistanceType" jdbcType="INTEGER" property="distanceType" />
+    <result column="CarTotalOil" jdbcType="DOUBLE" property="carTotalOil" />
+    <result column="AddTime" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="EditTime" jdbcType="TIMESTAMP" property="editTime" />
+    <result column="EditPersonID" jdbcType="VARCHAR" property="editPersonID" />
+    <result column="IsDelete" jdbcType="TINYINT" property="isDelete" />
+    <result column="IsStartPoint" jdbcType="TINYINT" property="isStartPoint" />
+    <result column="IsEndPoint" jdbcType="TINYINT" property="isEndPoint" />
+    <result column="contactPersonId" jdbcType="VARCHAR" property="contactPersonId" />
+    <result column="contactphone" jdbcType="VARCHAR" property="contactphone" />
+    <result column="area_code" jdbcType="VARCHAR" property="areaCode" />
+    <result column="netWorkGuid" jdbcType="VARCHAR" property="netWorkGuid" />
+    <result column="is_current" jdbcType="TINYINT" property="isCurrent" />
+    <result column="cityName" jdbcType="VARCHAR" property="cityName" />
+    <result column="LngLatDettail" jdbcType="LONGVARCHAR" property="lngLatDettail" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GUID, OrdersCID, YYYYMMDD, EntID, PointLineGUID, SortNum, PlanArriveTime, PlanLeavTime, 
+    ActualArriveTime, ActualLeavTime, Contact, MapType, Name, Portray, Production, LngLatType, 
+    RegionCode, Lng, Lat, Initial, MaxLng, MaxLat, MinLng, MinLat, Address, LineWidth, 
+    LineColor, FillAreaColor, Opacity, FontColor, FontSize, StartPtDis, NextPointLineDistance, 
+    NextPointLineTime, CarDistance, DistanceType, CarTotalOil, AddTime, EditTime, EditPersonID, 
+    IsDelete, IsStartPoint, IsEndPoint, contactPersonId, contactphone, area_code, netWorkGuid, 
+    is_current, cityName, LngLatDettail
+  </sql>
+  <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from task_ordersarea
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </select>
+  <delete id="delete" parameterType="java.lang.String">
+    delete from task_ordersarea
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.logibeat.cloud.persistent.entity.TaskOrdersAreaEntity">
+    insert into task_ordersarea
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        GUID,
+      </if>
+      <if test="ordersCID != null">
+        OrdersCID,
+      </if>
+      <if test="yyyymmdd != null">
+        YYYYMMDD,
+      </if>
+      <if test="entID != null">
+        EntID,
+      </if>
+      <if test="pointLineGUID != null">
+        PointLineGUID,
+      </if>
+      <if test="sortNum != null">
+        SortNum,
+      </if>
+      <if test="planArriveTime != null">
+        PlanArriveTime,
+      </if>
+      <if test="planLeavTime != null">
+        PlanLeavTime,
+      </if>
+      <if test="actualArriveTime != null">
+        ActualArriveTime,
+      </if>
+      <if test="actualLeavTime != null">
+        ActualLeavTime,
+      </if>
+      <if test="contact != null">
+        Contact,
+      </if>
+      <if test="mapType != null">
+        MapType,
+      </if>
+      <if test="name != null">
+        Name,
+      </if>
+      <if test="portray != null">
+        Portray,
+      </if>
+      <if test="production != null">
+        Production,
+      </if>
+      <if test="lngLatType != null">
+        LngLatType,
+      </if>
+      <if test="regionCode != null">
+        RegionCode,
+      </if>
+      <if test="lng != null">
+        Lng,
+      </if>
+      <if test="lat != null">
+        Lat,
+      </if>
+      <if test="initial != null">
+        Initial,
+      </if>
+      <if test="maxLng != null">
+        MaxLng,
+      </if>
+      <if test="maxLat != null">
+        MaxLat,
+      </if>
+      <if test="minLng != null">
+        MinLng,
+      </if>
+      <if test="minLat != null">
+        MinLat,
+      </if>
+      <if test="address != null">
+        Address,
+      </if>
+      <if test="lineWidth != null">
+        LineWidth,
+      </if>
+      <if test="lineColor != null">
+        LineColor,
+      </if>
+      <if test="fillAreaColor != null">
+        FillAreaColor,
+      </if>
+      <if test="opacity != null">
+        Opacity,
+      </if>
+      <if test="fontColor != null">
+        FontColor,
+      </if>
+      <if test="fontSize != null">
+        FontSize,
+      </if>
+      <if test="startPtDis != null">
+        StartPtDis,
+      </if>
+      <if test="nextPointLineDistance != null">
+        NextPointLineDistance,
+      </if>
+      <if test="nextPointLineTime != null">
+        NextPointLineTime,
+      </if>
+      <if test="carDistance != null">
+        CarDistance,
+      </if>
+      <if test="distanceType != null">
+        DistanceType,
+      </if>
+      <if test="carTotalOil != null">
+        CarTotalOil,
+      </if>
+      <if test="addTime != null">
+        AddTime,
+      </if>
+      <if test="editTime != null">
+        EditTime,
+      </if>
+      <if test="editPersonID != null">
+        EditPersonID,
+      </if>
+      <if test="isDelete != null">
+        IsDelete,
+      </if>
+      <if test="isStartPoint != null">
+        IsStartPoint,
+      </if>
+      <if test="isEndPoint != null">
+        IsEndPoint,
+      </if>
+      <if test="contactPersonId != null">
+        contactPersonId,
+      </if>
+      <if test="contactphone != null">
+        contactphone,
+      </if>
+      <if test="areaCode != null">
+        area_code,
+      </if>
+      <if test="netWorkGuid != null">
+        netWorkGuid,
+      </if>
+      <if test="isCurrent != null">
+        is_current,
+      </if>
+      <if test="cityName != null">
+        cityName,
+      </if>
+      <if test="lngLatDettail != null">
+        LngLatDettail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        #{guid,jdbcType=VARCHAR},
+      </if>
+      <if test="ordersCID != null">
+        #{ordersCID,jdbcType=VARCHAR},
+      </if>
+      <if test="yyyymmdd != null">
+        #{yyyymmdd,jdbcType=INTEGER},
+      </if>
+      <if test="entID != null">
+        #{entID,jdbcType=VARCHAR},
+      </if>
+      <if test="pointLineGUID != null">
+        #{pointLineGUID,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNum != null">
+        #{sortNum,jdbcType=INTEGER},
+      </if>
+      <if test="planArriveTime != null">
+        #{planArriveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planLeavTime != null">
+        #{planLeavTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actualArriveTime != null">
+        #{actualArriveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actualLeavTime != null">
+        #{actualLeavTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contact != null">
+        #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="mapType != null">
+        #{mapType,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="portray != null">
+        #{portray,jdbcType=VARCHAR},
+      </if>
+      <if test="production != null">
+        #{production,jdbcType=INTEGER},
+      </if>
+      <if test="lngLatType != null">
+        #{lngLatType,jdbcType=INTEGER},
+      </if>
+      <if test="regionCode != null">
+        #{regionCode,jdbcType=INTEGER},
+      </if>
+      <if test="lng != null">
+        #{lng,jdbcType=DOUBLE},
+      </if>
+      <if test="lat != null">
+        #{lat,jdbcType=DOUBLE},
+      </if>
+      <if test="initial != null">
+        #{initial,jdbcType=VARCHAR},
+      </if>
+      <if test="maxLng != null">
+        #{maxLng,jdbcType=INTEGER},
+      </if>
+      <if test="maxLat != null">
+        #{maxLat,jdbcType=INTEGER},
+      </if>
+      <if test="minLng != null">
+        #{minLng,jdbcType=INTEGER},
+      </if>
+      <if test="minLat != null">
+        #{minLat,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="lineWidth != null">
+        #{lineWidth,jdbcType=INTEGER},
+      </if>
+      <if test="lineColor != null">
+        #{lineColor,jdbcType=VARCHAR},
+      </if>
+      <if test="fillAreaColor != null">
+        #{fillAreaColor,jdbcType=VARCHAR},
+      </if>
+      <if test="opacity != null">
+        #{opacity,jdbcType=INTEGER},
+      </if>
+      <if test="fontColor != null">
+        #{fontColor,jdbcType=VARCHAR},
+      </if>
+      <if test="fontSize != null">
+        #{fontSize,jdbcType=INTEGER},
+      </if>
+      <if test="startPtDis != null">
+        #{startPtDis,jdbcType=INTEGER},
+      </if>
+      <if test="nextPointLineDistance != null">
+        #{nextPointLineDistance,jdbcType=INTEGER},
+      </if>
+      <if test="nextPointLineTime != null">
+        #{nextPointLineTime,jdbcType=INTEGER},
+      </if>
+      <if test="carDistance != null">
+        #{carDistance,jdbcType=DOUBLE},
+      </if>
+      <if test="distanceType != null">
+        #{distanceType,jdbcType=INTEGER},
+      </if>
+      <if test="carTotalOil != null">
+        #{carTotalOil,jdbcType=DOUBLE},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null">
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editPersonID != null">
+        #{editPersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="isStartPoint != null">
+        #{isStartPoint,jdbcType=TINYINT},
+      </if>
+      <if test="isEndPoint != null">
+        #{isEndPoint,jdbcType=TINYINT},
+      </if>
+      <if test="contactPersonId != null">
+        #{contactPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="contactphone != null">
+        #{contactphone,jdbcType=VARCHAR},
+      </if>
+      <if test="areaCode != null">
+        #{areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="netWorkGuid != null">
+        #{netWorkGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="isCurrent != null">
+        #{isCurrent,jdbcType=TINYINT},
+      </if>
+      <if test="cityName != null">
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="lngLatDettail != null">
+        #{lngLatDettail,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.logibeat.cloud.persistent.entity.TaskOrdersAreaEntity">
+    update task_ordersarea
+    <trim prefix="SET" suffixOverrides=",">
+      <if test="ordersCID != null">
+        OrdersCID = #{ordersCID,jdbcType=VARCHAR},
+      </if>
+      <if test="yyyymmdd != null">
+          YYYYMMDD = #{yyyymmdd,jdbcType=INTEGER},
+      </if>
+      <if test="entID != null">
+          EntID = #{entID,jdbcType=VARCHAR},
+      </if>
+      <if test="pointLineGUID != null">
+          PointLineGUID = #{pointLineGUID,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNum != null">
+          SortNum = #{sortNum,jdbcType=INTEGER},
+      </if>
+      <if test="planArriveTime != null">
+          PlanArriveTime = #{planArriveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planLeavTime != null">
+          PlanLeavTime = #{planLeavTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actualArriveTime != null">
+          ActualArriveTime = #{actualArriveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actualLeavTime != null">
+          ActualLeavTime = #{actualLeavTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contact != null">
+          Contact = #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="mapType != null">
+          MapType = #{mapType,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+          Name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="portray != null">
+          Portray = #{portray,jdbcType=VARCHAR},
+      </if>
+      <if test="production != null">
+          Production = #{production,jdbcType=INTEGER},
+      </if>
+      <if test="lngLatType != null">
+          LngLatType = #{lngLatType,jdbcType=INTEGER},
+      </if>
+      <if test="regionCode != null">
+          RegionCode = #{regionCode,jdbcType=INTEGER},
+      </if>
+      <if test="lng != null">
+          Lng = #{lng,jdbcType=DOUBLE},
+      </if>
+      <if test="lat != null">
+          Lat = #{lat,jdbcType=DOUBLE},
+      </if>
+      <if test="initial != null">
+          Initial = #{initial,jdbcType=VARCHAR},
+      </if>
+      <if test="maxLng != null">
+          MaxLng = #{maxLng,jdbcType=INTEGER},
+      </if>
+      <if test="maxLat != null">
+          MaxLat = #{maxLat,jdbcType=INTEGER},
+      </if>
+      <if test="minLng != null">
+          MinLng = #{minLng,jdbcType=INTEGER},
+      </if>
+      <if test="minLat != null">
+          MinLat = #{minLat,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+          Address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="lineWidth != null">
+          LineWidth = #{lineWidth,jdbcType=INTEGER},
+      </if>
+      <if test="lineColor != null">
+          LineColor = #{lineColor,jdbcType=VARCHAR},
+      </if>
+      <if test="fillAreaColor != null">
+          FillAreaColor = #{fillAreaColor,jdbcType=VARCHAR},
+      </if>
+      <if test="opacity != null">
+          Opacity = #{opacity,jdbcType=INTEGER},
+      </if>
+      <if test="fontColor != null">
+          FontColor = #{fontColor,jdbcType=VARCHAR},
+      </if>
+      <if test="fontSize != null">
+          FontSize = #{fontSize,jdbcType=INTEGER},
+      </if>
+      <if test="startPtDis != null">
+          StartPtDis = #{startPtDis,jdbcType=INTEGER},
+      </if>
+      <if test="nextPointLineDistance != null">
+          NextPointLineDistance = #{nextPointLineDistance,jdbcType=INTEGER},
+      </if>
+      <if test="nextPointLineTime != null">
+          NextPointLineTime = #{nextPointLineTime,jdbcType=INTEGER},
+      </if>
+      <if test="carDistance != null">
+          CarDistance = #{carDistance,jdbcType=DOUBLE},
+      </if>
+      <if test="distanceType != null">
+          DistanceType = #{distanceType,jdbcType=INTEGER},
+      </if>
+      <if test="carTotalOil != null">
+          CarTotalOil = #{carTotalOil,jdbcType=DOUBLE},
+      </if>
+      <if test="addTime != null">
+          AddTime = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null">
+          EditTime = #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editPersonID != null">
+          EditPersonID = #{editPersonID,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+          IsDelete = #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="isStartPoint != null">
+          IsStartPoint = #{isStartPoint,jdbcType=TINYINT},
+      </if>
+      <if test="isEndPoint != null">
+          IsEndPoint = #{isEndPoint,jdbcType=TINYINT},
+      </if>
+      <if test="contactPersonId != null">
+          contactPersonId = #{contactPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="contactphone != null">
+          contactphone = #{contactphone,jdbcType=VARCHAR},
+      </if>
+      <if test="areaCode != null">
+          area_code = #{areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="netWorkGuid != null">
+          netWorkGuid = #{netWorkGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="isCurrent != null">
+          is_current = #{isCurrent,jdbcType=TINYINT},
+      </if>
+      <if test="cityName != null">
+          cityName = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="lngLatDettail != null">
+          LngLatDettail = #{lngLatDettail,jdbcType=LONGVARCHAR}
+      </if>
+    </trim>
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </update>
+
+  <delete id="deleteOrdersAreaFromOrdersId"  parameterType="java.lang.String" >
+    DELETE FROM task_ordersarea where OrdersCID = #{ordersCid,jdbcType=VARCHAR}
+  </delete>
+
+  <select id="getStartPoint" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from task_ordersarea  where OrdersCID = #{ordersCID,jdbcType=VARCHAR} AND IsStartPoint = 1
+  </select>
+
+  <select id="getEndPoint" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from task_ordersarea  where OrdersCID = #{ordersCID,jdbcType=VARCHAR} AND IsEndPoint = 1
+  </select>
+
+  <select id="getUnLeaveNode" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from task_ordersarea
+    where OrdersCID = #{ordersCID} AND ActualLeavTime IS NULL ORDER BY SortNum
+  </select>
+
+  <select id="getOrdersAreaByCid" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from task_ordersarea where OrdersCID = #{ordersCID} and IsDelete = 0  order by SortNum asc
+  </select>
+
+  <select id="getHistoryTaskList" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM task_orderscar WHERE isDelete = 0
+    AND (FirstDriverPersonID = #{personId} OR SecondDriverPersonID =  #{personId})
+    AND (IsCancleEntrust = 1 or orders_status = 7)
+    <if test="entId != null">
+      AND entrustEntid = #{entId}
+    </if>
+  </select>
+
+  <select id="getWayAreaList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from task_ordersarea
+    where OrdersCID = #{taskId}
+    AND  IsStartPoint = 0
+    and IsDelete = 0
+  </select>
+
+
+</mapper>

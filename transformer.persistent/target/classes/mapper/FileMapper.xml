@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.logibeat.cloud.persistent.dao.FileDao">
+  <resultMap id="BaseResultMap" type="com.logibeat.cloud.persistent.entity.FileEntity">
+    <id column="guid" jdbcType="VARCHAR" property="guid" />
+    <result column="entId" jdbcType="VARCHAR" property="entId" />
+    <result column="personId" jdbcType="VARCHAR" property="personId" />
+    <result column="fileType" jdbcType="INTEGER" property="fileType" />
+    <result column="path" jdbcType="VARCHAR" property="path" />
+    <result column="size" jdbcType="DOUBLE" property="size" />
+    <result column="suffix" jdbcType="VARCHAR" property="suffix" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="edittime" jdbcType="TIMESTAMP" property="edittime" />
+    <result column="addtime" jdbcType="TIMESTAMP" property="addtime" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="uploadName" jdbcType="VARCHAR" property="uploadName" />
+    <result column="fullpath" jdbcType="VARCHAR" property="fullpath" />
+    <result column="objectId" jdbcType="VARCHAR" property="objectId" />
+    <result column="objectType" jdbcType="INTEGER" property="objectType" />
+    <result column="personType" jdbcType="INTEGER" property="personType" />
+    <result column="isDelete" jdbcType="TINYINT" property="isDelete" />
+    <result column="deleteTime" jdbcType="TIMESTAMP" property="deleteTime" />
+    <result column="height" jdbcType="INTEGER" property="height" />
+    <result column="isoss" jdbcType="TINYINT" property="isoss" />
+    <result column="width" jdbcType="INTEGER" property="width" />
+    <result column="ord" jdbcType="INTEGER" property="ord" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    guid, entId, personId, fileType, path, size, suffix, name, edittime, addtime, remark, 
+    uploadName, fullpath, objectId, objectType, personType, isDelete, deleteTime, height, 
+    isoss, width, ord
+  </sql>
+  <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bs_file
+    where guid = #{guid,jdbcType=VARCHAR}
+  </select>
+  <delete id="delete" parameterType="java.lang.String">
+    delete from bs_file
+    where guid = #{guid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.logibeat.cloud.persistent.entity.FileEntity">
+    insert into bs_file
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        guid,
+      </if>
+      <if test="entId != null">
+        entId,
+      </if>
+      <if test="personId != null">
+        personId,
+      </if>
+      <if test="fileType != null">
+        fileType,
+      </if>
+      <if test="path != null">
+        path,
+      </if>
+      <if test="size != null">
+        size,
+      </if>
+      <if test="suffix != null">
+        suffix,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="edittime != null">
+        edittime,
+      </if>
+      <if test="addtime != null">
+        addtime,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="uploadName != null">
+        uploadName,
+      </if>
+      <if test="fullpath != null">
+        fullpath,
+      </if>
+      <if test="objectId != null">
+        objectId,
+      </if>
+      <if test="objectType != null">
+        objectType,
+      </if>
+      <if test="personType != null">
+        personType,
+      </if>
+      <if test="isDelete != null">
+        isDelete,
+      </if>
+      <if test="deleteTime != null">
+        deleteTime,
+      </if>
+      <if test="height != null">
+        height,
+      </if>
+      <if test="isoss != null">
+        isoss,
+      </if>
+      <if test="width != null">
+        width,
+      </if>
+      <if test="ord != null">
+        ord,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        #{guid,jdbcType=VARCHAR},
+      </if>
+      <if test="entId != null">
+        #{entId,jdbcType=VARCHAR},
+      </if>
+      <if test="personId != null">
+        #{personId,jdbcType=VARCHAR},
+      </if>
+      <if test="fileType != null">
+        #{fileType,jdbcType=INTEGER},
+      </if>
+      <if test="path != null">
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null">
+        #{size,jdbcType=DOUBLE},
+      </if>
+      <if test="suffix != null">
+        #{suffix,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="edittime != null">
+        #{edittime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addtime != null">
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadName != null">
+        #{uploadName,jdbcType=VARCHAR},
+      </if>
+      <if test="fullpath != null">
+        #{fullpath,jdbcType=VARCHAR},
+      </if>
+      <if test="objectId != null">
+        #{objectId,jdbcType=VARCHAR},
+      </if>
+      <if test="objectType != null">
+        #{objectType,jdbcType=INTEGER},
+      </if>
+      <if test="personType != null">
+        #{personType,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="deleteTime != null">
+        #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="height != null">
+        #{height,jdbcType=INTEGER},
+      </if>
+      <if test="isoss != null">
+        #{isoss,jdbcType=TINYINT},
+      </if>
+      <if test="width != null">
+        #{width,jdbcType=INTEGER},
+      </if>
+      <if test="ord != null">
+        #{ord,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.logibeat.cloud.persistent.entity.FileEntity">
+    update bs_file
+    <trim prefix="SET" suffixOverrides=",">
+      <if test="entId != null">
+        entId = #{entId,jdbcType=VARCHAR},
+      </if>
+      <if test="personId != null">
+          personId = #{personId,jdbcType=VARCHAR},
+      </if>
+      <if test="fileType != null">
+          fileType = #{fileType,jdbcType=INTEGER},
+      </if>
+      <if test="path != null">
+          path = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null">
+          size = #{size,jdbcType=DOUBLE},
+      </if>
+      <if test="suffix != null">
+          suffix = #{suffix,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+          name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="edittime != null">
+          edittime = #{edittime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addtime != null">
+          addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+          remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadName != null">
+          uploadName = #{uploadName,jdbcType=VARCHAR},
+      </if>
+      <if test="fullpath != null">
+          fullpath = #{fullpath,jdbcType=VARCHAR},
+      </if>
+      <if test="objectId != null">
+          objectId = #{objectId,jdbcType=VARCHAR},
+      </if>
+      <if test="objectType != null">
+          objectType = #{objectType,jdbcType=INTEGER},
+      </if>
+      <if test="personType != null">
+          personType = #{personType,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null">
+          isDelete = #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="deleteTime != null">
+          deleteTime = #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="height != null">
+          height = #{height,jdbcType=INTEGER},
+      </if>
+      <if test="isoss != null">
+          isoss = #{isoss,jdbcType=TINYINT},
+      </if>
+      <if test="width != null">
+          width = #{width,jdbcType=INTEGER},
+      </if>
+      <if test="ord != null">
+          ord = #{ord,jdbcType=INTEGER}
+      </if>
+    </trim>
+    where guid = #{guid,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getFileList" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM bs_file
+    WHERE  isDelete = 0
+    <if test="objectId != null">
+      AND objectId = #{objectId}
+    </if>
+    <if test="fileType != null">
+      AND fileType = #{fileType}
+    </if>
+    <if test="objectType != null">
+      AND  objectType = #{objectType}
+    </if>
+    ORDER BY ord ASC
+  </select>
+
+</mapper>

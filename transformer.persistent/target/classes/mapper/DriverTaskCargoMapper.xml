@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.logibeat.cloud.persistent.dao.DriverTaskCargoDao">
+    
+    <resultMap type="DriverTaskCargoEntity" id="DriverTaskCargoResult">
+        <result property="guid"    column="guid"    />
+        <result property="taskId"    column="task_id"    />
+        <result property="name"    column="name"    />
+        <result property="num"    column="num"    />
+        <result property="weight"    column="weight"    />
+        <result property="volume"    column="volume"    />
+        <result property="spec"    column="spec"    />
+        <result property="material"    column="material"    />
+        <result property="pics"    column="pics"    />
+        <result property="remarks"    column="remarks"    />
+        <result property="takeRemars"    column="take_remars"    />
+        <result property="taskPointId"    column="task_point_id"    />
+        <result property="createTime"    column="create_time"    />
+    </resultMap>
+	
+	<sql id="selectDriverTaskCargoVo">
+        select guid, task_id, name, num, weight, volume, spec, material, pics, remarks, take_remars, task_point_id, create_time from driver_task_cargo
+    </sql>
+	
+    <select id="selectDriverTaskCargoList" parameterType="DriverTaskCargoEntity" resultMap="DriverTaskCargoResult">
+        <include refid="selectDriverTaskCargoVo"/>
+        <where>  
+            <if test="guid != null  and guid != '' "> and guid = #{guid}</if>
+             <if test="taskId != null  and taskId != '' "> and task_id = #{taskId}</if>
+             <if test="name != null  and name != '' "> and name = #{name}</if>
+             <if test="num != null "> and num = #{num}</if>
+             <if test="weight != null "> and weight = #{weight}</if>
+             <if test="volume != null "> and volume = #{volume}</if>
+             <if test="spec != null  and spec != '' "> and spec = #{spec}</if>
+             <if test="material != null  and material != '' "> and material = #{material}</if>
+             <if test="pics != null  and pics != '' "> and pics = #{pics}</if>
+             <if test="remarks != null  and remarks != '' "> and remarks = #{remarks}</if>
+             <if test="takeRemars != null  and takeRemars != '' "> and take_remars = #{takeRemars}</if>
+             <if test="taskPointId != null  and taskPointId != '' "> and task_point_id = #{taskPointId}</if>
+             <if test="createTime != null "> and create_time = #{createTime}</if>
+         </where>
+    </select>
+    
+    <select id="selectDriverTaskCargoById" parameterType="String" resultMap="DriverTaskCargoResult">
+        <include refid="selectDriverTaskCargoVo"/>
+        where guid = #{guid}
+    </select>
+        
+    <insert id="insertDriverTaskCargo" parameterType="DriverTaskCargoEntity">
+        insert into driver_task_cargo
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="guid != null  and guid != ''  ">guid,</if>
+			<if test="taskId != null  and taskId != ''  ">task_id,</if>
+			<if test="name != null  and name != ''  ">name,</if>
+			<if test="num != null  ">num,</if>
+			<if test="weight != null  ">weight,</if>
+			<if test="volume != null  ">volume,</if>
+			<if test="spec != null  and spec != ''  ">spec,</if>
+			<if test="material != null  and material != ''  ">material,</if>
+			<if test="pics != null  and pics != ''  ">pics,</if>
+			<if test="remarks != null  and remarks != ''  ">remarks,</if>
+			<if test="takeRemars != null  and takeRemars != ''  ">take_remars,</if>
+			<if test="taskPointId != null  and taskPointId != ''  ">task_point_id,</if>
+			<if test="createTime != null  ">create_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="guid != null  and guid != ''  ">#{guid},</if>
+			<if test="taskId != null  and taskId != ''  ">#{taskId},</if>
+			<if test="name != null  and name != ''  ">#{name},</if>
+			<if test="num != null  ">#{num},</if>
+			<if test="weight != null  ">#{weight},</if>
+			<if test="volume != null  ">#{volume},</if>
+			<if test="spec != null  and spec != ''  ">#{spec},</if>
+			<if test="material != null  and material != ''  ">#{material},</if>
+			<if test="pics != null  and pics != ''  ">#{pics},</if>
+			<if test="remarks != null  and remarks != ''  ">#{remarks},</if>
+			<if test="takeRemars != null  and takeRemars != ''  ">#{takeRemars},</if>
+			<if test="taskPointId != null  and taskPointId != ''  ">#{taskPointId},</if>
+			<if test="createTime != null  ">#{createTime},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateDriverTaskCargo" parameterType="DriverTaskCargoEntity">
+        update driver_task_cargo
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="taskId != null  and taskId != ''  ">task_id = #{taskId},</if>
+            <if test="name != null  and name != ''  ">name = #{name},</if>
+            <if test="num != null  ">num = #{num},</if>
+            <if test="weight != null  ">weight = #{weight},</if>
+            <if test="volume != null  ">volume = #{volume},</if>
+            <if test="spec != null  and spec != ''  ">spec = #{spec},</if>
+            <if test="material != null  and material != ''  ">material = #{material},</if>
+            <if test="pics != null  and pics != ''  ">pics = #{pics},</if>
+            <if test="remarks != null  and remarks != ''  ">remarks = #{remarks},</if>
+            <if test="takeRemars != null  and takeRemars != ''  ">take_remars = #{takeRemars},</if>
+            <if test="taskPointId != null  and taskPointId != ''  ">task_point_id = #{taskPointId},</if>
+            <if test="createTime != null  ">create_time = #{createTime},</if>
+        </trim>
+        where guid = #{guid}
+    </update>
+
+	<delete id="deleteDriverTaskCargoById" parameterType="String">
+        delete from driver_task_cargo where guid = #{guid}
+    </delete>
+
+
+    <delete id="deleteByTaskId" parameterType="String">
+        delete from driver_task_cargo where task_id = #{taskId}
+    </delete>
+
+
+
+    <delete id="deleteDriverTaskCargoByIds" parameterType="String">
+        delete from driver_task_cargo where guid in 
+        <foreach item="guid" collection="array" open="(" separator="," close=")">
+            #{guid}
+        </foreach>
+    </delete>
+    
+</mapper>

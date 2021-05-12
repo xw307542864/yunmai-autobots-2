@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: yunmai-autobots
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://rm-bp10xxl0vx14iqpv7oo.mysql.rds.aliyuncs.com:3306/transformers_test_1?useUnicode=true&characterEncoding=UTF8&autoReconnect=true&useSSL=false
+    username: test2_w
+    password: Hello123
+
+nacos:
+  config:
+    server-addr: devops1.ops.logibeat.com:8848
+
+
+server:
+  port: 8088
+  servlet:
+    context-path: /autobots
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.logibeat.cloud.persistent.entity
+
+
+logging:
+  level.root: info
+  level.com.logibeat.cloud: info
+  level.com.logibeat.cloud.dao: debug
+  file: ${user.home}/logs/login.log
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://api.appium.logibeat.com/eureka/eureka/
+  instance:
+    prefer-ip-address: true
